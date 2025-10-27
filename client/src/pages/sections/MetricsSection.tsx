@@ -117,35 +117,80 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
   onSelect: () => void;
 }) => {
   return (
-    <div className="flex flex-col items-center w-full">
-      {/* Metric Item */}
-      <div
-        className={`flex flex-col items-center gap-4 cursor-pointer group relative transition-all duration-300 ${
-          isSelected ? 'scale-105' : ''
-        }`}
-        onClick={onSelect}
-        data-testid={`metric-card-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
-      >
-        {/* Icon from extracted image - Responsive sizing to prevent overflow */}
-        <div className="relative">
-          <img 
-            src={`/figmaAssets/icons/${metric.iconName}.png`}
-            alt={metric.name}
-            className="w-24 h-24 sm:w-36 sm:h-36 lg:w-48 lg:h-48 object-contain transition-all duration-300 group-hover:scale-105"
-          />
-          
-          {/* Badge - only "measured", removed "new" */}
-          {metric.badge && (
-            <span className="absolute top-1 right-1 px-2.5 py-1 text-xs font-bold rounded-full bg-gray-300 text-black">
-              Measured
-            </span>
-          )}
+    <div 
+      className={`flex flex-col items-center cursor-pointer group transition-all duration-300 ${
+        isSelected ? 'scale-105' : ''
+      }`}
+      onClick={onSelect}
+      data-testid={`metric-card-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
+    >
+      {/* Icon Container - Clean with no extra space */}
+      <div className="relative mb-3">
+        <img 
+          src={`/figmaAssets/icons-cropped/${metric.iconName}.png`}
+          alt={metric.name}
+          className="w-28 h-28 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain transition-all duration-300 group-hover:scale-110 group-hover:brightness-125"
+        />
+        
+        {/* Badge - Subtle corner overlay */}
+        {metric.badge && (
+          <span className="absolute -top-2 -right-2 px-2 py-0.5 text-[10px] font-paragraph-12-xs-semibold font-[number:var(--paragraph-12-xs-semibold-font-weight)] tracking-[var(--paragraph-12-xs-semibold-letter-spacing)] leading-[var(--paragraph-12-xs-semibold-line-height)] rounded-md bg-neutral-700 text-white shadow-lg">
+            MEASURED
+          </span>
+        )}
+      </div>
+      
+      {/* Metric Name - Using design system typography */}
+      <p className="font-label-16-base-semibold font-[number:var(--label-16-base-semibold-font-weight)] text-[length:var(--label-16-base-semibold-font-size)] tracking-[var(--label-16-base-semibold-letter-spacing)] leading-[var(--label-16-base-semibold-line-height)] text-center text-white uppercase">
+        {metric.name}
+      </p>
+    </div>
+  );
+};
+
+const MetricDetails = ({ metric, onClose }: { metric: Metric; onClose: () => void }) => {
+  return (
+    <div 
+      className="col-span-full px-4 py-6 animate-in fade-in slide-in-from-top-4 duration-300"
+      data-testid={`metric-details-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
+    >
+      <div className="max-w-2xl mx-auto bg-neutral-900 border-2 border-primary600-main rounded-lg shadow-2xl p-6">
+        <div className="flex justify-between items-start mb-5">
+          <h4 className="font-paragraph-18-lg-semibold font-[number:var(--paragraph-18-lg-semibold-font-weight)] text-[length:var(--paragraph-18-lg-semibold-font-size)] tracking-[var(--paragraph-18-lg-semibold-letter-spacing)] leading-[var(--paragraph-18-lg-semibold-line-height)] text-white uppercase">
+            {metric.name}
+          </h4>
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className="text-neutral-500 hover:text-white text-2xl font-bold transition-colors ml-4"
+            data-testid="metric-details-close-button"
+            aria-label="Close details"
+          >
+            ×
+          </button>
         </div>
         
-        {/* Metric Name */}
-        <p className="font-semibold text-lg text-center text-white leading-tight max-w-[200px]">
-          {metric.name}
-        </p>
+        <div className="space-y-4">
+          <div>
+            <p className="font-label-12-xs-semibold font-[number:var(--label-12-xs-semibold-font-weight)] text-[length:var(--label-12-xs-semibold-font-size)] tracking-[var(--label-12-xs-semibold-letter-spacing)] leading-[var(--label-12-xs-semibold-line-height)] text-neutral-500 uppercase mb-2">
+              What it is
+            </p>
+            <p className="font-paragraph-14-sm-medium font-[number:var(--paragraph-14-sm-medium-font-weight)] text-[length:var(--paragraph-14-sm-medium-font-size)] tracking-[var(--paragraph-14-sm-medium-letter-spacing)] leading-[var(--paragraph-14-sm-medium-line-height)] text-neutral-200">
+              {metric.whatItIs}
+            </p>
+          </div>
+          
+          <div>
+            <p className="font-label-12-xs-semibold font-[number:var(--label-12-xs-semibold-font-weight)] text-[length:var(--label-12-xs-semibold-font-size)] tracking-[var(--label-12-xs-semibold-letter-spacing)] leading-[var(--label-12-xs-semibold-line-height)] text-neutral-500 uppercase mb-2">
+              How it affects ball flight
+            </p>
+            <p className="font-paragraph-14-sm-medium font-[number:var(--paragraph-14-sm-medium-font-weight)] text-[length:var(--paragraph-14-sm-medium-font-size)] tracking-[var(--paragraph-14-sm-medium-letter-spacing)] leading-[var(--paragraph-14-sm-medium-line-height)] text-neutral-200">
+              {metric.howItAffects}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -161,57 +206,36 @@ export const MetricsSection = (): JSX.Element => {
   return (
     <section className="w-full py-24 px-8 bg-genericblack">
       <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
         <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] text-[length:var(--heading-72-9xl-hero-font-size)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] leading-[var(--heading-72-9xl-hero-line-height)] [font-style:var(--heading-72-9xl-hero-font-style)] text-white mb-6">
             MLM2PRO Metrics
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-neutral-200 max-w-3xl mx-auto">
             Unlock precision golf analytics with comprehensive metrics that help you understand and improve your game. Click any metric to learn more.
           </p>
         </div>
 
-        {/* 5x3 Grid Layout with generous spacing */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-12 gap-y-20 mx-auto mb-16">
+        {/* 5x3 Grid Layout with inline dropdown */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-16 mx-auto">
           {metrics.map((metric, index) => (
-            <MetricCard 
-              key={index} 
-              metric={metric}
-              isSelected={selectedMetric === index}
-              onSelect={() => handleMetricClick(index)}
-            />
+            <div className="contents" key={index}>
+              <MetricCard 
+                metric={metric}
+                isSelected={selectedMetric === index}
+                onSelect={() => handleMetricClick(index)}
+              />
+              
+              {/* Show details directly after selected metric */}
+              {selectedMetric === index && (
+                <MetricDetails 
+                  metric={metric} 
+                  onClose={() => setSelectedMetric(null)}
+                />
+              )}
+            </div>
           ))}
         </div>
-
-        {/* Expanded Details Section - Below the grid, not overlapping */}
-        {selectedMetric !== null && (
-          <div 
-            className="p-8 bg-white border-2 border-gray-300 rounded-xl shadow-2xl max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-300"
-            data-testid={`metric-details-${metrics[selectedMetric].name.toLowerCase().replace(/\s+/g, '-')}`}
-          >
-            <div className="flex justify-between items-start mb-6">
-              <h4 className="font-bold text-2xl text-genericblack uppercase tracking-wide">
-                {metrics[selectedMetric].name}
-              </h4>
-              <button 
-                onClick={() => setSelectedMetric(null)}
-                className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
-                data-testid="metric-details-close-button"
-              >
-                ×
-              </button>
-            </div>
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">What it is</p>
-                <p className="text-base text-gray-700 leading-relaxed">{metrics[selectedMetric].whatItIs}</p>
-              </div>
-              <div>
-                <p className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">How it affects ball flight</p>
-                <p className="text-base text-gray-700 leading-relaxed">{metrics[selectedMetric].howItAffects}</p>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
