@@ -7,12 +7,20 @@ interface UserProfile {
   lastName: string;
   email: string;
   deviceSerial?: string;
-  purchaseDate?: string;
-  productName?: string;
   registrationDate?: string;
-  city?: string;
-  region?: string;
-  country?: string;
+  subscriptionType?: string;
+  firstConnectDate?: string;
+  lastConnectDate?: string;
+  sessionCount?: number;
+  capturedShots?: number;
+  phoneType?: string;
+  appVersion?: string;
+  firmwareVersion?: string;
+  lastPlayed?: string;
+  subscriptionStartDate?: string;
+  subscriptionEndDate?: string;
+  age?: number;
+  handedness?: string;
 }
 
 interface ProfileCardProps {
@@ -105,48 +113,82 @@ export const HeroSection = (): JSX.Element => {
     const cards: Array<{ title: string; value: string; side: 'left' | 'right' }> = [];
     let sideToggle = false;
 
-    if (userProfile.productName) {
-      cards.push({
-        title: "Product",
-        value: userProfile.productName,
-        side: sideToggle ? 'left' : 'right'
-      });
-      sideToggle = !sideToggle;
-    }
-
+    // Device Serial
     if (userProfile.deviceSerial) {
       cards.push({
-        title: "Device Serial",
+        title: "Device Serial Number",
         value: userProfile.deviceSerial,
         side: sideToggle ? 'left' : 'right'
       });
       sideToggle = !sideToggle;
     }
 
-    if (userProfile.purchaseDate) {
-      const date = new Date(userProfile.purchaseDate);
+    // Subscription Type
+    if (userProfile.subscriptionType) {
       cards.push({
-        title: "Purchase Date",
+        title: "Current Subscription",
+        value: userProfile.subscriptionType,
+        side: sideToggle ? 'left' : 'right'
+      });
+      sideToggle = !sideToggle;
+    }
+
+    // Session Count
+    if (userProfile.sessionCount) {
+      cards.push({
+        title: "Total Sessions",
+        value: userProfile.sessionCount.toLocaleString(),
+        side: sideToggle ? 'left' : 'right'
+      });
+      sideToggle = !sideToggle;
+    }
+
+    // Captured Shots
+    if (userProfile.capturedShots) {
+      cards.push({
+        title: "Captured Shots",
+        value: userProfile.capturedShots.toLocaleString(),
+        side: sideToggle ? 'left' : 'right'
+      });
+      sideToggle = !sideToggle;
+    }
+
+    // Last Played
+    if (userProfile.lastPlayed) {
+      const date = new Date(userProfile.lastPlayed);
+      cards.push({
+        title: "Last Session",
         value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
         side: sideToggle ? 'left' : 'right'
       });
       sideToggle = !sideToggle;
     }
 
-    if (userProfile.registrationDate) {
-      const date = new Date(userProfile.registrationDate);
+    // Firmware Version
+    if (userProfile.firmwareVersion) {
       cards.push({
-        title: "Registration Date",
-        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+        title: "Firmware Version",
+        value: userProfile.firmwareVersion,
         side: sideToggle ? 'left' : 'right'
       });
       sideToggle = !sideToggle;
     }
 
-    if (userProfile.city && userProfile.region) {
+    // App Version
+    if (userProfile.appVersion) {
       cards.push({
-        title: "Location",
-        value: `${userProfile.city}, ${userProfile.region}`,
+        title: "App Version",
+        value: userProfile.appVersion,
+        side: sideToggle ? 'left' : 'right'
+      });
+      sideToggle = !sideToggle;
+    }
+
+    // Handedness
+    if (userProfile.handedness) {
+      cards.push({
+        title: "Handedness",
+        value: userProfile.handedness,
         side: sideToggle ? 'left' : 'right'
       });
       sideToggle = !sideToggle;

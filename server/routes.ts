@@ -41,32 +41,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Email is required" });
       }
 
-      const projectId = process.env.MIXPANEL_PROJECT_ID;
       const username = process.env.MIXPANEL_SERVICE_ACCOUNT_USERNAME;
       const password = process.env.MIXPANEL_SERVICE_ACCOUNT_PASSWORD;
 
-      if (!projectId || !username || !password) {
+      if (!username || !password) {
         console.error("Missing Mixpanel credentials");
         return res.status(500).json({ error: "Server configuration error" });
       }
 
-      // Query Mixpanel Engage API for user profile by email
+      // Use Mixpanel JQL API to query user profile
       const credentials = Buffer.from(`${username}:${password}`).toString('base64');
-      const mixpanelUrl = `https://mixpanel.com/api/app/projects/${projectId}/engage/users/by-distinct-id`;
+      const mixpanelUrl = 'https://mixpanel.com/api/2.0/jql';
+
+      // JQL query to find user by email
+      const jqlScript = `
+        function main() {
+          return People()
+            .filter(function(p){
+              return p && p.properties && p.properties.$email === ${JSON.stringify(email)};
+            })
+            .map(function(p){
+              var x = p.properties || {};
+              return {
+                email: x.$email || null,
+                firstName: x["First Name"] || null,
+                lastName: x["Last Name"] || null,
+                registrationDate: x["Registration Date"] || null,
+                deviceSerial: x["MLM2 Last Serial Number"] || null,
+                subscriptionType: x["MLM2 Latest Subscription Type"] || null,
+                firstConnectDate: x["MLM2 First Connect Date"] || null,
+                lastConnectDate: x["MLM2 Last Connect Date"] || null,
+                sessionCount: x["MLM2 Number of Sessions"] || null,
+                capturedShots: x["MLM2 Success Shot Count"] || null,
+                phoneType: x["MLM2 Phone Type"] || null,
+                appVersion: x["MLM2 App Version"] || null,
+                firmwareVersion: x["MLM2 Firmware Version"] || null,
+                lastPlayed: x["MLM2 Last Played"] || null,
+                subscriptionStartDate: x["MLM2 Latest Subscription Start Date"] || null,
+                subscriptionEndDate: x["MLM2 Latest Subscription Expire Date"] || null,
+                age: x["Age"] || null,
+                handedness: x["Handedness"] || null
+              };
+            });
+        }
+      `;
 
       const response = await fetch(mixpanelUrl, {
         method: 'POST',
         headers: {
           'Authorization': `Basic ${credentials}`,
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
-          distinct_ids: [email]
-        })
+        body: `script=${encodeURIComponent(jqlScript)}`
       });
 
       if (!response.ok) {
-        console.error("Mixpanel API error:", response.status, response.statusText);
+        const errorText = await response.text();
+        console.error("Mixpanel API error:", response.status, response.statusText, errorText);
         return res.status(response.status).json({ 
           error: "Failed to fetch user profile from Mixpanel" 
         });
@@ -74,27 +105,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const data = await response.json();
       
-      if (!data.results || data.results.length === 0) {
+      if (!data || data.length === 0) {
         return res.status(404).json({ 
           error: "User not found. Please check your email address." 
         });
       }
 
-      const userProfile = data.results[0];
-      const properties = userProfile.$properties || {};
+      const userProfile = data[0];
 
-      // Extract and format only necessary properties (no sensitive data)
+      // Extract and format profile data
       const profileData = {
-        firstName: properties.$first_name || properties.first_name || "User",
-        lastName: properties.$last_name || properties.last_name || "",
-        email: properties.$email || email,
-        deviceSerial: properties.device_serial || properties.DeviceSerial,
-        purchaseDate: properties.purchase_date || properties.PurchaseDate,
-        productName: properties.product_name || properties.ProductName || "MLM2PRO",
-        registrationDate: properties.$created || properties.registration_date,
-        city: properties.$city,
-        region: properties.$region,
-        country: properties.$country_code
+        firstName: userProfile.firstName || "User",
+        lastName: userProfile.lastName || "",
+        email: userProfile.email || email,
+        deviceSerial: userProfile.deviceSerial,
+        registrationDate: userProfile.registrationDate,
+        subscriptionType: userProfile.subscriptionType,
+        firstConnectDate: userProfile.firstConnectDate,
+        lastConnectDate: userProfile.lastConnectDate,
+        sessionCount: userProfile.sessionCount,
+        capturedShots: userProfile.capturedShots,
+        phoneType: userProfile.phoneType,
+        appVersion: userProfile.appVersion,
+        firmwareVersion: userProfile.firmwareVersion,
+        lastPlayed: userProfile.lastPlayed,
+        subscriptionStartDate: userProfile.subscriptionStartDate,
+        subscriptionEndDate: userProfile.subscriptionEndDate,
+        age: userProfile.age,
+        handedness: userProfile.handedness
       };
 
       res.json({ 
