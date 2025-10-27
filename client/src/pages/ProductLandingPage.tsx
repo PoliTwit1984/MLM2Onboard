@@ -1,5 +1,6 @@
 import { ChevronDownIcon } from "lucide-react";
 import React from "react";
+import { Link } from "wouter";
 import { FeaturesSection } from "./sections/FeaturesSection";
 import { FooterSection } from "./sections/FooterSection";
 import { HeroSection } from "./sections/HeroSection";
@@ -11,10 +12,10 @@ import { SidebarSection } from "./sections/SidebarSection";
 import { SignupFormSection } from "./sections/SignupFormSection";
 
 const secondaryNavItems = [
-  { label: "PRODUCTS", hasDropdown: true },
-  { label: "LEARNING CENTER", hasDropdown: false },
-  { label: "COMMUNITY", hasDropdown: true },
-  { label: "SUPPORT", hasDropdown: false },
+  { label: "PRODUCTS", hasDropdown: true, href: "/products" },
+  { label: "LEARNING CENTER", hasDropdown: false, href: "/learning" },
+  { label: "COMMUNITY", hasDropdown: true, href: "/community" },
+  { label: "SUPPORT", hasDropdown: false, href: "/support" },
 ];
 
 export const ProductLandingPage = (): JSX.Element => {
@@ -24,7 +25,7 @@ export const ProductLandingPage = (): JSX.Element => {
 
       <nav className="w-full h-12 relative flex flex-col items-start">
         <div className="flex w-full h-12 items-center justify-between pl-28 pr-0 py-0 bg-genericblack border-b [border-bottom-style:solid] border-[#5c616b]">
-          <div className="relative w-[100px] h-[27.04px] overflow-hidden">
+          <Link href="/" className="relative w-[100px] h-[27.04px] overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
             <div className="absolute top-0 left-0 w-7 h-7">
               <div className="absolute w-[86.36%] h-full top-0 left-0">
                 <img
@@ -49,13 +50,14 @@ export const ProductLandingPage = (): JSX.Element => {
               alt="Golf"
               src="/figmaAssets/golf.svg"
             />
-          </div>
+          </Link>
 
           <div className="inline-flex items-start justify-center self-stretch">
             {secondaryNavItems.map((item, index) => (
-              <div
+              <Link
                 key={index}
-                className={`inline-flex items-center gap-2 px-6 py-3.5 self-stretch border-r [border-right-style:solid] border-l [border-left-style:solid] border-[#5c616b] ${
+                href={item.href}
+                className={`inline-flex items-center gap-2 px-6 py-3.5 self-stretch border-r [border-right-style:solid] border-l [border-left-style:solid] border-[#5c616b] hover:bg-[#2a2d31] transition-colors cursor-pointer ${
                   index === 0 ? "ml-[-1px]" : ""
                 } ${index === secondaryNavItems.length - 1 ? "mr-[-1px]" : ""}`}
               >
@@ -64,11 +66,14 @@ export const ProductLandingPage = (): JSX.Element => {
                     {item.label}
                   </div>
                 </div>
-                {item.hasDropdown && <ChevronDownIcon className="w-5 h-5" />}
-              </div>
+                {item.hasDropdown && <ChevronDownIcon className="w-5 h-5 text-white" />}
+              </Link>
             ))}
 
-            <div className="mr-[-1px] inline-flex items-center gap-2 px-6 py-3.5 self-stretch border-r [border-right-style:solid] border-l [border-left-style:solid] border-[#5c616b]">
+            <Link
+              href="/user-portal"
+              className="mr-[-1px] inline-flex items-center gap-2 px-6 py-3.5 self-stretch border-r [border-right-style:solid] border-l [border-left-style:solid] border-[#5c616b] hover:bg-[#2a2d31] transition-colors cursor-pointer"
+            >
               <img
                 className="w-6 h-6 mt-[-2px]"
                 alt="Media icon unfilled"
@@ -79,7 +84,7 @@ export const ProductLandingPage = (): JSX.Element => {
                   USER PORTAL
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </nav>
@@ -92,7 +97,7 @@ export const ProductLandingPage = (): JSX.Element => {
           <div className="relative w-full max-w-[1216px] h-[684px] bg-[#323438]">
             <div className="absolute w-full h-full top-0 left-0 [background:url(/figmaAssets/image-10.png)_50%_50%_/_cover]" />
             <div className="absolute w-full h-full top-0 left-0 bg-[#323438]" />
-            <button className="absolute top-[calc(50%_-_36px)] left-[calc(50%_-_36px)] w-[72px] h-[72px] bg-genericwhite rounded-[36px] flex items-center justify-center">
+            <button className="absolute top-[calc(50%_-_36px)] left-[calc(50%_-_36px)] w-[72px] h-[72px] bg-genericwhite rounded-[36px] flex items-center justify-center hover:scale-110 transition-transform">
               <img
                 className="w-6 h-6"
                 alt="Play"
