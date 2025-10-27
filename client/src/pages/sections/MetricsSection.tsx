@@ -119,20 +119,20 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
   return (
     <div 
       className={`flex flex-col items-center cursor-pointer group transition-all duration-300 ${
-        isSelected ? 'scale-105' : ''
+        isSelected ? 'scale-110 brightness-125' : 'hover:scale-105 hover:brightness-110'
       }`}
       onClick={onSelect}
       data-testid={`metric-card-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
     >
-      {/* Icon Container - Reduced spacing */}
+      {/* Icon Container - Tight spacing with clean icons */}
       <div className="relative mb-1">
         <img 
-          src={`/figmaAssets/icons-cropped/${metric.iconName}.png`}
+          src={`/figmaAssets/icons-clean/${metric.iconName}.png`}
           alt={metric.name}
-          className="w-28 h-28 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain transition-all duration-300 group-hover:scale-110 group-hover:brightness-125"
+          className="w-28 h-28 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain transition-all duration-300"
         />
         
-        {/* Badge - Subtle corner overlay */}
+        {/* Badge */}
         {metric.badge && (
           <span className="absolute -top-2 -right-2 px-2 py-0.5 text-[10px] font-paragraph-12-xs-semibold font-[number:var(--paragraph-12-xs-semibold-font-weight)] tracking-[var(--paragraph-12-xs-semibold-letter-spacing)] leading-[var(--paragraph-12-xs-semibold-line-height)] rounded-md bg-neutral-700 text-white shadow-lg">
             MEASURED
@@ -140,7 +140,7 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
         )}
       </div>
       
-      {/* Metric Name - Using design system typography */}
+      {/* Metric Name */}
       <p className="font-label-16-base-semibold font-[number:var(--label-16-base-semibold-font-weight)] text-[length:var(--label-16-base-semibold-font-size)] tracking-[var(--label-16-base-semibold-letter-spacing)] leading-[var(--label-16-base-semibold-line-height)] text-center text-white uppercase">
         {metric.name}
       </p>
@@ -148,45 +148,73 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
   );
 };
 
-const MetricDetails = ({ metric, onClose }: { metric: Metric; onClose: () => void }) => {
+const MetricModal = ({ metric, onClose }: { metric: Metric; onClose: () => void }) => {
+  React.useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    
+    document.addEventListener('keydown', handleEscape);
+    document.body.style.overflow = 'hidden';
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [onClose]);
+
   return (
     <div 
-      className="col-span-full px-4 py-6 animate-in fade-in slide-in-from-top-4 duration-300"
-      data-testid={`metric-details-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200"
+      onClick={onClose}
+      data-testid={`metric-modal-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
     >
-      <div className="max-w-2xl mx-auto bg-neutral-900 border-2 border-primary600-main rounded-lg shadow-2xl p-6">
-        <div className="flex justify-between items-start mb-5">
-          <h4 className="font-paragraph-18-lg-semibold font-[number:var(--paragraph-18-lg-semibold-font-weight)] text-[length:var(--paragraph-18-lg-semibold-font-size)] tracking-[var(--paragraph-18-lg-semibold-letter-spacing)] leading-[var(--paragraph-18-lg-semibold-line-height)] text-white uppercase">
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+      
+      {/* Modal Content */}
+      <div 
+        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-neutral-900 border-2 border-primary600-main rounded-2xl shadow-2xl p-8 sm:p-12 animate-in zoom-in-95 duration-200"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white transition-all duration-200 hover:scale-110"
+          data-testid="metric-modal-close-button"
+          aria-label="Close modal"
+        >
+          <span className="text-2xl leading-none">×</span>
+        </button>
+        
+        {/* Header */}
+        <div className="mb-8">
+          <h3 className="font-heading-48-6xl-hero font-[number:var(--heading-48-6xl-hero-font-weight)] text-[length:var(--heading-48-6xl-hero-font-size)] tracking-[var(--heading-48-6xl-hero-letter-spacing)] leading-[var(--heading-48-6xl-hero-line-height)] [font-style:var(--heading-48-6xl-hero-font-style)] text-white uppercase mb-2">
             {metric.name}
-          </h4>
-          <button 
-            onClick={(e) => {
-              e.stopPropagation();
-              onClose();
-            }}
-            className="text-neutral-500 hover:text-white text-2xl font-bold transition-colors ml-4"
-            data-testid="metric-details-close-button"
-            aria-label="Close details"
-          >
-            ×
-          </button>
+          </h3>
+          {metric.badge && (
+            <span className="inline-block px-3 py-1 text-xs font-paragraph-12-xs-semibold font-[number:var(--paragraph-12-xs-semibold-font-weight)] tracking-[var(--paragraph-12-xs-semibold-letter-spacing)] rounded-md bg-neutral-700 text-white">
+              MEASURED
+            </span>
+          )}
         </div>
         
-        <div className="space-y-4">
+        {/* Content */}
+        <div className="space-y-8">
           <div>
-            <p className="font-label-12-xs-semibold font-[number:var(--label-12-xs-semibold-font-weight)] text-[length:var(--label-12-xs-semibold-font-size)] tracking-[var(--label-12-xs-semibold-letter-spacing)] leading-[var(--label-12-xs-semibold-line-height)] text-neutral-500 uppercase mb-2">
+            <h4 className="font-paragraph-18-lg-semibold font-[number:var(--paragraph-18-lg-semibold-font-weight)] text-[length:var(--paragraph-18-lg-semibold-font-size)] tracking-[var(--paragraph-18-lg-semibold-letter-spacing)] leading-[var(--paragraph-18-lg-semibold-line-height)] text-primary600-main uppercase mb-3">
               What it is
-            </p>
-            <p className="font-paragraph-14-sm-medium font-[number:var(--paragraph-14-sm-medium-font-weight)] text-[length:var(--paragraph-14-sm-medium-font-size)] tracking-[var(--paragraph-14-sm-medium-letter-spacing)] leading-[var(--paragraph-14-sm-medium-line-height)] text-neutral-200">
+            </h4>
+            <p className="font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] text-neutral-100">
               {metric.whatItIs}
             </p>
           </div>
           
           <div>
-            <p className="font-label-12-xs-semibold font-[number:var(--label-12-xs-semibold-font-weight)] text-[length:var(--label-12-xs-semibold-font-size)] tracking-[var(--label-12-xs-semibold-letter-spacing)] leading-[var(--label-12-xs-semibold-line-height)] text-neutral-500 uppercase mb-2">
+            <h4 className="font-paragraph-18-lg-semibold font-[number:var(--paragraph-18-lg-semibold-font-weight)] text-[length:var(--paragraph-18-lg-semibold-font-size)] tracking-[var(--paragraph-18-lg-semibold-letter-spacing)] leading-[var(--paragraph-18-lg-semibold-line-height)] text-primary600-main uppercase mb-3">
               How it affects ball flight
-            </p>
-            <p className="font-paragraph-14-sm-medium font-[number:var(--paragraph-14-sm-medium-font-weight)] text-[length:var(--paragraph-14-sm-medium-font-size)] tracking-[var(--paragraph-14-sm-medium-letter-spacing)] leading-[var(--paragraph-14-sm-medium-line-height)] text-neutral-200">
+            </h4>
+            <p className="font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] text-neutral-100">
               {metric.howItAffects}
             </p>
           </div>
@@ -200,7 +228,11 @@ export const MetricsSection = (): JSX.Element => {
   const [selectedMetric, setSelectedMetric] = React.useState<number | null>(null);
 
   const handleMetricClick = (index: number) => {
-    setSelectedMetric(selectedMetric === index ? null : index);
+    setSelectedMetric(index);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedMetric(null);
   };
 
   return (
@@ -220,24 +252,15 @@ export const MetricsSection = (): JSX.Element => {
             </p>
           </div>
 
-          {/* 5x3 Grid Layout with inline dropdown */}
+          {/* 5x3 Grid Layout */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-16 mx-auto">
             {metrics.map((metric, index) => (
-              <div className="contents" key={index}>
-                <MetricCard 
-                  metric={metric}
-                  isSelected={selectedMetric === index}
-                  onSelect={() => handleMetricClick(index)}
-                />
-                
-                {/* Show details directly after selected metric */}
-                {selectedMetric === index && (
-                  <MetricDetails 
-                    metric={metric} 
-                    onClose={() => setSelectedMetric(null)}
-                  />
-                )}
-              </div>
+              <MetricCard 
+                key={index}
+                metric={metric}
+                isSelected={selectedMetric === index}
+                onSelect={() => handleMetricClick(index)}
+              />
             ))}
           </div>
         </div>
@@ -245,6 +268,14 @@ export const MetricsSection = (): JSX.Element => {
       
       {/* Bottom Divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-primary600-main to-transparent opacity-30" />
+      
+      {/* Modal */}
+      {selectedMetric !== null && (
+        <MetricModal 
+          metric={metrics[selectedMetric]} 
+          onClose={handleCloseModal}
+        />
+      )}
     </section>
   );
 };
