@@ -124,8 +124,8 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
       onClick={onSelect}
       data-testid={`metric-card-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
     >
-      {/* Icon Container - Clean with no extra space */}
-      <div className="relative mb-3">
+      {/* Icon Container - Reduced spacing */}
+      <div className="relative mb-1">
         <img 
           src={`/figmaAssets/icons-cropped/${metric.iconName}.png`}
           alt={metric.name}
@@ -204,39 +204,47 @@ export const MetricsSection = (): JSX.Element => {
   };
 
   return (
-    <section className="w-full py-24 px-8 bg-genericblack">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] text-[length:var(--heading-72-9xl-hero-font-size)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] leading-[var(--heading-72-9xl-hero-line-height)] [font-style:var(--heading-72-9xl-hero-font-style)] text-white mb-6">
-            MLM2PRO Metrics
-          </h2>
-          <p className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-neutral-200 max-w-3xl mx-auto">
-            Unlock precision golf analytics with comprehensive metrics that help you understand and improve your game. Click any metric to learn more.
-          </p>
-        </div>
+    <section className="w-full bg-genericblack relative">
+      {/* Top Divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary600-main to-transparent opacity-30" />
+      
+      <div className="py-24 px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] text-[length:var(--heading-72-9xl-hero-font-size)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] leading-[var(--heading-72-9xl-hero-line-height)] [font-style:var(--heading-72-9xl-hero-font-style)] text-white mb-6">
+              MLM2PRO Metrics
+            </h2>
+            <p className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-neutral-200 max-w-3xl mx-auto">
+              Unlock precision golf analytics with comprehensive metrics that help you understand and improve your game. Click any metric to learn more.
+            </p>
+          </div>
 
-        {/* 5x3 Grid Layout with inline dropdown */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-16 mx-auto">
-          {metrics.map((metric, index) => (
-            <div className="contents" key={index}>
-              <MetricCard 
-                metric={metric}
-                isSelected={selectedMetric === index}
-                onSelect={() => handleMetricClick(index)}
-              />
-              
-              {/* Show details directly after selected metric */}
-              {selectedMetric === index && (
-                <MetricDetails 
-                  metric={metric} 
-                  onClose={() => setSelectedMetric(null)}
+          {/* 5x3 Grid Layout with inline dropdown */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-16 mx-auto">
+            {metrics.map((metric, index) => (
+              <div className="contents" key={index}>
+                <MetricCard 
+                  metric={metric}
+                  isSelected={selectedMetric === index}
+                  onSelect={() => handleMetricClick(index)}
                 />
-              )}
-            </div>
-          ))}
+                
+                {/* Show details directly after selected metric */}
+                {selectedMetric === index && (
+                  <MetricDetails 
+                    metric={metric} 
+                    onClose={() => setSelectedMetric(null)}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      
+      {/* Bottom Divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary600-main to-transparent opacity-30" />
     </section>
   );
 };
