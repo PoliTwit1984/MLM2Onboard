@@ -42,10 +42,12 @@ export const HeroSection = (): JSX.Element => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            data-testid="email-input"
             className="flex-1 h-12 px-4 bg-white text-genericblack placeholder:text-gray-500 border-0 focus-visible:ring-2 focus-visible:ring-primary600-main"
           />
           <Button 
             type="submit"
+            data-testid="submit-button"
             className="h-12 px-8 bg-primary600-main hover:bg-primary-500 text-white font-label-14-sm-semibold font-[number:var(--label-14-sm-semibold-font-weight)] text-[length:var(--label-14-sm-semibold-font-size)] tracking-[var(--label-14-sm-semibold-letter-spacing)] leading-[var(--label-14-sm-semibold-line-height)] [font-style:var(--label-14-sm-semibold-font-style)] whitespace-nowrap"
           >
             GET STARTED

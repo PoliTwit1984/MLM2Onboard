@@ -12,9 +12,9 @@ export const ProductLandingPage = (): JSX.Element => {
   return (
     <div className="w-full flex flex-col bg-white overflow-hidden">
       <header className="absolute top-8 left-8 z-50">
-        <a href="https://rapsodo.com/" className="block hover:opacity-80 transition-opacity">
+        <a href="https://rapsodo.com/" className="block hover:opacity-80 transition-opacity" data-testid="header-logo-link">
           <img
-            src="/attached_assets/Full Horizontal White_1761590860306.png"
+            src="/figmaAssets/rapsodo-golf-logo-white.png"
             alt="Rapsodo Golf"
             className="h-12"
           />
