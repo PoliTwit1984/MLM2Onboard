@@ -1,93 +1,25 @@
-import { ChevronDownIcon } from "lucide-react";
 import React from "react";
-import { Link } from "wouter";
 import { FeaturesSection } from "./sections/FeaturesSection";
 import { FooterSection } from "./sections/FooterSection";
 import { HeroSection } from "./sections/HeroSection";
 import { ImageGallerySection } from "./sections/ImageGallerySection";
 import { ImageTextSection } from "./sections/ImageTextSection";
-import { NavigationSection } from "./sections/NavigationSection";
 import { ReasonsSection } from "./sections/ReasonsSection";
 import { SidebarSection } from "./sections/SidebarSection";
 import { SignupFormSection } from "./sections/SignupFormSection";
 
-const secondaryNavItems = [
-  { label: "PRODUCTS", hasDropdown: true, href: "https://rapsodo.com/collections/all" },
-  { label: "LEARNING CENTER", hasDropdown: false, href: "https://rapsodo.com/pages/baseball-learning-center" },
-  { label: "COMMUNITY", hasDropdown: true, href: "https://rapsodo.com/pages/join-our-community" },
-  { label: "SUPPORT", hasDropdown: false, href: "https://rapsodo.com/pages/contact" },
-];
-
 export const ProductLandingPage = (): JSX.Element => {
   return (
     <div className="w-full flex flex-col bg-white overflow-hidden">
-      <NavigationSection />
-
-      <nav className="w-full h-12 relative flex flex-col items-start">
-        <div className="flex w-full h-12 items-center justify-between pl-28 pr-0 py-0 bg-genericblack border-b [border-bottom-style:solid] border-[#5c616b]">
-          <a href="https://rapsodo.com/" className="relative w-[100px] h-[27.04px] overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
-            <div className="absolute top-0 left-0 w-7 h-7">
-              <div className="absolute w-[86.36%] h-full top-0 left-0">
-                <img
-                  className="w-2 h-[27px] absolute top-px left-0"
-                  alt="Measurement lines"
-                  src="/figmaAssets/measurement-lines.svg"
-                />
-                <img
-                  className="absolute w-[63.11%] h-[96.19%] top-0 left-[35.26%]"
-                  alt="R"
-                  src="/figmaAssets/r.svg"
-                />
-              </div>
-              <img
-                className="absolute w-[15.66%] h-[15.86%] top-0 left-[84.34%]"
-                alt="Path"
-                src="/figmaAssets/path-1650-2.svg"
-              />
-            </div>
-            <img
-              className="absolute top-[7px] left-[31px] w-[68px] h-4"
-              alt="Golf"
-              src="/figmaAssets/golf.svg"
-            />
-          </a>
-
-          <div className="inline-flex items-start justify-center self-stretch">
-            {secondaryNavItems.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                className={`inline-flex items-center gap-2 px-6 py-3.5 self-stretch border-r [border-right-style:solid] border-l [border-left-style:solid] border-[#5c616b] hover:bg-[#2a2d31] transition-colors cursor-pointer ${
-                  index === 0 ? "ml-[-1px]" : ""
-                } ${index === secondaryNavItems.length - 1 ? "mr-[-1px]" : ""}`}
-              >
-                <div className="inline-flex items-center gap-2 pt-0 pb-1 px-0 mt-[-2px]">
-                  <div className="w-fit mt-[-1px] font-label-14-sm-semibold font-[number:var(--label-14-sm-semibold-font-weight)] text-genericwhite text-[length:var(--label-14-sm-semibold-font-size)] tracking-[var(--label-14-sm-semibold-letter-spacing)] leading-[var(--label-14-sm-semibold-line-height)] whitespace-nowrap [font-style:var(--label-14-sm-semibold-font-style)]">
-                    {item.label}
-                  </div>
-                </div>
-                {item.hasDropdown && <ChevronDownIcon className="w-5 h-5 text-white" />}
-              </a>
-            ))}
-
-            <a
-              href="https://cloud.rapsodo.com/"
-              className="mr-[-1px] inline-flex items-center gap-2 px-6 py-3.5 self-stretch border-r [border-right-style:solid] border-l [border-left-style:solid] border-[#5c616b] hover:bg-[#2a2d31] transition-colors cursor-pointer"
-            >
-              <img
-                className="w-6 h-6 mt-[-2px]"
-                alt="Media icon unfilled"
-                src="/figmaAssets/media---icon-unfilled-user.svg"
-              />
-              <div className="inline-flex items-center gap-2 pt-0 pb-1 px-0 mt-[-2px]">
-                <div className="w-fit mt-[-1px] font-label-14-sm-semibold font-[number:var(--label-14-sm-semibold-font-weight)] text-genericwhite text-[length:var(--label-14-sm-semibold-font-size)] tracking-[var(--label-14-sm-semibold-letter-spacing)] leading-[var(--label-14-sm-semibold-line-height)] whitespace-nowrap [font-style:var(--label-14-sm-semibold-font-style)]">
-                  USER PORTAL
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </nav>
+      <header className="absolute top-8 left-8 z-50">
+        <a href="https://rapsodo.com/" className="block hover:opacity-80 transition-opacity">
+          <img
+            src="/attached_assets/Full Horizontal White_1761590860306.png"
+            alt="Rapsodo Golf"
+            className="h-12"
+          />
+        </a>
+      </header>
 
       <main className="w-full relative flex flex-col items-center">
         <HeroSection />
