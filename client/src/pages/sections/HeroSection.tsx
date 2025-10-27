@@ -24,20 +24,25 @@ interface UserProfile {
   e6ConnectKey?: string;
 }
 
-interface ProfileCardProps {
-  title: string;
+interface GroupedCardItem {
+  label: string;
   value: string;
+}
+
+interface GroupedProfileCardProps {
+  title: string;
+  items: GroupedCardItem[];
   delay: number;
   side: 'left' | 'right';
 }
 
-const ProfileCard = ({ title, value, delay, side }: ProfileCardProps) => {
+const GroupedProfileCard = ({ title, items, delay, side }: GroupedProfileCardProps) => {
   const slideClass = side === 'left' ? 'animate-slide-in-left' : 'animate-slide-in-right';
-  const testId = `profile-card-${title.toLowerCase().replace(/\s+/g, '-')}`;
+  const testId = `grouped-card-${title.toLowerCase().replace(/\s+/g, '-')}`;
   
   return (
     <div 
-      className={`${slideClass} bg-white border-2 border-primary600-main rounded-xl p-6 shadow-2xl`}
+      className={`${slideClass} bg-white border-2 border-primary600-main rounded-xl p-8 shadow-2xl`}
       style={{ 
         animationDelay: `${delay}ms`,
         opacity: 0,
@@ -45,12 +50,21 @@ const ProfileCard = ({ title, value, delay, side }: ProfileCardProps) => {
       }}
       data-testid={testId}
     >
-      <h3 className="font-heading-28-3xl-hero font-[number:var(--heading-28-3xl-hero-font-weight)] text-[length:var(--heading-28-3xl-hero-font-size)] tracking-[var(--heading-28-3xl-hero-letter-spacing)] leading-[var(--heading-28-3xl-hero-line-height)] [font-style:var(--heading-28-3xl-hero-font-style)] text-primary600-main uppercase mb-2">
+      <h3 className="font-heading-48-6xl-hero font-[number:var(--heading-48-6xl-hero-font-weight)] text-[length:var(--heading-48-6xl-hero-font-size)] tracking-[var(--heading-48-6xl-hero-letter-spacing)] leading-[var(--heading-48-6xl-hero-line-height)] [font-style:var(--heading-48-6xl-hero-font-style)] text-primary600-main uppercase mb-6 pb-4 border-b-2 border-primary600-main">
         {title}
       </h3>
-      <p className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-genericblack">
-        {value}
-      </p>
+      <div className="space-y-4">
+        {items.map((item, index) => (
+          <div key={index} className="flex flex-col" data-testid={`${testId}-${item.label.toLowerCase().replace(/\s+/g, '-')}`}>
+            <span className="font-paragraph-14-sm-semibold font-[number:var(--paragraph-14-sm-semibold-font-weight)] text-[length:var(--paragraph-14-sm-semibold-font-size)] tracking-[var(--paragraph-14-sm-semibold-letter-spacing)] leading-[var(--paragraph-14-sm-semibold-line-height)] text-primary600-main uppercase mb-1">
+              {item.label}
+            </span>
+            <span className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-genericblack">
+              {item.value}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -107,151 +121,101 @@ export const HeroSection = (): JSX.Element => {
     setError(null);
   };
 
-  // Prepare profile cards data
-  const getProfileCards = (): Array<{ title: string; value: string; side: 'left' | 'right' }> => {
+  // Prepare grouped profile cards data
+  const getGroupedProfileCards = (): Array<{ title: string; items: GroupedCardItem[]; side: 'left' | 'right' }> => {
     if (!userProfile) return [];
 
-    const cards: Array<{ title: string; value: string; side: 'left' | 'right' }> = [];
-    let sideToggle = false;
+    const groups: Array<{ title: string; items: GroupedCardItem[]; side: 'left' | 'right' }> = [];
 
-    // Email
+    // Group 1: Account Info
+    const accountItems: GroupedCardItem[] = [];
     if (userProfile.email) {
-      cards.push({
-        title: "Email",
-        value: userProfile.email,
-        side: sideToggle ? 'left' : 'right'
-      });
-      sideToggle = !sideToggle;
+      accountItems.push({ label: "Email", value: userProfile.email });
     }
-
-    // Start Date (Registration Date)
     if (userProfile.registrationDate) {
       const date = new Date(userProfile.registrationDate);
-      cards.push({
-        title: "Start Date",
-        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-        side: sideToggle ? 'left' : 'right'
+      accountItems.push({ 
+        label: "Start Date", 
+        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
       });
-      sideToggle = !sideToggle;
+    }
+    if (userProfile.handedness) {
+      accountItems.push({ label: "Handedness", value: userProfile.handedness });
+    }
+    if (accountItems.length > 0) {
+      groups.push({ title: "Account Info", items: accountItems, side: 'left' });
     }
 
-    // Device Serial
+    // Group 2: Device Info
+    const deviceItems: GroupedCardItem[] = [];
     if (userProfile.deviceSerial) {
-      cards.push({
-        title: "Device Serial Number",
-        value: userProfile.deviceSerial,
-        side: sideToggle ? 'left' : 'right'
-      });
-      sideToggle = !sideToggle;
+      deviceItems.push({ label: "Serial Number", value: userProfile.deviceSerial });
+    }
+    if (userProfile.appVersion) {
+      deviceItems.push({ label: "App Version", value: userProfile.appVersion });
+    }
+    if (userProfile.firmwareVersion) {
+      deviceItems.push({ label: "Firmware Version", value: userProfile.firmwareVersion });
+    }
+    if (deviceItems.length > 0) {
+      groups.push({ title: "Device Info", items: deviceItems, side: 'right' });
     }
 
-    // Subscription Type
+    // Group 3: Subscription
+    const subscriptionItems: GroupedCardItem[] = [];
     if (userProfile.subscriptionType) {
-      cards.push({
-        title: "Current Subscription",
-        value: userProfile.subscriptionType,
-        side: sideToggle ? 'left' : 'right'
-      });
-      sideToggle = !sideToggle;
+      subscriptionItems.push({ label: "Current Subscription", value: userProfile.subscriptionType });
     }
-
-    // Subscription Start Date
     if (userProfile.subscriptionStartDate) {
       const date = new Date(userProfile.subscriptionStartDate);
-      cards.push({
-        title: "Subscription Start Date",
-        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-        side: sideToggle ? 'left' : 'right'
+      subscriptionItems.push({ 
+        label: "Subscription Start Date", 
+        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
       });
-      sideToggle = !sideToggle;
     }
-
-    // Subscription End Date
     if (userProfile.subscriptionEndDate) {
       const date = new Date(userProfile.subscriptionEndDate);
-      cards.push({
-        title: "Subscription End Date",
-        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-        side: sideToggle ? 'left' : 'right'
+      subscriptionItems.push({ 
+        label: "Subscription End Date", 
+        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
       });
-      sideToggle = !sideToggle;
+    }
+    if (subscriptionItems.length > 0) {
+      groups.push({ title: "Subscription", items: subscriptionItems, side: 'left' });
     }
 
-    // E6 Connect Key
-    if (userProfile.e6ConnectKey) {
-      cards.push({
-        title: "E6 Connect Key",
-        value: userProfile.e6ConnectKey,
-        side: sideToggle ? 'left' : 'right'
-      });
-      sideToggle = !sideToggle;
-    }
-
-    // Session Count
+    // Group 4: Activity
+    const activityItems: GroupedCardItem[] = [];
     if (userProfile.sessionCount) {
-      cards.push({
-        title: "Total Sessions",
-        value: userProfile.sessionCount.toLocaleString(),
-        side: sideToggle ? 'left' : 'right'
-      });
-      sideToggle = !sideToggle;
+      activityItems.push({ label: "Total Sessions", value: userProfile.sessionCount.toLocaleString() });
     }
-
-    // Captured Shots
     if (userProfile.capturedShots) {
-      cards.push({
-        title: "Captured Shots",
-        value: userProfile.capturedShots.toLocaleString(),
-        side: sideToggle ? 'left' : 'right'
-      });
-      sideToggle = !sideToggle;
+      activityItems.push({ label: "Captured Shots", value: userProfile.capturedShots.toLocaleString() });
     }
-
-    // Last Played
     if (userProfile.lastPlayed) {
       const date = new Date(userProfile.lastPlayed);
-      cards.push({
-        title: "Last Session",
-        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-        side: sideToggle ? 'left' : 'right'
+      activityItems.push({ 
+        label: "Last Session", 
+        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
       });
-      sideToggle = !sideToggle;
+    }
+    if (activityItems.length > 0) {
+      groups.push({ title: "Activity", items: activityItems, side: 'right' });
     }
 
-    // Firmware Version
-    if (userProfile.firmwareVersion) {
-      cards.push({
-        title: "Firmware Version",
-        value: userProfile.firmwareVersion,
-        side: sideToggle ? 'left' : 'right'
+    // Group 5: E6 Connect (if exists)
+    if (userProfile.e6ConnectKey) {
+      groups.push({ 
+        title: "E6 Connect", 
+        items: [{ label: "E6 Connect Key", value: userProfile.e6ConnectKey }], 
+        side: groups.length % 2 === 0 ? 'left' : 'right'
       });
-      sideToggle = !sideToggle;
     }
 
-    // App Version
-    if (userProfile.appVersion) {
-      cards.push({
-        title: "App Version",
-        value: userProfile.appVersion,
-        side: sideToggle ? 'left' : 'right'
-      });
-      sideToggle = !sideToggle;
-    }
-
-    // Handedness
-    if (userProfile.handedness) {
-      cards.push({
-        title: "Handedness",
-        value: userProfile.handedness,
-        side: sideToggle ? 'left' : 'right'
-      });
-      sideToggle = !sideToggle;
-    }
-
-    return cards;
+    return groups;
   };
 
-  const profileCards = getProfileCards();
+  const groupedProfileCards = getGroupedProfileCards();
 
   return (
     <section className="relative w-full min-h-screen bg-genericblack flex flex-col items-center justify-center py-20 px-8">
@@ -314,17 +278,17 @@ export const HeroSection = (): JSX.Element => {
           )}
         </div>
 
-        {/* Profile Cards - Slide in from left and right */}
-        {showPersonalized && profileCards.length > 0 && (
+        {/* Grouped Profile Cards - Slide in from left and right */}
+        {showPersonalized && groupedProfileCards.length > 0 && (
           <>
-            <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
-              {profileCards.map((card, index) => (
-                <ProfileCard
+            <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 mb-4">
+              {groupedProfileCards.map((group, index) => (
+                <GroupedProfileCard
                   key={index}
-                  title={card.title}
-                  value={card.value}
+                  title={group.title}
+                  items={group.items}
                   delay={index * 150}
-                  side={card.side}
+                  side={group.side}
                 />
               ))}
             </div>
