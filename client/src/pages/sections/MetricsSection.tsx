@@ -5,7 +5,7 @@ interface Metric {
   whatItIs: string;
   howItAffects: string;
   badge?: "measured" | "new";
-  iconPath: string;
+  iconName: string;
 }
 
 const metrics: Metric[] = [
@@ -14,33 +14,33 @@ const metrics: Metric[] = [
     name: "Total Distance",
     whatItIs: "Carry plus rollout.",
     howItAffects: "Influenced by descent angle, spin, and surface—flatter descent/less spin often rolls farther.",
-    iconPath: "M 20 40 L 30 20 L 40 30 L 50 10 M 10 40 L 60 40"
+    iconName: "total-distance"
   },
   {
     name: "Carry Distance",
     whatItIs: "Distance the ball flies before first landing.",
     howItAffects: "Core outcome metric; driven by ball speed, launch, and spin.",
-    iconPath: "M 30 35 Q 35 15 40 35 M 25 40 Q 35 45 45 40"
+    iconName: "carry-distance"
   },
   {
     name: "Side Carry",
     whatItIs: "Lateral distance from target line at landing.",
     howItAffects: "Shows left/right miss pattern; relates to launch direction and spin axis.",
-    iconPath: "M 35 15 L 35 45 M 30 40 L 35 45 L 40 40"
+    iconName: "side-carry"
   },
   {
     name: "Ball Speed",
     whatItIs: "Speed of the ball right after impact.",
     howItAffects: "Biggest driver of carry; more speed = more potential distance if launch & spin are optimized.",
     badge: "measured",
-    iconPath: "M 20 30 L 40 30 M 32 22 L 40 30 L 32 38 M 45 30 A 5 5 0 1 1 45 29.9"
+    iconName: "ball-speed"
   },
   {
     name: "Launch Direction",
     whatItIs: "Initial horizontal start line relative to target.",
     howItAffects: "Sets the starting line; paired with Spin Axis it determines curve back toward/away from target.",
     badge: "measured",
-    iconPath: "M 30 45 L 30 15 L 45 30 Z"
+    iconName: "launch-direction"
   },
   
   // Row 2
@@ -49,33 +49,33 @@ const metrics: Metric[] = [
     whatItIs: "Speed of the clubhead at impact.",
     howItAffects: "Enables ball speed; efficiency depends on strike quality and delivery (see Smash Factor).",
     badge: "measured",
-    iconPath: "M 15 35 Q 25 25 35 35 L 38 45 L 32 45 Z"
+    iconName: "club-speed"
   },
   {
     name: "Smash Factor",
     whatItIs: "Ball speed ÷ club speed.",
     howItAffects: "Higher smash = more efficient energy transfer → more distance at the same club speed.",
-    iconPath: "M 35 20 A 12 12 0 0 1 35 40 M 35 30 A 2 2 0 1 1 35 29.9 M 20 30 L 28 30"
+    iconName: "smash-factor"
   },
   {
     name: "Launch Angle",
     whatItIs: "Vertical takeoff angle of the ball.",
     howItAffects: "Too low/high costs carry; optimizing with spin maximizes distance.",
     badge: "measured",
-    iconPath: "M 15 45 L 35 25 M 25 35 Q 28 32 31 35 M 35 25 L 30 30 L 35 32"
+    iconName: "launch-angle"
   },
   {
     name: "Descent Angle",
     whatItIs: "Angle of the ball's approach at landing.",
     howItAffects: "Steeper angles stop faster (irons); shallower angles roll more (driver).",
     badge: "new",
-    iconPath: "M 20 15 Q 35 25 45 20 M 45 20 L 42 25 M 40 45 L 45 40 L 50 45"
+    iconName: "descent-angle"
   },
   {
     name: "Shot Apex",
     whatItIs: "Highest point of the ball's flight.",
     howItAffects: "Too low can limit carry/stop; too high with excess spin can balloon.",
-    iconPath: "M 15 45 Q 30 15 45 45 M 28 20 L 30 15 L 32 20"
+    iconName: "shot-apex"
   },
   
   // Row 3
@@ -84,35 +84,35 @@ const metrics: Metric[] = [
     whatItIs: "Classification of the curve (e.g., draw, fade, straight).",
     howItAffects: "Summarizes start line + curvature for dispersion control.",
     badge: "measured",
-    iconPath: "M 20 20 L 25 30 L 20 40 M 30 20 L 30 40 M 40 20 L 35 30 L 40 40"
+    iconName: "shot-type"
   },
   {
     name: "Spin Rate",
     whatItIs: "Revolutions per minute around the ball's horizontal axis.",
     howItAffects: "With launch angle, governs lift/drag and carry; too much/too little hurts distance/consistency.",
     badge: "new",
-    iconPath: "M 30 20 A 10 10 0 1 1 30 40 A 10 10 0 1 1 30 20 M 35 25 L 40 30 L 35 35"
+    iconName: "spin-rate"
   },
   {
     name: "Spin Axis",
     whatItIs: "The measurement of axis tilt that the ball spins on.",
     howItAffects: "Primary controller of shot curvature (draw/fade); more tilt = more curve.",
     badge: "new",
-    iconPath: "M 25 30 L 45 30 M 30 25 L 25 30 L 30 35 M 40 25 L 45 30 L 40 35 M 35 22 A 5 5 0 1 1 35 21.9"
+    iconName: "spin-axis"
   },
   {
     name: "Club Path",
     whatItIs: "Direction the clubhead is moving (in-to-out / out-to-in) at impact.",
     howItAffects: "Along with face angle, heavily influences spin axis and shot shape (draw/fade).",
     badge: "new",
-    iconPath: "M 20 25 Q 30 35 40 25 M 25 30 L 20 35 L 30 35 M 35 30 L 40 35 L 30 35"
+    iconName: "club-path"
   },
   {
     name: "Angle of Attack",
     whatItIs: "Up/down strike angle at impact.",
     howItAffects: "Affects spin and launch: upward AoA with driver can add carry; downward AoA increases spin/trajectory control with irons.",
     badge: "new",
-    iconPath: "M 25 25 Q 30 18 35 25 M 30 35 A 7 7 0 1 1 30 34.9 M 20 40 L 40 40"
+    iconName: "angle-of-attack"
   }
 ];
 
@@ -123,44 +123,34 @@ const MetricCard = ({ metric }: { metric: Metric }) => {
     <div className="flex flex-col items-center w-full relative">
       {/* Metric Item */}
       <div
-        className="flex flex-col items-center gap-3 cursor-pointer group"
+        className="flex flex-col items-center gap-3 cursor-pointer group relative"
         onClick={() => setIsExpanded(!isExpanded)}
         data-testid={`metric-card-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
       >
-        {/* Icon - Simple SVG shape */}
+        {/* Icon from extracted image */}
         <div className="relative">
-          <svg
-            width="70"
-            height="60"
-            viewBox="0 0 60 60"
-            className="transition-all duration-300 group-hover:scale-110"
-          >
-            <path
-              d={metric.iconPath}
-              stroke="white"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <img 
+            src={`/figmaAssets/icons/${metric.iconName}.png`}
+            alt={metric.name}
+            className="w-20 h-20 object-contain transition-all duration-300 group-hover:scale-110"
+          />
+          
+          {/* Badge - positioned at top right of icon */}
+          {metric.badge && (
+            <span className={`absolute -top-1 -right-2 px-2.5 py-0.5 text-[10px] font-bold rounded-full ${
+              metric.badge === "new" 
+                ? "bg-green-400 text-black" 
+                : "bg-gray-300 text-black"
+            }`}>
+              {metric.badge === "new" ? "New" : "Measured"}
+            </span>
+          )}
         </div>
         
         {/* Metric Name */}
         <p className="font-semibold text-sm text-center text-white leading-tight w-32">
           {metric.name}
         </p>
-        
-        {/* Badge - positioned absolutely below when present */}
-        {metric.badge && (
-          <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${
-            metric.badge === "new" 
-              ? "bg-green-400 text-black" 
-              : "bg-gray-300 text-black"
-          }`}>
-            {metric.badge === "new" ? "New" : "Measured"}
-          </span>
-        )}
       </div>
 
       {/* Expanded Details - Positioned absolutely to avoid layout shift */}
@@ -199,7 +189,7 @@ export const MetricsSection = (): JSX.Element => {
           </p>
         </div>
 
-        {/* 5x3 Grid Layout with generous spacing */}
+        {/* 5x3 Grid Layout with generous spacing to prevent dropdown overcrowding */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-16 gap-y-24 max-w-6xl mx-auto">
           {metrics.map((metric, index) => (
             <MetricCard key={index} metric={metric} />
