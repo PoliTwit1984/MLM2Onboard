@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
 const navigationLinks = [
-  { label: "GOLF", href: "/golf" },
-  { label: "BASEBALL", href: "/baseball" },
-  { label: "SOFTBALL", href: "/softball" },
+  { label: "GOLF", href: "https://rapsodo.com/pages/golf" },
+  { label: "BASEBALL", href: "https://rapsodo.com/collections/baseball" },
+  { label: "SOFTBALL", href: "https://rapsodo.com/collections/softball" },
 ];
 
 export const NavigationSection = (): JSX.Element => {
@@ -55,7 +55,7 @@ export const NavigationSection = (): JSX.Element => {
       </div>
 
       <div className="flex w-full items-center justify-between px-8 py-0 relative bg-primarywhite">
-        <Link href="/" className="inline-flex flex-col items-start justify-around gap-2 relative self-stretch cursor-pointer hover:opacity-80 transition-opacity">
+        <a href="https://rapsodo.com/" className="inline-flex flex-col items-start justify-around gap-2 relative self-stretch cursor-pointer hover:opacity-80 transition-opacity">
           <div className="relative w-[161.1px] h-9">
             <img
               className="absolute top-0 left-0 w-2 h-[27px]"
@@ -69,11 +69,11 @@ export const NavigationSection = (): JSX.Element => {
               src="/figmaAssets/wording.svg"
             />
           </div>
-        </Link>
+        </a>
 
         <div className="inline-flex items-center gap-8 pt-6 pb-0 px-0 relative">
           {navigationLinks.map((link, index) => (
-            <Link
+            <a
               key={index}
               href={link.href}
               className="inline-flex flex-col items-center gap-5 relative hover:opacity-70 transition-opacity"
@@ -81,7 +81,7 @@ export const NavigationSection = (): JSX.Element => {
               <div className="relative w-fit font-label-14-sm-semibold font-[number:var(--label-14-sm-semibold-font-weight)] text-genericblack text-[length:var(--label-14-sm-semibold-font-size)] tracking-[var(--label-14-sm-semibold-letter-spacing)] leading-[var(--label-14-sm-semibold-line-height)] whitespace-nowrap [font-style:var(--label-14-sm-semibold-font-style)]">
                 {link.label}
               </div>
-            </Link>
+            </a>
           ))}
         </div>
 
@@ -96,7 +96,7 @@ export const NavigationSection = (): JSX.Element => {
               <SearchIcon className="w-6 h-6" />
             </Button>
 
-            <Link href="/cart">
+            <a href="https://rapsodo.com/cart">
               <Button
                 variant="ghost"
                 size="icon"
@@ -104,16 +104,16 @@ export const NavigationSection = (): JSX.Element => {
               >
                 <ShoppingBagIcon className="w-6 h-6" />
               </Button>
-            </Link>
+            </a>
           </div>
 
-          <Link href="/shop">
+          <a href="https://rapsodo.com/collections/all">
             <Button className="h-auto w-[120px] items-center justify-center gap-1.5 px-4 py-2.5 bg-primary600-main hover:bg-primary-500 rounded-lg">
               <span className="font-label-14-sm-semibold font-[number:var(--label-14-sm-semibold-font-weight)] text-genericwhite text-[length:var(--label-14-sm-semibold-font-size)] tracking-[var(--label-14-sm-semibold-letter-spacing)] leading-[var(--label-14-sm-semibold-line-height)] [font-style:var(--label-14-sm-semibold-font-style)]">
                 SHOP
               </span>
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </nav>
