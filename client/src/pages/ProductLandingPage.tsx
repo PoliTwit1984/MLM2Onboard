@@ -12,10 +12,10 @@ import { SidebarSection } from "./sections/SidebarSection";
 import { SignupFormSection } from "./sections/SignupFormSection";
 
 const secondaryNavItems = [
-  { label: "PRODUCTS", hasDropdown: true, href: "/products" },
-  { label: "LEARNING CENTER", hasDropdown: false, href: "/learning" },
-  { label: "COMMUNITY", hasDropdown: true, href: "/community" },
-  { label: "SUPPORT", hasDropdown: false, href: "/support" },
+  { label: "PRODUCTS", hasDropdown: true, href: "https://rapsodo.com/collections/all" },
+  { label: "LEARNING CENTER", hasDropdown: false, href: "https://rapsodo.com/pages/baseball-learning-center" },
+  { label: "COMMUNITY", hasDropdown: true, href: "https://rapsodo.com/pages/join-our-community" },
+  { label: "SUPPORT", hasDropdown: false, href: "https://rapsodo.com/pages/contact" },
 ];
 
 export const ProductLandingPage = (): JSX.Element => {
@@ -25,7 +25,7 @@ export const ProductLandingPage = (): JSX.Element => {
 
       <nav className="w-full h-12 relative flex flex-col items-start">
         <div className="flex w-full h-12 items-center justify-between pl-28 pr-0 py-0 bg-genericblack border-b [border-bottom-style:solid] border-[#5c616b]">
-          <Link href="/" className="relative w-[100px] h-[27.04px] overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
+          <a href="https://rapsodo.com/" className="relative w-[100px] h-[27.04px] overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
             <div className="absolute top-0 left-0 w-7 h-7">
               <div className="absolute w-[86.36%] h-full top-0 left-0">
                 <img
@@ -50,11 +50,11 @@ export const ProductLandingPage = (): JSX.Element => {
               alt="Golf"
               src="/figmaAssets/golf.svg"
             />
-          </Link>
+          </a>
 
           <div className="inline-flex items-start justify-center self-stretch">
             {secondaryNavItems.map((item, index) => (
-              <Link
+              <a
                 key={index}
                 href={item.href}
                 className={`inline-flex items-center gap-2 px-6 py-3.5 self-stretch border-r [border-right-style:solid] border-l [border-left-style:solid] border-[#5c616b] hover:bg-[#2a2d31] transition-colors cursor-pointer ${
@@ -67,11 +67,11 @@ export const ProductLandingPage = (): JSX.Element => {
                   </div>
                 </div>
                 {item.hasDropdown && <ChevronDownIcon className="w-5 h-5 text-white" />}
-              </Link>
+              </a>
             ))}
 
-            <Link
-              href="/user-portal"
+            <a
+              href="https://cloud.rapsodo.com/"
               className="mr-[-1px] inline-flex items-center gap-2 px-6 py-3.5 self-stretch border-r [border-right-style:solid] border-l [border-left-style:solid] border-[#5c616b] hover:bg-[#2a2d31] transition-colors cursor-pointer"
             >
               <img
@@ -84,7 +84,7 @@ export const ProductLandingPage = (): JSX.Element => {
                   USER PORTAL
                 </div>
               </div>
-            </Link>
+            </a>
           </div>
         </div>
       </nav>
