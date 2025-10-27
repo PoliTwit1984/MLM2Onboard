@@ -81,7 +81,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 subscriptionStartDate: x["MLM2 Latest Subscription Start Date"] || null,
                 subscriptionEndDate: x["MLM2 Latest Subscription Expire Date"] || null,
                 age: x["Age"] || null,
-                handedness: x["Handedness"] || null
+                handedness: x["Handedness"] || null,
+                e6ConnectKey: x["E6 CONNECT"] || null
               };
             });
         }
@@ -133,7 +134,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         subscriptionStartDate: userProfile.subscriptionStartDate,
         subscriptionEndDate: userProfile.subscriptionEndDate,
         age: userProfile.age,
-        handedness: userProfile.handedness
+        handedness: userProfile.handedness,
+        e6ConnectKey: userProfile.e6ConnectKey
       };
 
       res.json({ 

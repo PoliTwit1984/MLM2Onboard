@@ -21,6 +21,7 @@ interface UserProfile {
   subscriptionEndDate?: string;
   age?: number;
   handedness?: string;
+  e6ConnectKey?: string;
 }
 
 interface ProfileCardProps {
@@ -36,7 +37,7 @@ const ProfileCard = ({ title, value, delay, side }: ProfileCardProps) => {
   
   return (
     <div 
-      className={`${slideClass} bg-neutral-900 border-2 border-primary600-main rounded-xl p-6 shadow-2xl`}
+      className={`${slideClass} bg-white border-2 border-primary600-main rounded-xl p-6 shadow-2xl`}
       style={{ 
         animationDelay: `${delay}ms`,
         opacity: 0,
@@ -44,10 +45,10 @@ const ProfileCard = ({ title, value, delay, side }: ProfileCardProps) => {
       }}
       data-testid={testId}
     >
-      <h3 className="font-paragraph-14-sm-semibold font-[number:var(--paragraph-14-sm-semibold-font-weight)] text-[length:var(--paragraph-14-sm-semibold-font-size)] tracking-[var(--paragraph-14-sm-semibold-letter-spacing)] leading-[var(--paragraph-14-sm-semibold-line-height)] text-primary600-main uppercase mb-2">
+      <h3 className="font-heading-28-3xl-hero font-[number:var(--heading-28-3xl-hero-font-weight)] text-[length:var(--heading-28-3xl-hero-font-size)] tracking-[var(--heading-28-3xl-hero-letter-spacing)] leading-[var(--heading-28-3xl-hero-line-height)] [font-style:var(--heading-28-3xl-hero-font-style)] text-primary600-main uppercase mb-2">
         {title}
       </h3>
-      <p className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-white">
+      <p className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-genericblack">
         {value}
       </p>
     </div>
@@ -113,6 +114,27 @@ export const HeroSection = (): JSX.Element => {
     const cards: Array<{ title: string; value: string; side: 'left' | 'right' }> = [];
     let sideToggle = false;
 
+    // Email
+    if (userProfile.email) {
+      cards.push({
+        title: "Email",
+        value: userProfile.email,
+        side: sideToggle ? 'left' : 'right'
+      });
+      sideToggle = !sideToggle;
+    }
+
+    // Start Date (Registration Date)
+    if (userProfile.registrationDate) {
+      const date = new Date(userProfile.registrationDate);
+      cards.push({
+        title: "Start Date",
+        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+        side: sideToggle ? 'left' : 'right'
+      });
+      sideToggle = !sideToggle;
+    }
+
     // Device Serial
     if (userProfile.deviceSerial) {
       cards.push({
@@ -128,6 +150,38 @@ export const HeroSection = (): JSX.Element => {
       cards.push({
         title: "Current Subscription",
         value: userProfile.subscriptionType,
+        side: sideToggle ? 'left' : 'right'
+      });
+      sideToggle = !sideToggle;
+    }
+
+    // Subscription Start Date
+    if (userProfile.subscriptionStartDate) {
+      const date = new Date(userProfile.subscriptionStartDate);
+      cards.push({
+        title: "Subscription Start Date",
+        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+        side: sideToggle ? 'left' : 'right'
+      });
+      sideToggle = !sideToggle;
+    }
+
+    // Subscription End Date
+    if (userProfile.subscriptionEndDate) {
+      const date = new Date(userProfile.subscriptionEndDate);
+      cards.push({
+        title: "Subscription End Date",
+        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+        side: sideToggle ? 'left' : 'right'
+      });
+      sideToggle = !sideToggle;
+    }
+
+    // E6 Connect Key
+    if (userProfile.e6ConnectKey) {
+      cards.push({
+        title: "E6 Connect Key",
+        value: userProfile.e6ConnectKey,
         side: sideToggle ? 'left' : 'right'
       });
       sideToggle = !sideToggle;
@@ -263,7 +317,7 @@ export const HeroSection = (): JSX.Element => {
         {/* Profile Cards - Slide in from left and right */}
         {showPersonalized && profileCards.length > 0 && (
           <>
-            <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+            <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
               {profileCards.map((card, index) => (
                 <ProfileCard
                   key={index}
