@@ -41,10 +41,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Email is required" });
       }
 
+      const projectId = process.env.MIXPANEL_PROJECT_ID;
       const username = process.env.MIXPANEL_SERVICE_ACCOUNT_USERNAME;
       const password = process.env.MIXPANEL_SERVICE_ACCOUNT_PASSWORD;
 
-      if (!username || !password) {
+      if (!projectId || !username || !password) {
         console.error("Missing Mixpanel credentials");
         return res.status(500).json({ error: "Server configuration error" });
       }
@@ -92,14 +93,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
           'Authorization': `Basic ${credentials}`,
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `script=${encodeURIComponent(jqlScript)}`
+        body: `script=${encodeURIComponent(jqlScript)}&project_id=${projectId}`
       });
 
       if (!response.ok) {
         const errorText = await response.text();
         console.error("Mixpanel API error:", response.status, response.statusText, errorText);
-        return res.status(response.status).json({ 
-          error: "Failed to fetch user profile from Mixpanel" 
+        return res.status(400).json({ 
+          error: "Please make sure to use the email associated with your MLM2PRO App" 
         });
       }
 
@@ -107,7 +108,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       if (!data || data.length === 0) {
         return res.status(404).json({ 
-          error: "User not found. Please check your email address." 
+          error: "Please make sure to use the email associated with your MLM2PRO App" 
         });
       }
 
