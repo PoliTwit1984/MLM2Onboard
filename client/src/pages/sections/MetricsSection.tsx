@@ -125,11 +125,11 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
       data-testid={`metric-card-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
     >
       {/* Icon Container - Tight spacing with clean icons */}
-      <div className="relative mb-1">
+      <div className="relative">
         <img 
           src={`/figmaAssets/icons-clean/${metric.iconName}.png`}
           alt={metric.name}
-          className="w-28 h-28 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain transition-all duration-300"
+          className="w-28 h-28 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain transition-all duration-300 mb-0"
         />
         
         {/* Badge */}
