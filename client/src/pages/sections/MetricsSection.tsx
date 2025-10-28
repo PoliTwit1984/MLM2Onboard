@@ -211,17 +211,9 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
           alt={metric.name}
           className="w-28 h-28 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain transition-all duration-300 mb-0"
         />
-        {/* Directional Indicator for +/- metrics */}
-        {metric.positiveNegative && (
-          <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 flex items-center space-x-1 bg-black px-3 py-1.5 rounded-full border border-primary600-main shadow-lg">
-            <span className="text-sm font-bold text-red-500">−</span>
-            <span className="text-xs text-neutral-500 mx-0.5">|</span>
-            <span className="text-sm font-bold text-blue-500">+</span>
-          </div>
-        )}
       </div>
       {/* Metric Name */}
-      <p className={`font-label-16-base-semibold font-[number:var(--label-16-base-semibold-font-weight)] text-[length:var(--label-16-base-semibold-font-size)] tracking-[var(--label-16-base-semibold-letter-spacing)] leading-[var(--label-16-base-semibold-line-height)] text-center text-white uppercase ${metric.positiveNegative ? 'mt-2' : ''}`}>
+      <p className="font-label-16-base-semibold font-[number:var(--label-16-base-semibold-font-weight)] text-[length:var(--label-16-base-semibold-font-size)] tracking-[var(--label-16-base-semibold-letter-spacing)] leading-[var(--label-16-base-semibold-line-height)] text-center text-white uppercase">
         {metric.name}
       </p>
     </div>
