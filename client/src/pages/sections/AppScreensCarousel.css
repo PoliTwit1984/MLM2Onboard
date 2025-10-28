@@ -14,7 +14,7 @@
 
 .carousel-track {
   display: flex;
-  animation: scroll 35s linear infinite;
+  animation: scroll 17.5s linear infinite;
   width: fit-content;
   gap: 50px;
   padding: 0 100px;
@@ -94,7 +94,7 @@
   }
   
   .carousel-track {
-    animation-duration: 32s;
+    animation-duration: 16s;
   }
   
   .gradient-left,
@@ -114,7 +114,7 @@
   
   .carousel-track {
     gap: 30px;
-    animation-duration: 30s;
+    animation-duration: 15s;
     padding: 0 50px;
   }
   
@@ -131,7 +131,7 @@
   
   .carousel-track {
     gap: 20px;
-    animation-duration: 28s;
+    animation-duration: 14s;
     padding: 0 30px;
   }
   

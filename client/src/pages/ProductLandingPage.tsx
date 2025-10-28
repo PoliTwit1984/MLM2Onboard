@@ -22,8 +22,8 @@ export const ProductLandingPage = (): JSX.Element => {
 
       <main className="w-full relative flex flex-col items-center pt-20">
         <HeroSection />
-        <MetricsSection />
         <AppScreensCarousel />
+        <MetricsSection />
         <QuizSection />
         <TroubleshootingHub />
         <SignupFormSection />
