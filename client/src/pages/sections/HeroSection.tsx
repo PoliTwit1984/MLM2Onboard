@@ -250,7 +250,7 @@ export const HeroSection = (): JSX.Element => {
                 required
                 disabled={loading}
                 data-testid="email-input"
-                className="flex-1 h-12 px-4 bg-white text-genericblack placeholder:text-gray-500 border-0 focus-visible:ring-2 focus-visible:ring-primary600-main disabled:opacity-50"
+                className="flex-1 h-12 px-4 bg-white text-genericblack placeholder:text-gray-500 border-0 focus-visible:ring-2 focus-visible:ring-primary600-main disabled:opacity-50 pt-[10px] pb-[10px] pl-[20px] pr-[20px]"
               />
               <Button 
                 type="submit"
