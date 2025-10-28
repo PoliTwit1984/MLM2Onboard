@@ -285,13 +285,38 @@ RPT balls have unique markings that allow the dual cameras to measure actual spi
   },
   {
     id: "first-practice",
-    title: "First Practice Session",
+    title: "First Session",
     subtitle: "Understanding metrics and getting started",
     topics: [
       {
+        id: "indoor-accuracy",
+        icon: AlertCircle,
+        title: "Indoor Accuracy Tips",
+        description: "Understanding indoor vs outdoor results",
+        hasVideo: false,
+        content: `Indoor swing speeds and carry distances are often lower at first. This is normal "indoor swing syndrome" and improves with practice.
+
+**Why indoor numbers feel low:**
+- Subconscious swing adjustment into a net
+- Different visual feedback vs outdoor range
+- Adaptation period for most golfers
+
+**What to do:**
+- Continue practicing regularly
+- Compare like-for-like sessions (same club, same day)
+- Track improvement over time
+- Don't compare directly to outdoor range sessions
+
+**Pro tip:**
+Speed and confidence improve with consistent indoor practice. Focus on swing mechanics and relative improvements, not absolute yardages.
+
+**References:**
+- [Inaccuracies (indoor swing syndrome)](https://rapsodo.zendesk.com/hc/en-us/articles/44185264868755-Inaccuracies-MLM2PRO)`
+      },
+      {
         id: "practice-basics",
         icon: Play,
-        title: "Practice Mode Basics",
+        title: "Session Basics",
         description: "Start hitting and tracking your shots",
         hasVideo: true,
         content: `Start a Practice session to see real-time ball flight, video replay, and 15 data metrics. The device captures everything automatically.
@@ -329,31 +354,6 @@ RPT balls have unique markings that allow the dual cameras to measure actual spi
 **References:**
 - [Metrics/Features](https://rapsodo.zendesk.com/hc/en-us/articles/44183787338515-Metrics-Features-MLM2PRO)
 - [Spin Information](https://rapsodo.zendesk.com/hc/en-us/articles/44182520056211-Spin-Information-MLM2PRO)`
-      },
-      {
-        id: "indoor-accuracy",
-        icon: AlertCircle,
-        title: "Indoor Accuracy Tips",
-        description: "Understanding indoor vs outdoor results",
-        hasVideo: false,
-        content: `Indoor swing speeds and carry distances are often lower at first. This is normal "indoor swing syndrome" and improves with practice.
-
-**Why indoor numbers feel low:**
-- Subconscious swing adjustment into a net
-- Different visual feedback vs outdoor range
-- Adaptation period for most golfers
-
-**What to do:**
-- Continue practicing regularly
-- Compare like-for-like sessions (same club, same day)
-- Track improvement over time
-- Don't compare directly to outdoor range sessions
-
-**Pro tip:**
-Speed and confidence improve with consistent indoor practice. Focus on swing mechanics and relative improvements, not absolute yardages.
-
-**References:**
-- [Inaccuracies (indoor swing syndrome)](https://rapsodo.zendesk.com/hc/en-us/articles/44185264868755-Inaccuracies-MLM2PRO)`
       }
     ]
   },
@@ -736,7 +736,9 @@ export const TroubleshootingHub = (): JSX.Element => {
     })).filter(section => section.topics.length > 0);
   }, [searchQuery]);
 
-  const handleTopicClick = (topicId: string) => {
+  const handleTopicClick = (topicId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setSelectedTopic(selectedTopic === topicId ? null : topicId);
   };
 
@@ -792,7 +794,7 @@ export const TroubleshootingHub = (): JSX.Element => {
                           transition-all duration-200
                         `}>
                           <div 
-                            onClick={() => handleTopicClick(topic.id)}
+                            onClick={(e) => handleTopicClick(topic.id, e)}
                             className={`
                               bg-gray-50 rounded-lg p-5 cursor-pointer 
                               border-2 transition-all hover:shadow-md
