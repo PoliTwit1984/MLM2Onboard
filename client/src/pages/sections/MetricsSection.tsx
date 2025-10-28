@@ -132,7 +132,6 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
           className="w-28 h-28 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain transition-all duration-300 mb-0"
         />
       </div>
-      
       {/* Metric Name */}
       <p className="font-label-16-base-semibold font-[number:var(--label-16-base-semibold-font-weight)] text-[length:var(--label-16-base-semibold-font-size)] tracking-[var(--label-16-base-semibold-letter-spacing)] leading-[var(--label-16-base-semibold-line-height)] text-center text-white uppercase">
         {metric.name}
@@ -164,7 +163,6 @@ const MetricModal = ({ metric, onClose }: { metric: Metric; onClose: () => void 
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
-      
       {/* Modal Content */}
       <div 
         className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-neutral-900 border-2 border-primary600-main rounded-2xl shadow-2xl p-8 sm:p-12 animate-in zoom-in-95 duration-200"
@@ -227,14 +225,11 @@ export const MetricsSection = (): JSX.Element => {
     <section className="w-full bg-genericblack relative">
       {/* Top Divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-primary600-main to-transparent opacity-30" />
-      
       <div className="py-24 px-8">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-20">
-            <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] text-[length:var(--heading-72-9xl-hero-font-size)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] leading-[var(--heading-72-9xl-hero-line-height)] [font-style:var(--heading-72-9xl-hero-font-style)] text-white mb-6">
-              MLM2PRO Metrics
-            </h2>
+            <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] [font-style:var(--heading-72-9xl-hero-font-style)] text-white mb-6 text-[67px] text-center">15 MLM2PRO Metrics</h2>
             <p className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-neutral-200 max-w-3xl mx-auto">
               Unlock precision golf analytics with comprehensive metrics that help you understand and improve your game. Click any metric to learn more.
             </p>
@@ -253,10 +248,8 @@ export const MetricsSection = (): JSX.Element => {
           </div>
         </div>
       </div>
-      
       {/* Bottom Divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-primary600-main to-transparent opacity-30" />
-      
       {/* Modal */}
       {selectedMetric !== null && (
         <MetricModal 
