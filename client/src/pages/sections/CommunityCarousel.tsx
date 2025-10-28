@@ -12,32 +12,32 @@ const COMMUNITY_VIDEOS: CommunityVideo[] = [
   {
     id: "1",
     videoId: "eZByk27-B3M",
-    title: "MLM2PRO Community Review",
-    creator: "Golf Community"
+    title: "New Rapsodo MLM2PRO Practice Modes that are going to improve your game!",
+    creator: "Joe Lagowski Golf"
   },
   {
     id: "2",
     videoId: "tIY4XFybeVs",
-    title: "MLM2PRO Tips & Tricks",
-    creator: "Golf Tech"
+    title: "Why SERIOUS Golfers Are Turning to the Rapsodo MLM2PRO",
+    creator: "Handicap Golf"
   },
   {
     id: "3",
     videoId: "_ZqVSdB5BjM",
-    title: "MLM2PRO Setup Guide",
-    creator: "Golf Enthusiast"
+    title: "Rapsodo MLM2PRO: Almost Perfect—Almost",
+    creator: "Golfible"
   },
   {
     id: "4",
     videoId: "EpGMHhVwToo",
-    title: "MLM2PRO Experience",
-    creator: "Golf Reviews"
+    title: "Every Change Coming to the Rapsodo MLM2PRO in 2026 (Allegedly)",
+    creator: "Unreal Golf"
   },
   {
     id: "5",
     videoId: "E3UXAFbwL5E",
-    title: "MLM2PRO in Action",
-    creator: "Golf Channel"
+    title: "I was WRONG about Rapsodo MLM2Pro Launch Monitor?",
+    creator: "Golfers Authority"
   },
 ];
 
