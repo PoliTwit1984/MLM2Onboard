@@ -11,39 +11,33 @@ interface CommunityVideo {
 const COMMUNITY_VIDEOS: CommunityVideo[] = [
   {
     id: "1",
-    videoId: "adjBnyI2BBg",
-    title: "Awesome Golf + MLM2PRO Integration Guide",
-    creator: "Awesome Golf"
+    videoId: "eZByk27-B3M",
+    title: "MLM2PRO Community Review",
+    creator: "Golf Community"
   },
   {
     id: "2",
-    videoId: "dQw4w9WgXcQ",
-    title: "MLM2PRO Unboxing and First Impressions",
-    creator: "Golf Tech Reviews"
+    videoId: "tIY4XFybeVs",
+    title: "MLM2PRO Tips & Tricks",
+    creator: "Golf Tech"
   },
   {
     id: "3",
-    videoId: "dQw4w9WgXcQ",
-    title: "Indoor Sim Setup with MLM2PRO",
-    creator: "SimGolf Central"
+    videoId: "_ZqVSdB5BjM",
+    title: "MLM2PRO Setup Guide",
+    creator: "Golf Enthusiast"
   },
   {
     id: "4",
-    videoId: "dQw4w9WgXcQ",
-    title: "Getting the Most Out of Your MLM2PRO",
-    creator: "Golf Data Nerds"
+    videoId: "EpGMHhVwToo",
+    title: "MLM2PRO Experience",
+    creator: "Golf Reviews"
   },
   {
     id: "5",
-    videoId: "dQw4w9WgXcQ",
-    title: "MLM2PRO vs Competition: Honest Review",
-    creator: "Launch Monitor Lab"
-  },
-  {
-    id: "6",
-    videoId: "dQw4w9WgXcQ",
-    title: "Perfect Practice Space for MLM2PRO",
-    creator: "Home Golf Sim"
+    videoId: "E3UXAFbwL5E",
+    title: "MLM2PRO in Action",
+    creator: "Golf Channel"
   },
 ];
 
