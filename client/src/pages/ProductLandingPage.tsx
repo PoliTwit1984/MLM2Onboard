@@ -1,6 +1,7 @@
 import React from "react";
 import { HeroSection } from "./sections/HeroSection";
 import { MetricsSection } from "./sections/MetricsSection";
+import { AppScreensCarousel } from "./sections/AppScreensCarousel";
 import { QuizSection } from "./sections/QuizSection";
 import { TroubleshootingHub } from "./sections/TroubleshootingHub";
 import { CommunityCarousel } from "./sections/CommunityCarousel";
@@ -22,6 +23,7 @@ export const ProductLandingPage = (): JSX.Element => {
       <main className="w-full relative flex flex-col items-center pt-20">
         <HeroSection />
         <MetricsSection />
+        <AppScreensCarousel />
         <QuizSection />
         <TroubleshootingHub />
         <SignupFormSection />
