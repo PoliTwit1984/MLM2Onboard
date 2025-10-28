@@ -1,6 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import {
   Accordion,
   AccordionContent,
@@ -74,6 +75,20 @@ const SECTIONS: TroubleshootingSection[] = [
     category: "Getting Started",
     content: `Update firmware right away for best stability and features. Keep the device plugged in and the app open during updates.
 
+**Watch the video tutorial:**
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/sr6BEY5HmHc?si=4wcu1ylEWcrrbBuK" 
+    title="Firmware Update Tutorial" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
+
 **Top questions:**
 - **How do I update?** Connect in Direct mode with cellular to download; then enable Airplane Mode (leave Wi‑Fi/Bluetooth on) and install.
 - **The update fails — what should I try?** Reinstall the app; connect via Local Wi‑Fi from Profile; ensure 75%+ battery; keep app open and device plugged in; if stuck, hold power 20 seconds to reset.
@@ -114,6 +129,20 @@ const SECTIONS: TroubleshootingSection[] = [
     title: "Connect the Device: Direct vs Local Network + Quick Connect",
     category: "Setup & Configuration",
     content: `Use Quick Connect to auto‑reconnect. Choose Direct Wi‑Fi for ranges/weak Wi‑Fi; choose Local Network for home setups, firmware updates, and 3rd‑party apps.
+
+**Watch the Device Info tutorial:**
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/qMtR1Nx96NY?si=LwfAQz-phvVLc4Qo" 
+    title="Device Info Page Tutorial" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 **Top questions:**
 - **How do I connect the first time?** Power on, open the app, go to Profile > Connect MLM2PRO, then choose Direct Wi‑Fi or Local Network and follow prompts.
@@ -180,6 +209,20 @@ const SECTIONS: TroubleshootingSection[] = [
     title: "Simulation Essentials (Rapsodo Range/Courses)",
     category: "Using Your Device",
     content: `Play 30K+ courses and practice ranges on mobile. You can project or mirror to a bigger screen and tune graphics (LOD) for your device.
+
+**Watch the Rapsodo Range tutorial:**
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/eZrs2dG--is?si=76sUQBp3Lf2F0QJy" 
+    title="Rapsodo Range Tutorial" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 **Top questions:**
 - **How do I start a session?** Connect the device, then choose Range or Courses from Play.
@@ -409,7 +452,10 @@ export const TroubleshootingHub = (): JSX.Element => {
                     prose-ul:font-paragraph-16-base-medium prose-ul:text-genericblack
                     prose-li:my-1
                   ">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown 
+                      remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeRaw]}
+                    >
                       {section.content}
                     </ReactMarkdown>
                   </div>
