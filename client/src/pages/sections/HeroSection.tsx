@@ -218,17 +218,17 @@ export const HeroSection = (): JSX.Element => {
   const groupedProfileCards = getGroupedProfileCards();
 
   return (
-    <section className="relative w-full min-h-screen bg-white flex flex-col items-center justify-center py-20 px-8 overflow-hidden">
+    <section className="relative w-full bg-white flex flex-col items-center justify-center py-12 md:py-16 px-8 overflow-hidden">
       {/* Hero Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div className="w-full max-w-6xl mx-auto mb-8">
         <img
           src="/figmaAssets/mlm2pro-hero.png"
           alt="MLM2PRO Launch Monitor"
-          className="w-full h-full object-cover"
+          className="w-full h-auto object-contain"
         />
       </div>
       
-      <div className="flex flex-col items-center gap-12 max-w-7xl w-full z-10 relative">
+      <div className="flex flex-col items-center gap-8 max-w-7xl w-full z-10 relative">
         {/* Headline - Crossfades between initial and personalized */}
         <div className="flex flex-col w-full max-w-[700px] items-center gap-8 relative">
           {!showPersonalized ? (
