@@ -229,7 +229,7 @@ export const MetricsSection = (): JSX.Element => {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-20">
-            <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] [font-style:var(--heading-72-9xl-hero-font-style)] text-white text-center mt-[8px] mb-[8px] text-[60px]">15 Essential Ball Flight Metrics</h2>
+            <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] [font-style:var(--heading-72-9xl-hero-font-style)] text-white text-center mt-[8px] mb-[8px] text-[55px]">Understand The Data</h2>
             <p className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-neutral-200 max-w-3xl mx-auto">Click on any metric to learn more about what it is and how it affects your ball flight. Understaning these metrics unlocks the ability to change shot shape, trajectory, spin, and makes YOU a better golfer.</p>
           </div>
 
