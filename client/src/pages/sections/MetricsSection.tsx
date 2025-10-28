@@ -6,6 +6,22 @@ interface Metric {
   howItAffects: string;
   badge?: "measured";
   iconName: string;
+  positiveNegative?: {
+    positive: {
+      label: string;
+      description: string;
+      idealRange?: string;
+    };
+    negative: {
+      label: string;
+      description: string;
+      idealRange?: string;
+    };
+    neutral?: {
+      label: string;
+      description: string;
+    };
+  };
 }
 
 const metrics: Metric[] = [
@@ -40,7 +56,23 @@ const metrics: Metric[] = [
     whatItIs: "Initial horizontal start line relative to target.",
     howItAffects: "Sets the starting line; paired with Spin Axis it determines curve back toward/away from target.",
     badge: "measured",
-    iconName: "launch-direction"
+    iconName: "launch-direction",
+    positiveNegative: {
+      positive: {
+        label: "Right of Target",
+        description: "Ball starts to the right (push)",
+        idealRange: "Within ±2° for accuracy"
+      },
+      negative: {
+        label: "Left of Target",
+        description: "Ball starts to the left (pull)",
+        idealRange: "Within ±2° for accuracy"
+      },
+      neutral: {
+        label: "At Target",
+        description: "Ball starts directly at the target line"
+      }
+    }
   },
   
   // Row 2
@@ -95,19 +127,67 @@ const metrics: Metric[] = [
     name: "Spin Axis",
     whatItIs: "The measurement of axis tilt that the ball spins on.",
     howItAffects: "Primary controller of shot curvature (draw/fade); more tilt = more curve.",
-    iconName: "spin-axis"
+    iconName: "spin-axis",
+    positiveNegative: {
+      positive: {
+        label: "Fade/Slice",
+        description: "Ball curves left to right (RH golfer)",
+        idealRange: "+2° to +5° for controlled fade"
+      },
+      negative: {
+        label: "Draw/Hook",
+        description: "Ball curves right to left (RH golfer)",
+        idealRange: "-2° to -5° for controlled draw"
+      },
+      neutral: {
+        label: "Straight",
+        description: "No curve, ball flies straight"
+      }
+    }
   },
   {
     name: "Club Path",
     whatItIs: "Direction the clubhead is moving (in-to-out / out-to-in) at impact.",
     howItAffects: "Along with face angle, heavily influences spin axis and shot shape (draw/fade).",
-    iconName: "club-path"
+    iconName: "club-path",
+    positiveNegative: {
+      positive: {
+        label: "Inside-Out",
+        description: "Clubhead moving right of target (promotes draws)",
+        idealRange: "+2° to +4° for draw shape"
+      },
+      negative: {
+        label: "Outside-In",
+        description: "Clubhead moving left of target (promotes fades)",
+        idealRange: "-2° to -4° for fade shape"
+      },
+      neutral: {
+        label: "Neutral Path",
+        description: "Clubhead moving straight at target"
+      }
+    }
   },
   {
     name: "Angle of Attack",
     whatItIs: "Up/down strike angle at impact.",
     howItAffects: "Affects spin and launch: upward AoA with driver can add carry; downward AoA increases spin/trajectory control with irons.",
-    iconName: "angle-of-attack"
+    iconName: "angle-of-attack",
+    positiveNegative: {
+      positive: {
+        label: "Upward Strike",
+        description: "Hitting up on the ball (ideal for driver)",
+        idealRange: "+3° to +5° with driver"
+      },
+      negative: {
+        label: "Downward Strike",
+        description: "Hitting down on the ball (ideal for irons)",
+        idealRange: "-2° to -5° for irons, -5° to -10° for wedges"
+      },
+      neutral: {
+        label: "Level Strike",
+        description: "Clubhead traveling level with ground"
+      }
+    }
   }
 ];
 
