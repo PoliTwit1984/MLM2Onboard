@@ -218,7 +218,7 @@ export const HeroSection = (): JSX.Element => {
   const groupedProfileCards = getGroupedProfileCards();
 
   return (
-    <section className="relative w-full min-h-screen bg-genericblack flex flex-col items-center justify-center py-20 px-8">
+    <section className="relative w-full min-h-screen bg-genericblack flex flex-col items-center justify-center py-20 px-8 pt-[50px] pb-[50px] pl-[41px] pr-[41px]">
       <div className="flex flex-col items-center gap-12 max-w-7xl w-full z-10">
         {/* Headline - Crossfades between initial and personalized */}
         <div className="flex flex-col w-full max-w-[700px] items-center gap-8 relative">
