@@ -39,6 +39,24 @@ const COMMUNITY_VIDEOS: CommunityVideo[] = [
     title: "I was WRONG about Rapsodo MLM2Pro Launch Monitor?",
     creator: "Golfers Authority"
   },
+  {
+    id: "6",
+    videoId: "rrJwJGcJzLg",
+    title: "Why is EVERYONE buying the Rapsodo MLM2PRO Launch Monitor!?",
+    creator: "Golfers Authority"
+  },
+  {
+    id: "7",
+    videoId: "UUrvVn1beoo",
+    title: "The Rapsodo MLM2PRO Update NO ONE Expected is FINALLY HERE!",
+    creator: "Golficity"
+  },
+  {
+    id: "8",
+    videoId: "9AZs9Nr_HmE",
+    title: "MLM2PRO is Getting 2 New Features in 2025… AGAIN (Early Access Beta Testing)",
+    creator: "Unreal Golf"
+  },
 ];
 
 export const CommunityCarousel = (): JSX.Element => {
