@@ -131,13 +131,6 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
           alt={metric.name}
           className="w-28 h-28 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain transition-all duration-300 mb-0"
         />
-        
-        {/* Badge */}
-        {metric.badge && (
-          <span className="absolute -top-2 -right-2 px-2 py-0.5 text-[10px] font-paragraph-12-xs-semibold font-[number:var(--paragraph-12-xs-semibold-font-weight)] tracking-[var(--paragraph-12-xs-semibold-letter-spacing)] leading-[var(--paragraph-12-xs-semibold-line-height)] rounded-md bg-neutral-700 text-white shadow-lg">
-            MEASURED
-          </span>
-        )}
       </div>
       
       {/* Metric Name */}
@@ -192,11 +185,6 @@ const MetricModal = ({ metric, onClose }: { metric: Metric; onClose: () => void 
           <h3 className="font-heading-48-6xl-hero font-[number:var(--heading-48-6xl-hero-font-weight)] text-[length:var(--heading-48-6xl-hero-font-size)] tracking-[var(--heading-48-6xl-hero-letter-spacing)] leading-[var(--heading-48-6xl-hero-line-height)] [font-style:var(--heading-48-6xl-hero-font-style)] text-white uppercase mb-2">
             {metric.name}
           </h3>
-          {metric.badge && (
-            <span className="inline-block px-3 py-1 text-xs font-paragraph-12-xs-semibold font-[number:var(--paragraph-12-xs-semibold-font-weight)] tracking-[var(--paragraph-12-xs-semibold-letter-spacing)] rounded-md bg-neutral-700 text-white">
-              MEASURED
-            </span>
-          )}
         </div>
         
         {/* Content */}
