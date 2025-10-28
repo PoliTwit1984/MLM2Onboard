@@ -12,26 +12,13 @@ interface QuizQuestion {
 const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 'usage_location',
-    question: 'Where do you primarily use your MLM2PRO?',
+    question: 'Where will you primarily use your MLM2PRO?',
     type: 'single',
     options: [
       { value: 'indoor_sim', label: 'Indoor Simulator' },
       { value: 'outdoor_range', label: 'Outdoor Range' },
       { value: 'home_garage', label: 'Home Garage' },
       { value: 'golf_course', label: 'Golf Course' },
-    ]
-  },
-  {
-    id: 'simulator_software',
-    question: 'What simulator software do you use?',
-    type: 'multi',
-    options: [
-      { value: 'e6_connect', label: 'E6 Connect' },
-      { value: 'gspro', label: 'GSPro' },
-      { value: 'tgc_2019', label: 'TGC 2019' },
-      { value: 'awesome_golf', label: 'Awesome Golf' },
-      { value: 'other', label: 'Other' },
-      { value: 'none', label: 'None yet' },
     ]
   },
   {
@@ -48,7 +35,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   },
   {
     id: 'working_on',
-    question: 'What are you working on right now?',
+    question: 'What are you wanting to focus on first?',
     type: 'multi',
     options: [
       { value: 'driver_distance', label: 'Driver Distance' },
@@ -59,30 +46,21 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
     ]
   },
   {
-    id: 'excited_metric',
-    question: 'Which metric are you most excited to track?',
+    id: 'excited_game_mode',
+    question: 'Which game mode are you most excited for?',
     type: 'single',
     options: [
-      { value: 'ball_speed', label: 'Ball Speed' },
-      { value: 'club_speed', label: 'Club Speed' },
-      { value: 'smash_factor', label: 'Smash Factor' },
-      { value: 'launch_angle', label: 'Launch Angle' },
-      { value: 'launch_direction', label: 'Launch Direction' },
-      { value: 'spin_rate', label: 'Spin Rate' },
-      { value: 'spin_axis', label: 'Spin Axis' },
-      { value: 'carry_distance', label: 'Carry Distance' },
-      { value: 'total_distance', label: 'Total Distance' },
-      { value: 'apex_height', label: 'Apex Height' },
-      { value: 'descent_angle', label: 'Descent Angle' },
-      { value: 'shot_dispersion', label: 'Shot Dispersion' },
-      { value: 'club_path', label: 'Club Path' },
-      { value: 'face_angle', label: 'Face Angle' },
-      { value: 'attack_angle', label: 'Attack Angle' },
+      { value: 'practice', label: 'Practice' },
+      { value: 'rapsodo_range', label: 'Rapsodo Range' },
+      { value: 'rapsodo_courses', label: 'Rapsodo Courses' },
+      { value: 'target_range', label: 'Target Range' },
+      { value: 'r_speed', label: 'R-Speed' },
+      { value: '3rd_party', label: '3rd Party Software' },
     ]
   },
   {
     id: 'practice_frequency',
-    question: 'How often do you plan to practice?',
+    question: 'How often do you plan to play?',
     type: 'single',
     options: [
       { value: 'daily', label: 'Daily' },
@@ -91,8 +69,20 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
       { value: 'when_i_can', label: 'When I Can' },
     ]
   },
+  {
+    id: 'simulator_software',
+    question: 'What simulator software do you plan on using?',
+    type: 'multi',
+    options: [
+      { value: 'mlm2pro_app', label: 'MLM2PRO App' },
+      { value: 'e6_connect', label: 'E6 Connect' },
+      { value: 'gspro', label: 'GSPro' },
+      { value: 'awesome_golf', label: 'Awesome Golf' },
+      { value: 'other', label: 'Other' },
+      { value: 'not_sure', label: 'Not Sure' },
+    ]
+  }
 ];
-
 const STORAGE_KEY = 'mlm2pro_quiz_completed';
 
 export const QuizSection = (): JSX.Element => {

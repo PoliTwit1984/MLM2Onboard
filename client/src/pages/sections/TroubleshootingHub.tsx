@@ -9,126 +9,60 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
+import { Battery, Wifi, Settings, Target, Play, Zap, Cloud, AlertCircle } from "lucide-react";
+
+interface SubTopic {
+  id: string;
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  content: string;
+  hasVideo?: boolean;
+}
 
 interface TroubleshootingSection {
   id: string;
   title: string;
-  category: string;
-  content: string;
+  subtitle: string;
+  topics: SubTopic[];
 }
 
 const SECTIONS: TroubleshootingSection[] = [
   {
-    id: "what-you-bought",
-    title: "Start Here: What you bought + what's included",
-    category: "Getting Started",
-    content: `Meet your Rapsodo MLM2PRO — a dual‑camera + radar launch monitor that tracks ball flight and select club data, works indoors and outdoors, and unlocks simulation, combines, and training experiences via the mobile app.
+    id: "quick-start",
+    title: "Quick Start",
+    subtitle: "Power up, connect, and update your device",
+    topics: [
+      {
+        id: "power-charging",
+        icon: Battery,
+        title: "Power & Charging",
+        description: "Get 4 hours of practice per charge",
+        hasVideo: false,
+        content: `Fully charge your device before first use with a 5V/2A–3A (15W) adapter. Use the LED indicators to understand status.
 
-**Top questions:**
-- **What can MLM2PRO do?** It provides 15 metrics (6 measured), dual camera views (Swing/Impact Vision), and access to Rapsodo Range, Courses, Combines, and more.
-- **What's in the box?** MLM2PRO unit, tripod, charging cable, quick start guide, and a sleeve of RPT golf balls.
-- **Do I need special balls?** Regular balls work for core metrics. For measured spin rate and spin axis, use Rapsodo RPT balls.
-
-**References:**
-- [Metrics/Features: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44183787338515-Metrics-Features-MLM2PRO)
-- [RPT Balls/Tripod/Cases](https://rapsodo.zendesk.com/hc/en-us/articles/44182907552403-RPT-Balls-Tripod-Cases-MLM2PRO)`
-  },
-  {
-    id: "charge-device",
-    title: "Charge and Device Lights",
-    category: "Getting Started",
-    content: `Fully charge your device before first use with a 5V/2A–3A (15W) adapter. Use the LED indicators to understand status during charging and use.
-
-**Top questions:**
-- **How long to charge and how long does it last?** About 1 hour to charge; roughly 4 hours of use per charge.
-- **How do I know it's charged?** Amber LED turns off when full; battery % shows in Device Info after pairing.
-- **What do the LEDs mean?** Red = on/not connected; flashing blue = connecting; blue = connected/processing; green = ball detected; flashing red = low battery; amber = charging; flashing white = firmware updating.
+**Quick facts:**
+- **Charge time:** ~1 hour to full charge
+- **Battery life:** ~4 hours of use per charge
+- **LED indicators:** Amber = charging, off = fully charged, flashing red = low battery
+- **Firmware updates:** Charge to 75%+ before updating
 
 **Checklist:**
-- Use a 5V/3A (15W) adapter when possible (minimum 5V/2A)
-- Charge to at least 75% before firmware updates
-- Verify amber LED turns off once fully charged
+- Use 5V/3A (15W) adapter when possible (minimum 5V/2A)
+- Verify amber LED turns off when fully charged
+- Keep device plugged in during firmware updates
 
 **References:**
 - [Battery/Charging: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44182673173779-Battery-Charging-MLM2PRO)
 - [LED Indicator: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44182728192915-LED-Indicator-MLM2PRO)`
-  },
-  {
-    id: "create-account",
-    title: "Create Account and Claim Membership",
-    category: "Getting Started",
-    content: `Sign in to the MLM2PRO app and activate your included Premium membership trial through R‑Cloud to unlock simulation, spin metrics with RPT balls, R‑Speed, and more.
-
-**Top questions:**
-- **How do I activate the trial?** Log into R‑Cloud with your MLM2PRO account and select Start Trial under annual membership.
-- **What's included in Premium?** Simulation access (Range/Courses/3rd‑party), measured spin/spin axis with RPT balls, R‑Speed, Insights, Combines, expanded storage, and more.
-- **How do I cancel or manage billing?** Use R‑Cloud > Profile > Manage Membership. If you purchased via Apple/Google, manage it in your app store.
-- **I see duplicate subscriptions — what now?** Email support with both account emails and order numbers; ensure you're not subscribed via both Apple and Rapsodo.
-
-**References:**
-- [Membership: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44183693527955-Membership-MLM2PRO)
-- [FAQ's: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44377947274899-FAQ-s-MLM2PRO)`
-  },
-  {
-    id: "update-firmware",
-    title: "Update Firmware (before first session)",
-    category: "Getting Started",
-    content: `Update firmware right away for best stability and features. Keep the device plugged in and the app open during updates.
-
-**Watch the video tutorial:**
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
-  <iframe 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://www.youtube.com/embed/sr6BEY5HmHc?si=4wcu1ylEWcrrbBuK" 
-    title="Firmware Update Tutorial" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
-    allowfullscreen>
-  </iframe>
-</div>
-
-**Top questions:**
-- **How do I update?** Connect in Direct mode with cellular to download; then enable Airplane Mode (leave Wi‑Fi/Bluetooth on) and install.
-- **The update fails — what should I try?** Reinstall the app; connect via Local Wi‑Fi from Profile; ensure 75%+ battery; keep app open and device plugged in; if stuck, hold power 20 seconds to reset.
-
-**Checklist:**
-- Connect device and verify sufficient battery (75%+)
-- Download firmware (Direct mode with cellular)
-- Switch to Airplane Mode (Wi‑Fi/Bluetooth on) and install
-- Keep app open and device plugged in until complete
-
-**References:**
-- [Firmware: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44184980737171-Firmware-MLM2PRO)
-- [General Troubleshooting](https://rapsodo.zendesk.com/hc/en-us/articles/44378085420307-General-Troubleshooting-MLM2PRO)`
-  },
-  {
-    id: "setup-space",
-    title: "Set Up Your Space: Alignment, Leveling, Ball Placement",
-    category: "Setup & Configuration",
-    content: `Align the device to your target line, start sessions with the unit leveled on the tripod, and place the ball in the correct hitting zone shown on screen for the most accurate data.
-
-**Top questions:**
-- **How far from the ball?** Place MLM2PRO ~6.5–8 ft behind the ball; for Club Data, place the ball ~7.5 ft from the unit inside the orange hitting zone.
-- **How do I level and align?** Use on‑screen alignment line and leveling feedback; ensure a stable, flat surface before starting a session.
-- **Do left‑ or right‑handed settings matter?** Yes — set dexterity in Profile > App Settings before starting.
-
-**Checklist:**
-- Align device to target line using the on‑screen center line
-- Level device on tripod before starting session
-- Position ball in correct hitting zone (orange for Club Data)
-- Confirm dexterity in App Settings
-
-**References:**
-- [Aligning/Level for Club Data](https://rapsodo.zendesk.com/hc/en-us/articles/43994468301459-Aligning-and-Level-Your-Rapsodo-MLM2PRO-for-NEW-Club-Data)
-- [FAQ's](https://rapsodo.zendesk.com/hc/en-us/articles/44377947274899-FAQ-s-MLM2PRO)`
-  },
-  {
-    id: "connect-device",
-    title: "Connect the Device: Direct vs Local Network + Quick Connect",
-    category: "Setup & Configuration",
-    content: `Use Quick Connect to auto‑reconnect. Choose Direct Wi‑Fi for ranges/weak Wi‑Fi; choose Local Network for home setups, firmware updates, and 3rd‑party apps.
+      },
+      {
+        id: "connect-device",
+        icon: Wifi,
+        title: "Connect Your Device",
+        description: "Direct Wi-Fi or Local Network setup",
+        hasVideo: true,
+        content: `Use Quick Connect to auto-reconnect. Choose Direct Wi-Fi for ranges/weak Wi-Fi; choose Local Network for home setups and 3rd-party apps.
 
 **Watch the Device Info tutorial:**
 
@@ -144,71 +78,255 @@ const SECTIONS: TroubleshootingSection[] = [
   </iframe>
 </div>
 
-**Top questions:**
-- **How do I connect the first time?** Power on, open the app, go to Profile > Connect MLM2PRO, then choose Direct Wi‑Fi or Local Network and follow prompts.
-- **What is Quick Connect?** A setting that remembers your preferred connection type and speeds up future connections.
-- **I can't connect — what do I check?** Use the MLM2PRO app (not MLM), enable Bluetooth and required permissions, remove magnetic cases, try toggling off Quick Connect or reinstalling the app.
+**First-time setup:**
+1. Power on device and open MLM2PRO app
+2. Go to Profile > Connect MLM2PRO
+3. Choose connection type and follow prompts
+4. Enable Quick Connect for faster reconnection
 
-**Platform callouts:**
-- **Android:** Use Local Network mode for Rapsodo Courses access.
-- **iOS:** Use Local Network mode or Direct mode with active cellular internet.
+**Connection modes:**
+- **Direct Wi-Fi:** Best for driving ranges or weak Wi-Fi
+- **Local Network:** Required for Courses (Android), firmware updates, and 3rd-party apps
 
-**Checklist:**
-- Turn on device and open the MLM2PRO app
-- Profile > Connect MLM2PRO > choose connection type
-- Enable Quick Connect in Device Info (optional)
-- Verify permissions (Bluetooth, Wi‑Fi, Camera, Microphone, Location)
+**Can't connect? Try this:**
+- Use MLM2PRO app (not the old MLM app)
+- Enable Bluetooth and all app permissions
+- Remove magnetic phone cases
+- Toggle off Quick Connect or reinstall app
 
 **References:**
 - [Connection: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44183237516819-Connection-MLM2PRO)`
-  },
-  {
-    id: "configure-app",
-    title: "Configure the App: My Bag, Elevation, Ball Type",
-    category: "Setup & Configuration",
-    content: `Configure My Bag for quick club switching, set elevation per location, and choose your ball type at session start for best accuracy.
+      },
+      {
+        id: "firmware-update",
+        icon: Settings,
+        title: "Update Firmware",
+        description: "Critical first step for best performance",
+        hasVideo: true,
+        content: `Update firmware right away for best stability and features. Keep the device plugged in and the app open during updates.
 
-**Top questions:**
-- **How do I set up My Bag?** Add clubs ahead of time. You can move a club to Inventory, but at least one club must always remain in My Bag.
-- **How do I set elevation?** At session start, set elevation based on your location to improve data accuracy.
-- **Which ball type should I pick?** Select the RPT ball option when using RPT balls to enable measured spin/spin axis.
+**Watch the firmware update tutorial:**
 
-**Checklist:**
-- Add clubs in My Bag before your first session
-- Set elevation when starting a session
-- Select ball type (RPT vs premium/range ball)
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/sr6BEY5HmHc?si=4wcu1ylEWcrrbBuK" 
+    title="Firmware Update Tutorial" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+**Update process:**
+1. Connect in Direct mode with cellular to download
+2. Enable Airplane Mode (keep Wi-Fi/Bluetooth on)
+3. Install the update
+4. Keep app open and device plugged in until complete
+
+**Update failing? Try this:**
+- Reinstall the app
+- Connect via Local Wi-Fi from Profile
+- Ensure 75%+ battery charge
+- Hard reset: hold power button 20 seconds
 
 **References:**
-- [My Bag: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44185021439507-My-Bag-MLM2PRO)
-- [Elevation: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44183851507603-Elevation-MLM2PRO)
-- [Spin Information](https://rapsodo.zendesk.com/hc/en-us/articles/44182520056211-Spin-Information-MLM2PRO)`
+- [Firmware: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44184980737171-Firmware-MLM2PRO)
+- [General Troubleshooting](https://rapsodo.zendesk.com/hc/en-us/articles/44378085420307-General-Troubleshooting-MLM2PRO)`
+      },
+      {
+        id: "account-membership",
+        icon: Cloud,
+        title: "Account & Membership",
+        description: "Activate Premium trial and R-Cloud access",
+        hasVideo: false,
+        content: `Sign in to the MLM2PRO app and activate your included Premium membership trial through R-Cloud to unlock simulation, measured spin, and advanced features.
+
+**What's included in Premium:**
+- Simulation access (Range/Courses/3rd-party)
+- Measured spin/spin axis with RPT balls
+- R-Speed training
+- Insights and Combines
+- Expanded cloud storage
+
+**How to activate:**
+1. Log into R-Cloud with your MLM2PRO account
+2. Select Start Trial under annual membership
+3. Manage subscription anytime in R-Cloud > Profile
+
+**Billing management:**
+- **Web subscription:** Manage in R-Cloud > Profile > Manage Membership
+- **Apple/Google purchase:** Manage in your app store subscription settings
+- **Duplicate subscriptions?** Email support with both account emails
+
+**References:**
+- [Membership: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44183693527955-Membership-MLM2PRO)
+- [FAQ's: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44377947274899-FAQ-s-MLM2PRO)`
+      }
+    ]
   },
   {
-    id: "first-shots",
-    title: "First Shots: Practice basics and measured metrics",
-    category: "Using Your Device",
-    content: `Start a Practice session to see real‑time ball flight, video replay, and metrics. RPT balls enable measured spin and spin axis.
+    id: "space-setup",
+    title: "Space Setup & Alignment",
+    subtitle: "Position your device for accurate data",
+    topics: [
+      {
+        id: "alignment-leveling",
+        icon: Target,
+        title: "Alignment & Leveling",
+        description: "Get your device properly positioned",
+        hasVideo: false,
+        content: `Align the device to your target line and level it on the tripod before starting sessions. Proper positioning is critical for accurate data.
 
-**Top questions:**
-- **Which metrics are measured vs calculated?** Club speed, ball speed, launch angle, launch direction, spin rate, and spin axis are measured (with RPT balls for spin). Others are derived.
-- **Will I get spin indoors/outdoors?** Measured spin requires RPT balls. Indoors into a net is common; outdoors without RPT balls won't show measured spin.
-- **My indoor carry looks short — why?** "Indoor swing syndrome" is common; speed and carry improve with continued net use. Compare like‑for‑like clubs and sessions.
+**Distance and placement:**
+- **Standard:** Place MLM2PRO 6.5–8 ft behind the ball
+- **Club Data:** Place ball ~7.5 ft from unit inside orange hitting zone on screen
+- **Ball flight:** Allow ~8 ft from ball to net/screen
+
+**Setup steps:**
+1. Position device on stable, flat surface
+2. Use on-screen alignment line to aim at target
+3. Verify leveling feedback in app before starting session
+4. Confirm dexterity setting (left/right-handed)
+
+**Pro tips:**
+- Ensure tripod is fully extended and stable
+- Re-check alignment if you move the device
+- Set dexterity in Profile > App Settings
+
+**References:**
+- [Aligning/Level for Club Data](https://rapsodo.zendesk.com/hc/en-us/articles/43994468301459-Aligning-and-Level-Your-Rapsodo-MLM2PRO-for-NEW-Club-Data)
+- [FAQ's](https://rapsodo.zendesk.com/hc/en-us/articles/44377947274899-FAQ-s-MLM2PRO)`
+      }
+    ]
+  },
+  {
+    id: "app-configuration",
+    title: "App Configuration",
+    subtitle: "Set up My Bag, elevation, and ball settings",
+    topics: [
+      {
+        id: "my-bag",
+        icon: Settings,
+        title: "My Bag",
+        description: "Quick club switching for practice",
+        hasVideo: false,
+        content: `Configure My Bag ahead of time for easy club selection during sessions. You can customize your bag and manage club inventory.
+
+**How it works:**
+- Add all your clubs before your first session
+- At least one club must remain in My Bag
+- Move clubs to Inventory if you want to swap equipment
+
+**Setup:**
+1. Open Profile > My Bag
+2. Add clubs with loft and specifications
+3. Organize clubs in order you prefer
+4. Switch clubs easily during practice sessions
+
+**References:**
+- [My Bag: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44185021439507-My-Bag-MLM2PRO)`
+      },
+      {
+        id: "elevation-ball-type",
+        icon: Settings,
+        title: "Elevation & Ball Type",
+        description: "Improve data accuracy with correct settings",
+        hasVideo: false,
+        content: `Set elevation based on your location and choose the correct ball type at session start for the most accurate metrics.
+
+**Elevation:**
+- Set at the start of each session
+- Improves carry distance calculations
+- Adjust when practicing at different locations
+
+**Ball type selection:**
+- **RPT balls:** Enable measured spin rate and spin axis (Premium required)
+- **Premium/range balls:** Standard metrics without measured spin
+- Choose correctly to ensure accurate data
+
+**Why it matters:**
+RPT balls have unique markings that allow the dual cameras to measure actual spin data, not just estimate it.
+
+**References:**
+- [Elevation: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44183851507603-Elevation-MLM2PRO)
+- [Spin Information](https://rapsodo.zendesk.com/hc/en-us/articles/44182520056211-Spin-Information-MLM2PRO)`
+      }
+    ]
+  },
+  {
+    id: "first-practice",
+    title: "First Practice Session",
+    subtitle: "Understanding metrics and getting started",
+    topics: [
+      {
+        id: "practice-basics",
+        icon: Play,
+        title: "Practice Mode Basics",
+        description: "Start hitting and tracking your shots",
+        hasVideo: false,
+        content: `Start a Practice session to see real-time ball flight, video replay, and 15 data metrics. The device captures everything automatically.
+
+**Getting started:**
+1. Position device 6.5–8 ft behind ball
+2. Start Practice session in app
+3. Select club from My Bag
+4. Hit shots and review metrics immediately
+
+**What's measured vs calculated:**
+- **Measured (6 metrics):** Club speed, ball speed, launch angle, launch direction, spin rate*, spin axis*
+- **Calculated:** Carry, total distance, apex, flight time, side distance, etc.
+- *Spin requires RPT balls and Premium membership
 
 **Checklist:**
-- Verify space: device 6.5–8 ft behind ball; ~8 ft ball flight to net/screen
-- Use RPT balls for measured spin/spin axis
-- Start Practice and confirm video/metrics are recording
+- Verify space: 6.5–8 ft behind ball, ~8 ft to net
+- Use RPT balls for measured spin data
+- Confirm video and metrics are recording
 
 **References:**
 - [Metrics/Features](https://rapsodo.zendesk.com/hc/en-us/articles/44183787338515-Metrics-Features-MLM2PRO)
-- [Spin Information](https://rapsodo.zendesk.com/hc/en-us/articles/44182520056211-Spin-Information-MLM2PRO)
+- [Spin Information](https://rapsodo.zendesk.com/hc/en-us/articles/44182520056211-Spin-Information-MLM2PRO)`
+      },
+      {
+        id: "indoor-accuracy",
+        icon: AlertCircle,
+        title: "Indoor Accuracy Tips",
+        description: "Understanding indoor vs outdoor results",
+        hasVideo: false,
+        content: `Indoor swing speeds and carry distances are often lower at first. This is normal "indoor swing syndrome" and improves with practice.
+
+**Why indoor numbers feel low:**
+- Subconscious swing adjustment into a net
+- Different visual feedback vs outdoor range
+- Adaptation period for most golfers
+
+**What to do:**
+- Continue practicing regularly
+- Compare like-for-like sessions (same club, same day)
+- Track improvement over time
+- Don't compare directly to outdoor range sessions
+
+**Pro tip:**
+Speed and confidence improve with consistent indoor practice. Focus on swing mechanics and relative improvements, not absolute yardages.
+
+**References:**
 - [Inaccuracies (indoor swing syndrome)](https://rapsodo.zendesk.com/hc/en-us/articles/44185264868755-Inaccuracies-MLM2PRO)`
+      }
+    ]
   },
   {
     id: "simulation",
-    title: "Simulation Essentials (Rapsodo Range/Courses)",
-    category: "Using Your Device",
-    content: `Play 30K+ courses and practice ranges on mobile. You can project or mirror to a bigger screen and tune graphics (LOD) for your device.
+    title: "Simulation (Range & Courses)",
+    subtitle: "Play 30K+ courses on your mobile device",
+    topics: [
+      {
+        id: "simulation-basics",
+        icon: Play,
+        title: "Getting Started",
+        description: "Range, Courses, and projection options",
+        hasVideo: true,
+        content: `Play courses and practice ranges on your mobile device. Project to a larger screen via HDMI or wireless mirroring for the full simulator experience.
 
 **Watch the Rapsodo Range tutorial:**
 
@@ -224,158 +342,347 @@ const SECTIONS: TroubleshootingSection[] = [
   </iframe>
 </div>
 
-**Top questions:**
-- **How do I start a session?** Connect the device, then choose Range or Courses from Play.
-- **Can I use a projector or TV?** Yes — HDMI adapter (Lightning/USB‑C) or screen mirroring works.
-- **Is there multiplayer?** Yes, up to 4 additional players on Courses; only Player 1's data is saved.
-- **Why does performance vary by device?** LOD testing sets graphics level (Low/Medium/High/Max) per device to ensure smooth play.
+**How to start:**
+1. Connect device in Local Network mode (recommended)
+2. Choose Range or Courses from Play tab
+3. Select your course or range
+4. Start playing
 
-**Platform callouts:**
-- **Android:** Connect in Local Network mode to access Courses.
-- **iOS:** Courses work via Local Network; Direct mode requires active cellular internet to load a course.
+**Projection options:**
+- **HDMI adapter:** Lightning (iOS) or USB-C (Android) to HDMI
+- **Wireless mirroring:** AirPlay or Chromecast to TV
+- **Direct play:** Use mobile device screen only
 
-**Checklist:**
-- Connect device and verify strong Wi‑Fi (Local Network recommended)
-- Start Range or Courses from the Play tab
-- Optionally project via HDMI adapter or use screen mirroring
-- If performance lags, reduce graphics via LOD assessment
+**Multiplayer:**
+- Add up to 4 additional players on Courses
+- Only Player 1's data is saved to R-Cloud
+
+**Platform notes:**
+- **Android:** Must use Local Network mode for Courses
+- **iOS:** Local Network or Direct mode (Direct requires cellular)
 
 **References:**
 - [Simulation: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44184560269459-Simulation-MLM2PRO)
-- [Projection](https://rapsodo.zendesk.com/hc/en-us/articles/44184859577491-Projection-MLM2PRO)
-- [LOD (graphics)](https://rapsodo.zendesk.com/hc/en-us/articles/44184742136083-LOD-Level-of-Detail-MLM2PRO)`
+- [Projection](https://rapsodo.zendesk.com/hc/en-us/articles/44184859577491-Projection-MLM2PRO)`
+      },
+      {
+        id: "graphics-performance",
+        icon: Settings,
+        title: "Graphics & Performance",
+        description: "Optimize LOD settings for smooth play",
+        hasVideo: false,
+        content: `Level of Detail (LOD) testing automatically sets graphics quality for your device. Adjust if you experience lag or want better visuals.
+
+**LOD levels:**
+- **Low:** Best performance, lower graphics
+- **Medium:** Balanced performance and quality
+- **High:** Better graphics, requires newer devices
+- **Max:** Highest quality, flagship devices only
+
+**Performance issues?**
+- Close background apps
+- Ensure strong Wi-Fi connection
+- Lower LOD graphics setting
+- Update app and firmware
+- Restart device
+
+**How to adjust:**
+Run LOD assessment in app settings to re-test and adjust graphics level for optimal performance.
+
+**References:**
+- [LOD (Level of Detail)](https://rapsodo.zendesk.com/hc/en-us/articles/44184742136083-LOD-Level-of-Detail-MLM2PRO)`
+      }
+    ]
   },
   {
-    id: "integrations",
-    title: "Partner Integrations (E6, Awesome Golf, GSPro, The Stack)",
-    category: "Using Your Device",
-    content: `Authenticate partners from the MLM2PRO app, then follow partner app steps.
+    id: "advanced-features",
+    title: "Advanced Features",
+    subtitle: "Partner integrations and speed training",
+    topics: [
+      {
+        id: "integrations",
+        icon: Zap,
+        title: "Partner Integrations",
+        description: "GSPro, E6, Awesome Golf, The Stack",
+        hasVideo: false,
+        content: `Connect to 3rd-party simulation and training platforms. Authenticate from the MLM2PRO app, then follow partner app instructions.
 
-**Top questions:**
-- **How do I use E6?** Authenticate in MLM2PRO (iOS only), then enter your E6 product key; start a session in E6.
-- **How do I use Awesome Golf?** Follow the in‑app authentication flow; see linked setup guides.
-- **How do I use GSPro?** Update firmware/app, authenticate in MLM2PRO under 3rd Party Apps, then select MLM2PRO inside GSPro on your PC.
-- **Can I connect The Stack?** Yes — validate Premium in the Rapsodo app, update firmware (3.8.47+), set MLM2PRO as Speed Device in The Stack app.
+**GSPro (PC simulation):**
+1. Update MLM2PRO firmware and app
+2. Authenticate under 3rd Party Apps in MLM2PRO
+3. Select MLM2PRO inside GSPro on your PC
+4. Start playing
+
+**E6 Connect (iOS only):**
+1. Authenticate in MLM2PRO app
+2. Enter your E6 product key (provided after registration)
+3. Start session in E6 app
+
+**Awesome Golf:**
+- Follow in-app authentication flow
+- See setup guides and video tutorials below
+
+**The Stack (speed training):**
+1. Validate Premium membership in Rapsodo app
+2. Update firmware to 3.8.47+
+3. Set MLM2PRO as Speed Device in The Stack app
 
 **References:**
 - [Integrations: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44184698948499-Integrations-MLM2PRO)
-- [Awesome Golf (guide)](https://awesome-golf.com/rapsodo/)
-- [Awesome Golf Assistant](https://awesome-golf.com/rapsodo/assistant/)
-- [Awesome Golf video](https://youtu.be/adjBnyI2BBg)`
-  },
-  {
-    id: "speed-training",
-    title: "Speed Training (R‑Speed)",
-    category: "Using Your Device",
-    content: `Track club speed without hitting a ball. Choose your speed training system or a standard club and monitor progress in the app and R‑Cloud.
+- [Awesome Golf Setup](https://awesome-golf.com/rapsodo/)
+- [Awesome Golf Video](https://youtu.be/adjBnyI2BBg)`
+      },
+      {
+        id: "speed-training",
+        icon: Zap,
+        title: "R-Speed Training",
+        description: "Track swing speed without hitting balls",
+        hasVideo: false,
+        content: `Track club speed without hitting a ball. Perfect for speed training systems or monitoring swing velocity improvements.
 
-**Top questions:**
-- **How do I start?** Play > Speed, select your training system or choose standard club.
-- **What's measured?** Maximum swing velocity per swing.
-- **Where do I find results?** Filter sessions by Speed on the Home tab or view in R‑Cloud.
+**How to use:**
+1. Go to Play > Speed in app
+2. Select your training system or standard club
+3. Swing and track maximum velocity
+4. Review sessions in app or R-Cloud
+
+**What's tracked:**
+- Maximum swing velocity per swing
+- Session history and trends
+- Progress over time
+
+**View results:**
+- Filter by Speed on Home tab
+- Full analysis in R-Cloud web portal
+- Compare sessions to track improvement
 
 **References:**
-- [R‑Speed: Speed Training](https://rapsodo.zendesk.com/hc/en-us/articles/44183517920531-R-Speed-Speed-Training-MLM2PRO)`
+- [R-Speed: Speed Training](https://rapsodo.zendesk.com/hc/en-us/articles/44183517920531-R-Speed-Speed-Training-MLM2PRO)`
+      }
+    ]
   },
   {
-    id: "sync-data",
-    title: "Sync and Review Data (R‑Cloud)",
-    category: "Data & Support",
-    content: `Shots sync automatically when online; always tap End Session. Review sessions in the app or on R‑Cloud.
+    id: "data-membership",
+    title: "Data & Membership Management",
+    subtitle: "Sync sessions, manage Premium, and access R-Cloud",
+    topics: [
+      {
+        id: "data-sync",
+        icon: Cloud,
+        title: "Data Sync & R-Cloud",
+        description: "Review sessions and manage your data",
+        hasVideo: false,
+        content: `Shots sync automatically when online. Always tap End Session after practice to ensure data is saved properly.
 
-**Top questions:**
-- **Do I need internet to sync?** Yes. If offline, data syncs when you're back online. Forcing a sync: close/reopen the app or log out/in.
-- **Should I delete the app to fix issues?** No — deleting with unsynced data will permanently lose it.
+**Syncing process:**
+- Auto-sync when connected to internet
+- Offline data syncs when back online
+- Must End Session for proper sync
 
-**Checklist:**
-- End Session at the end of each session
-- Keep the app open for a few minutes to allow syncing
-- Do not delete the app if there is unsynced data
+**Forcing a sync:**
+- Close and reopen the app
+- Log out and log back in
+- Keep app open a few minutes after ending session
+
+**⚠️ Important warning:**
+Never delete the MLM2PRO app with unsynced data. You will permanently lose all unsynced sessions.
+
+**R-Cloud access:**
+- Web portal for detailed session analysis
+- View all historical data
+- Premium membership required
+- Export data for external analysis
 
 **References:**
 - [Syncing: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44203332221971-Syncing-MLM2PRO)
-- [Membership (R‑Cloud access)](https://rapsodo.zendesk.com/hc/en-us/articles/44183693527955-Membership-MLM2PRO)`
+- [Membership (R-Cloud)](https://rapsodo.zendesk.com/hc/en-us/articles/44183693527955-Membership-MLM2PRO)`
+      }
+    ]
   },
   {
     id: "troubleshooting",
-    title: "Troubleshooting and Accuracy Tips",
-    category: "Data & Support",
-    content: `If something feels off, check app/firmware versions, connection mode, battery/charging, and space/lighting. Review LED status and try basics first.
+    title: "Troubleshooting & Quick Fixes",
+    subtitle: "Common issues and solutions",
+    topics: [
+      {
+        id: "firmware-issues",
+        icon: AlertCircle,
+        title: "Firmware Won't Update",
+        description: "Hard reset and connection fixes",
+        hasVideo: false,
+        content: `Firmware update keeps failing? Try these steps in order.
 
-**Top questions:**
-- **Firmware update keeps failing — now what?** Reinstall app; connect via Local Wi‑Fi; keep device plugged in with 75%+ battery; hard‑reset by holding power.
-- **App crashes or lags in Courses — what helps?** Update app/firmware, close background apps, ensure stable Wi‑Fi, lower graphics detail (LOD), reinstall after syncing.
-- **Sessions won't sync — what should I do?** Always End Session; leave app open a few minutes; don't delete with unsynced data; log out/in if needed.
-- **Device won't turn on/charge — what to try?** Hold power 45–90 seconds while plugged in; use 15W adapter (5V/3A); try other cables/outlets; amber LED indicates charging.
-- **Readings feel low indoors — is that normal?** Indoor swing speeds can be lower at first; continue practicing and compare like‑for‑like sessions/clubs.
+**Solutions:**
+1. **Reinstall the app** — Delete and reinstall MLM2PRO app
+2. **Connect via Local Wi-Fi** — Profile > Connect > Local Network
+3. **Check battery** — Must be 75%+ charged
+4. **Keep plugged in** — Connect to power during entire update
+5. **Hard reset** — Hold power button 20 seconds while plugged in
+6. **Keep app open** — Don't minimize during update
 
-**Quick checks:**
-- Update app and firmware; ensure strong Wi‑Fi/local network
-- Verify device battery and charging setup
-- Reboot device/app; reduce LOD graphics if lagging
+**Still failing?**
+Contact Rapsodo support with your device serial number and firmware version.
+
+**References:**
+- [Firmware: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44184980737171-Firmware-MLM2PRO)
+- [General Troubleshooting](https://rapsodo.zendesk.com/hc/en-us/articles/44378085420307-General-Troubleshooting-MLM2PRO)`
+      },
+      {
+        id: "app-crashes",
+        icon: AlertCircle,
+        title: "App Crashes or Lags",
+        description: "Performance and stability fixes",
+        hasVideo: false,
+        content: `App crashing or lagging during Courses or practice? Try these performance fixes.
+
+**Quick fixes:**
+1. **Update everything** — Update app and firmware to latest versions
+2. **Close background apps** — Free up memory and processing power
+3. **Check Wi-Fi** — Ensure stable, strong connection (Local Network mode)
+4. **Lower graphics** — Reduce LOD detail level in settings
+5. **Restart device** — Reboot both phone and MLM2PRO unit
+6. **Reinstall app** — After syncing all data, delete and reinstall
+
+**Platform-specific:**
+- **Android:** Clear app cache in device settings
+- **iOS:** Offload and reinstall app to preserve data
+
+**Still crashing?**
+Note what triggers the crash (specific course, practice mode, etc.) and contact support.
 
 **References:**
 - [General Troubleshooting](https://rapsodo.zendesk.com/hc/en-us/articles/44378085420307-General-Troubleshooting-MLM2PRO)
-- [Inaccuracies](https://rapsodo.zendesk.com/hc/en-us/articles/44185264868755-Inaccuracies-MLM2PRO)
-- [LED Indicator](https://rapsodo.zendesk.com/hc/en-us/articles/44182728192915-LED-Indicator-MLM2PRO)
-- [Battery/Charging](https://rapsodo.zendesk.com/hc/en-us/articles/44182673173779-Battery-Charging-MLM2PRO)`
-  },
-  {
-    id: "international",
-    title: "International Notes (availability/shipping/support)",
-    category: "Data & Support",
-    content: `Availability of accessories may vary by region. If you need help with RPT balls or local purchasing, contact the regional support listed below.
+- [LOD Settings](https://rapsodo.zendesk.com/hc/en-us/articles/44184742136083-LOD-Level-of-Detail-MLM2PRO)`
+      },
+      {
+        id: "wont-charge",
+        icon: Battery,
+        title: "Device Won't Charge or Turn On",
+        description: "Power and battery troubleshooting",
+        hasVideo: false,
+        content: `Device won't turn on or charge? Follow these power troubleshooting steps.
 
-**Top questions:**
-- **Can I buy RPT balls outside the US?** Availability is limited — contact international support for options.
-- **Do you ship to Quebec?** Rapsodo.com doesn't ship to Quebec; purchase through GolfTown.
-- **Is the Japanese MLM2 different?** No — hardware is the same; use the Japan support channel for assistance.
+**Try these in order:**
+1. **Hard reset** — Hold power button 45–90 seconds while plugged in
+2. **Use 15W adapter** — 5V/3A adapter works best (minimum 5V/2A)
+3. **Try different cable** — Test with another USB-C cable
+4. **Different outlet** — Try another wall outlet or power source
+5. **Check for amber LED** — Amber light indicates charging is working
 
-**References:**
-- [International: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44378947094035-International-MLM2PRO)`
-  },
-  {
-    id: "faq",
-    title: "Quick FAQ Recap",
-    category: "Data & Support",
-    content: `Common fast answers for new users.
+**LED indicator guide:**
+- **Amber solid:** Charging in progress
+- **Amber off:** Fully charged
+- **No light:** Check cable, adapter, and outlet
 
-**Top questions:**
-- **How much space do I need?** Place device 6.5–8 ft behind the ball, with at least ~8 ft of ball flight to your net/screen.
-- **Can left‑ and right‑handed players share one setup?** Yes — just switch dexterity in Profile > Settings.
-- **Does MLM2PRO work with a PC?** The app runs on iOS/Android; PC use is via partner simulation software like GSPro.
-- **E6 availability?** E6 is available on iOS only; you receive a product key after registration.
+**Still not working?**
+Device may need service. Contact Rapsodo support for warranty assistance.
 
 **References:**
-- [FAQ's: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44377947274899-FAQ-s-MLM2PRO)
-- [Metrics/Features](https://rapsodo.zendesk.com/hc/en-us/articles/44183787338515-Metrics-Features-MLM2PRO)
-- [Simulation](https://rapsodo.zendesk.com/hc/en-us/articles/44184560269459-Simulation-MLM2PRO)`
-  },
+- [Battery/Charging](https://rapsodo.zendesk.com/hc/en-us/articles/44182673173779-Battery-Charging-MLM2PRO)
+- [LED Indicator](https://rapsodo.zendesk.com/hc/en-us/articles/44182728192915-LED-Indicator-MLM2PRO)`
+      },
+      {
+        id: "connection-issues",
+        icon: Wifi,
+        title: "Can't Connect Device",
+        description: "Bluetooth and Wi-Fi troubleshooting",
+        hasVideo: false,
+        content: `Having trouble connecting your device? Check these common issues.
+
+**First, verify:**
+- Using MLM2PRO app (not the old MLM app)
+- Bluetooth is enabled on phone
+- All app permissions granted
+- No magnetic case on phone
+
+**Try these fixes:**
+1. **Toggle Quick Connect off** — Device Info > disable Quick Connect
+2. **Restart both devices** — Power cycle phone and MLM2PRO
+3. **Forget and reconnect** — Remove device, restart, reconnect
+4. **Use Local Network mode** — Profile > Connect > Local Network
+5. **Reinstall app** — Delete app, restart phone, reinstall
+
+**Required permissions:**
+- Bluetooth
+- Wi-Fi
+- Camera
+- Microphone
+- Location (for some Android devices)
+
+**Still can't connect?**
+Contact support with your device model and phone type.
+
+**References:**
+- [Connection: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44183237516819-Connection-MLM2PRO)
+- [General Troubleshooting](https://rapsodo.zendesk.com/hc/en-us/articles/44378085420307-General-Troubleshooting-MLM2PRO)`
+      },
+      {
+        id: "sync-issues",
+        icon: Cloud,
+        title: "Sessions Won't Sync",
+        description: "Data sync troubleshooting",
+        hasVideo: false,
+        content: `Sessions not syncing to R-Cloud? Follow these steps to force a sync.
+
+**Important:**
+Always tap End Session after practice. This triggers the sync process.
+
+**Force sync methods:**
+1. **Wait** — Keep app open 2–3 minutes after ending session
+2. **Close/reopen app** — Force close and reopen MLM2PRO app
+3. **Log out/in** — Sign out and sign back in to account
+4. **Check internet** — Verify strong Wi-Fi or cellular connection
+
+**⚠️ Critical warning:**
+Never delete the app with unsynced data. You will lose all unsynced sessions permanently.
+
+**How to check sync status:**
+- Look for cloud icon status in session history
+- Unsynced sessions show pending indicator
+- Check R-Cloud web portal for latest sessions
+
+**Still not syncing?**
+Contact support with session date/time that won't sync.
+
+**References:**
+- [Syncing: MLM2PRO](https://rapsodo.zendesk.com/hc/en-us/articles/44203332221971-Syncing-MLM2PRO)`
+      }
+    ]
+  }
 ];
 
-const CATEGORIES = ["Getting Started", "Setup & Configuration", "Using Your Device", "Data & Support"];
+const CARD_ICONS = {
+  Battery,
+  Wifi,
+  Settings,
+  Target,
+  Play,
+  Zap,
+  Cloud,
+  AlertCircle,
+};
 
 export const TroubleshootingHub = (): JSX.Element => {
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
+  const [selectedTopic, setSelectedTopic] = React.useState<string | null>(null);
 
   const filteredSections = React.useMemo(() => {
-    let filtered = SECTIONS;
+    if (!searchQuery) return SECTIONS;
 
-    if (selectedCategory) {
-      filtered = filtered.filter(s => s.category === selectedCategory);
-    }
+    const query = searchQuery.toLowerCase();
+    return SECTIONS.map(section => ({
+      ...section,
+      topics: section.topics.filter(topic =>
+        topic.title.toLowerCase().includes(query) ||
+        topic.description.toLowerCase().includes(query) ||
+        topic.content.toLowerCase().includes(query)
+      )
+    })).filter(section => section.topics.length > 0);
+  }, [searchQuery]);
 
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(s => 
-        s.title.toLowerCase().includes(query) || 
-        s.content.toLowerCase().includes(query)
-      );
-    }
-
-    return filtered;
-  }, [searchQuery, selectedCategory]);
+  const handleTopicClick = (topicId: string) => {
+    setSelectedTopic(selectedTopic === topicId ? null : topicId);
+  };
 
   return (
     <section className="w-full bg-genericblack py-20 px-4 md:px-8">
@@ -397,35 +704,9 @@ export const TroubleshootingHub = (): JSX.Element => {
               className="w-full h-14 px-6 text-lg bg-white border-2 border-white focus:border-primary600-main"
             />
           </div>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className={`px-6 py-3 rounded-full font-paragraph-14-sm-semibold transition-all ${
-                selectedCategory === null
-                  ? 'bg-primary600-main text-white'
-                  : 'bg-white text-genericblack hover:bg-primary600-main hover:text-white'
-              }`}
-            >
-              All Topics
-            </button>
-            {CATEGORIES.map(category => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-paragraph-14-sm-semibold transition-all ${
-                  selectedCategory === category
-                    ? 'bg-primary600-main text-white'
-                    : 'bg-white text-genericblack hover:bg-primary600-main hover:text-white'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {filteredSections.map((section) => (
               <AccordionItem 
@@ -433,44 +714,89 @@ export const TroubleshootingHub = (): JSX.Element => {
                 value={section.id}
                 className="bg-white rounded-xl border-2 border-white overflow-hidden data-[state=open]:border-primary600-main transition-colors"
               >
-                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-gray-50">
+                <AccordionTrigger className="px-6 py-5 hover:no-underline hover:bg-gray-50">
                   <div className="flex flex-col items-start text-left w-full pr-4">
-                    <span className="font-paragraph-12-xs-semibold text-primary600-main uppercase mb-1">
-                      {section.category}
-                    </span>
-                    <span className="font-heading-28-3xl-hero font-[number:var(--heading-28-3xl-hero-font-weight)] text-[length:var(--heading-28-3xl-hero-font-size)] tracking-[var(--heading-28-3xl-hero-letter-spacing)] leading-[var(--heading-28-3xl-hero-line-height)] text-genericblack">
+                    <span className="font-heading-28-3xl-hero font-[number:var(--heading-28-3xl-hero-font-weight)] text-[length:var(--heading-28-3xl-hero-font-size)] tracking-[var(--heading-28-3xl-hero-letter-spacing)] leading-[var(--heading-28-3xl-hero-line-height)] text-genericblack mb-1">
                       {section.title}
+                    </span>
+                    <span className="font-paragraph-14-sm-medium text-gray-600">
+                      {section.subtitle}
                     </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6 pt-2">
-                  <div className="prose prose-sm max-w-none
-                    prose-headings:font-heading-28-3xl-hero prose-headings:text-genericblack
-                    prose-p:font-paragraph-16-base-medium prose-p:text-genericblack prose-p:opacity-80
-                    prose-strong:text-primary600-main prose-strong:font-semibold
-                    prose-a:text-primary600-main prose-a:no-underline hover:prose-a:underline
-                    prose-ul:font-paragraph-16-base-medium prose-ul:text-genericblack
-                    prose-li:my-1
-                  ">
-                    <ReactMarkdown 
-                      remarkPlugins={[remarkGfm]}
-                      rehypePlugins={[rehypeRaw]}
-                    >
-                      {section.content}
-                    </ReactMarkdown>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {section.topics.map((topic) => {
+                      const Icon = topic.icon;
+                      const isExpanded = selectedTopic === topic.id;
+                      
+                      return (
+                        <div key={topic.id} className={`
+                          ${isExpanded ? 'md:col-span-2' : ''}
+                          transition-all duration-200
+                        `}>
+                          <div 
+                            onClick={() => handleTopicClick(topic.id)}
+                            className={`
+                              bg-gray-50 rounded-lg p-5 cursor-pointer 
+                              border-2 transition-all hover:shadow-md
+                              ${isExpanded ? 'border-primary600-main bg-white' : 'border-transparent hover:border-gray-200'}
+                            `}
+                          >
+                            <div className="flex items-start gap-4">
+                              <div className="flex-shrink-0">
+                                <div className="w-12 h-12 rounded-lg bg-primary600-main/10 flex items-center justify-center">
+                                  <Icon className="w-6 h-6 text-primary600-main" />
+                                </div>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-start justify-between gap-2 mb-2">
+                                  <h4 className="font-heading-20-xl-hero font-[number:var(--heading-20-xl-hero-font-weight)] text-genericblack">
+                                    {topic.title}
+                                  </h4>
+                                  {topic.hasVideo && (
+                                    <span className="flex-shrink-0 px-2 py-1 bg-primary600-main text-white text-xs font-semibold rounded">
+                                      VIDEO
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="font-paragraph-14-sm-medium text-gray-600 mb-3">
+                                  {topic.description}
+                                </p>
+                                <button className="font-paragraph-14-sm-semibold text-primary600-main hover:underline">
+                                  {isExpanded ? 'Show less' : 'Learn more →'}
+                                </button>
+                              </div>
+                            </div>
+
+                            {isExpanded && (
+                              <div className="mt-6 pt-6 border-t border-gray-200">
+                                <div className="prose prose-sm max-w-none
+                                  prose-headings:font-heading-20-xl-hero prose-headings:text-genericblack prose-headings:mb-3
+                                  prose-p:font-paragraph-16-base-medium prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
+                                  prose-strong:text-genericblack prose-strong:font-semibold
+                                  prose-a:text-primary600-main prose-a:no-underline hover:prose-a:underline
+                                  prose-ul:font-paragraph-16-base-medium prose-ul:text-gray-700 prose-ul:space-y-1
+                                  prose-li:my-1 prose-li:leading-relaxed
+                                ">
+                                  <ReactMarkdown
+                                    remarkPlugins={[remarkGfm]}
+                                    rehypePlugins={[rehypeRaw]}
+                                  >
+                                    {topic.content}
+                                  </ReactMarkdown>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-
-          {filteredSections.length === 0 && (
-            <div className="text-center py-12">
-              <p className="font-paragraph-18-lg-medium text-genericwhite opacity-60">
-                No results found. Try a different search or category.
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </section>
