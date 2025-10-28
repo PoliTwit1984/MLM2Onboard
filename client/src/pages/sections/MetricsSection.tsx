@@ -213,7 +213,7 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
         />
       </div>
       {/* Metric Name */}
-      <p className="font-label-16-base-semibold font-[number:var(--label-16-base-semibold-font-weight)] text-[length:var(--label-16-base-semibold-font-size)] tracking-[var(--label-16-base-semibold-letter-spacing)] leading-[var(--label-16-base-semibold-line-height)] text-center text-white uppercase">
+      <p className="font-label-16-base-semibold tracking-[var(--label-16-base-semibold-letter-spacing)] text-center text-white uppercase text-[18px] font-bold">
         {metric.name}
       </p>
     </div>
