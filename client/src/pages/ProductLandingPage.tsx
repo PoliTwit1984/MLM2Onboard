@@ -1,5 +1,4 @@
 import React from "react";
-import { FooterSection } from "./sections/FooterSection";
 import { HeroSection } from "./sections/HeroSection";
 import { MetricsSection } from "./sections/MetricsSection";
 import { QuizSection } from "./sections/QuizSection";
@@ -27,7 +26,6 @@ export const ProductLandingPage = (): JSX.Element => {
         <TroubleshootingHub />
         <CommunityCarousel />
         <SignupFormSection />
-        <FooterSection />
       </main>
     </div>
   );
