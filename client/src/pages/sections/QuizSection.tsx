@@ -34,18 +34,6 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
     ]
   },
   {
-    id: 'working_on',
-    question: 'What are you wanting to focus on first?',
-    type: 'multi',
-    options: [
-      { value: 'driver_distance', label: 'Driver Distance' },
-      { value: 'iron_consistency', label: 'Iron Consistency' },
-      { value: 'wedge_control', label: 'Wedge Control' },
-      { value: 'ball_flight', label: 'Ball Flight Shape' },
-      { value: 'all_of_it', label: 'All of it!' },
-    ]
-  },
-  {
     id: 'excited_game_mode',
     question: 'Which game mode are you most excited for?',
     type: 'single',
@@ -55,6 +43,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
       { value: 'rapsodo_courses', label: 'Rapsodo Courses' },
       { value: 'target_range', label: 'Target Range' },
       { value: 'r_speed', label: 'R-Speed' },
+      { value: 'closest_to_the_pin', label: 'Closest to the Pin' },
       { value: '3rd_party', label: '3rd Party Software' },
     ]
   },
