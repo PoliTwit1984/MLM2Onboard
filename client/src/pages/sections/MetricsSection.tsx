@@ -292,6 +292,74 @@ const MetricModal = ({ metric, onClose }: { metric: Metric; onClose: () => void 
               {metric.howItAffects}
             </p>
           </div>
+          
+          {/* Positive/Negative Value Explanation */}
+          {metric.positiveNegative && (
+            <div className="border-2 border-neutral-700 rounded-xl p-6 bg-neutral-950">
+              <h4 className="font-paragraph-18-lg-semibold font-[number:var(--paragraph-18-lg-semibold-font-weight)] text-[length:var(--paragraph-18-lg-semibold-font-size)] tracking-[var(--paragraph-18-lg-semibold-letter-spacing)] leading-[var(--paragraph-18-lg-semibold-line-height)] text-primary600-main uppercase mb-5">
+                Understanding Positive & Negative Values
+              </h4>
+              
+              <div className="space-y-4">
+                {/* Negative Values */}
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
+                    <span className="text-xl font-bold text-red-400">−</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-red-400 text-base mb-1">
+                      {metric.positiveNegative.negative.label}
+                    </p>
+                    <p className="text-neutral-300 text-sm">
+                      {metric.positiveNegative.negative.description}
+                    </p>
+                    {metric.positiveNegative.negative.idealRange && (
+                      <p className="text-neutral-400 text-xs mt-1 italic">
+                        Ideal: {metric.positiveNegative.negative.idealRange}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                
+                {/* Neutral/Zero Values */}
+                {metric.positiveNegative.neutral && (
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-600/20 flex items-center justify-center">
+                      <span className="text-xl font-bold text-neutral-400">0</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-neutral-400 text-base mb-1">
+                        {metric.positiveNegative.neutral.label}
+                      </p>
+                      <p className="text-neutral-300 text-sm">
+                        {metric.positiveNegative.neutral.description}
+                      </p>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Positive Values */}
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+                    <span className="text-xl font-bold text-blue-400">+</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-blue-400 text-base mb-1">
+                      {metric.positiveNegative.positive.label}
+                    </p>
+                    <p className="text-neutral-300 text-sm">
+                      {metric.positiveNegative.positive.description}
+                    </p>
+                    {metric.positiveNegative.positive.idealRange && (
+                      <p className="text-neutral-400 text-xs mt-1 italic">
+                        Ideal: {metric.positiveNegative.positive.idealRange}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
