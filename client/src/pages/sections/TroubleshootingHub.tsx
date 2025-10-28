@@ -78,6 +78,20 @@ const SECTIONS: TroubleshootingSection[] = [
   </iframe>
 </div>
 
+**Watch: Establishing a Local WiFi Network Connection**
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/i1l3XgoamWE?si=ggL19t0NjDW4M5Hj" 
+    title="Establishing a Local WiFi Network Connection" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
+
 **First-time setup:**
 1. Power on device and open MLM2PRO app
 2. Go to Profile > Connect MLM2PRO
@@ -176,8 +190,22 @@ const SECTIONS: TroubleshootingSection[] = [
         icon: Target,
         title: "Alignment & Leveling",
         description: "Get your device properly positioned",
-        hasVideo: false,
+        hasVideo: true,
         content: `Align the device to your target line and level it on the tripod before starting sessions. Proper positioning is critical for accurate data.
+
+**Watch: MLM2PRO Alignment Set-Up**
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/ErWu4kvDYkM?si=Jrrmv2RdP7Axet3-" 
+    title="MLM2PRO Alignment Set-Up" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 **Distance and placement:**
 - **Standard:** Place MLM2PRO 6.5–8 ft behind the ball
@@ -265,8 +293,22 @@ RPT balls have unique markings that allow the dual cameras to measure actual spi
         icon: Play,
         title: "Practice Mode Basics",
         description: "Start hitting and tracking your shots",
-        hasVideo: false,
+        hasVideo: true,
         content: `Start a Practice session to see real-time ball flight, video replay, and 15 data metrics. The device captures everything automatically.
+
+**Watch: Target Range Practice Mode**
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/06evjEOfF6c?si=L6zNqf-WMLPALIyJ" 
+    title="Target Range Practice Mode" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 **Getting started:**
 1. Position device 6.5–8 ft behind ball
@@ -404,8 +446,22 @@ Run LOD assessment in app settings to re-test and adjust graphics level for opti
         icon: Zap,
         title: "Partner Integrations",
         description: "GSPro, E6, Awesome Golf, The Stack",
-        hasVideo: false,
+        hasVideo: true,
         content: `Connect to 3rd-party simulation and training platforms. Authenticate from the MLM2PRO app, then follow partner app instructions.
+
+**Watch: Connecting Awesome Golf**
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    src="https://www.youtube.com/embed/FiJ3Wc4x5So?si=RO7pSBu2IwwXhthC" 
+    title="Connecting Awesome Golf" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 **GSPro (PC simulation):**
 1. Update MLM2PRO firmware and app
