@@ -24,8 +24,8 @@ export const ProductLandingPage = (): JSX.Element => {
         <MetricsSection />
         <QuizSection />
         <TroubleshootingHub />
-        <CommunityCarousel />
         <SignupFormSection />
+        <CommunityCarousel />
       </main>
     </div>
   );
