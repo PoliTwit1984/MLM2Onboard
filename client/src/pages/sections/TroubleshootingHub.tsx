@@ -751,7 +751,7 @@ export const TroubleshootingHub = (): JSX.Element => {
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-start justify-between gap-2 mb-2">
-                                  <h4 className="font-heading-20-xl-hero font-[number:var(--heading-20-xl-hero-font-weight)] text-genericblack">
+                                  <h4 className="font-heading-20-xl-hero font-semibold text-genericblack">
                                     {topic.title}
                                   </h4>
                                   {topic.hasVideo && (
