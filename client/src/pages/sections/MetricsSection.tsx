@@ -213,10 +213,10 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
         />
         {/* Directional Indicator for +/- metrics */}
         {metric.positiveNegative && (
-          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex items-center space-x-1 bg-neutral-900 px-2 py-1 rounded-full border border-neutral-700">
-            <span className="text-xs font-bold text-red-400">−</span>
-            <span className="text-xs text-neutral-400">/</span>
-            <span className="text-xs font-bold text-blue-400">+</span>
+          <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 flex items-center space-x-1 bg-black px-3 py-1.5 rounded-full border border-primary600-main shadow-lg">
+            <span className="text-sm font-bold text-red-500">−</span>
+            <span className="text-xs text-neutral-500 mx-0.5">|</span>
+            <span className="text-sm font-bold text-blue-500">+</span>
           </div>
         )}
       </div>
