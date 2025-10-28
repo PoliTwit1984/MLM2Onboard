@@ -218,21 +218,30 @@ export const HeroSection = (): JSX.Element => {
   const groupedProfileCards = getGroupedProfileCards();
 
   return (
-    <section className="relative w-full min-h-screen bg-genericblack flex flex-col items-center justify-center py-20 px-8">
-      <div className="flex flex-col items-center gap-12 max-w-7xl w-full z-10">
+    <section className="relative w-full min-h-screen bg-white flex flex-col items-center justify-center py-20 px-8 overflow-hidden">
+      {/* Hero Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/figmaAssets/mlm2pro-hero.png"
+          alt="MLM2PRO Launch Monitor"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      
+      <div className="flex flex-col items-center gap-12 max-w-7xl w-full z-10 relative">
         {/* Headline - Crossfades between initial and personalized */}
         <div className="flex flex-col w-full max-w-[700px] items-center gap-8 relative">
           {!showPersonalized ? (
             <h1 
-              className={`font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericwhite text-[length:var(--heading-96-12xl-hero-font-size)] tracking-[var(--heading-96-12xl-hero-letter-spacing)] leading-[var(--heading-96-12xl-hero-line-height)] text-center transition-opacity duration-500 ${
+              className={`font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericblack text-[length:var(--heading-96-12xl-hero-font-size)] tracking-[var(--heading-96-12xl-hero-letter-spacing)] leading-[var(--heading-96-12xl-hero-line-height)] text-center transition-opacity duration-500 ${
                 userProfile && !showPersonalized ? 'opacity-0' : 'opacity-100'
               }`}
             >
-              Start Your MLM2PRO Discovery Here
+              WELCOME TO MLM2PRO
             </h1>
           ) : (
             <h1 
-              className="font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericwhite text-[length:var(--heading-96-12xl-hero-font-size)] tracking-[var(--heading-96-12xl-hero-letter-spacing)] leading-[var(--heading-96-12xl-hero-line-height)] text-center animate-fade-in"
+              className="font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericblack text-[length:var(--heading-96-12xl-hero-font-size)] tracking-[var(--heading-96-12xl-hero-letter-spacing)] leading-[var(--heading-96-12xl-hero-line-height)] text-center animate-fade-in"
             >
               Welcome, {userProfile?.firstName}!
             </h1>
@@ -305,14 +314,6 @@ export const HeroSection = (): JSX.Element => {
           </>
         )}
 
-        {/* Device Image */}
-        <div className="w-full max-w-3xl flex items-center justify-center">
-          <img
-            src="/figmaAssets/mlm2pro-device.png"
-            alt="MLM2PRO Launch Monitor"
-            className="w-full h-auto object-contain"
-          />
-        </div>
       </div>
     </section>
   );

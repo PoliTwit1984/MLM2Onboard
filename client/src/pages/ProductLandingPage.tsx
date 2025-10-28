@@ -1,6 +1,7 @@
 import React from "react";
 import { FooterSection } from "./sections/FooterSection";
 import { HeroSection } from "./sections/HeroSection";
+import { ProductShowcase } from "./sections/ProductShowcase";
 import { MetricsSection } from "./sections/MetricsSection";
 import { QuizSection } from "./sections/QuizSection";
 import { TroubleshootingHub } from "./sections/TroubleshootingHub";
@@ -22,6 +23,7 @@ export const ProductLandingPage = (): JSX.Element => {
 
       <main className="w-full relative flex flex-col items-center pt-20">
         <HeroSection />
+        <ProductShowcase />
         <MetricsSection />
         <QuizSection />
         <TroubleshootingHub />
