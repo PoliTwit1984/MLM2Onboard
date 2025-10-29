@@ -224,8 +224,8 @@ export const HeroSection = (): JSX.Element => {
         <div className="flex flex-col w-full max-w-[700px] items-center gap-8 relative">
           {!showPersonalized ? (
             <h1 
-              className="font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericwhite tracking-[var(--heading-96-12xl-hero-letter-spacing)] text-center transition-opacity duration-500 opacity-100 text-[75px]"
-            >Your Quest To Golfing More Starts Here</h1>
+              className="font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericwhite tracking-[var(--heading-96-12xl-hero-letter-spacing)] text-center transition-opacity duration-500 opacity-100 text-[67px]"
+            >Your Quest To More Golf Starts Here</h1>
           ) : (
             <h1 
               className="font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericwhite text-[length:var(--heading-96-12xl-hero-font-size)] tracking-[var(--heading-96-12xl-hero-letter-spacing)] leading-[var(--heading-96-12xl-hero-line-height)] text-center animate-fade-in"
