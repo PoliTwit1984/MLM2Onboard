@@ -766,7 +766,7 @@ export const TroubleshootingHub = (): JSX.Element => {
               <AccordionItem 
                 key={section.id} 
                 value={section.id}
-                className="bg-white rounded-xl border-2 border-white overflow-hidden data-[state=open]:border-primary600-main transition-colors"
+                className="bg-white rounded-xl border-2 border-white overflow-hidden data-[state=open]:border-primary600-main transition-colors scroll-mt-24"
               >
                 <AccordionTrigger className="px-6 py-5 hover:no-underline hover:bg-gray-50">
                   <div className="flex flex-col items-start text-left w-full pr-4">
