@@ -28,7 +28,7 @@
 }
 
 .screen-image {
-  height: 320px;
+  height: 272px;
   width: auto;
   object-fit: contain;
   filter: brightness(0.9) contrast(1.05);
@@ -90,7 +90,7 @@
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .screen-image {
-    height: 250px;
+    height: 213px;
   }
   
   .carousel-track {
@@ -109,7 +109,7 @@
   }
   
   .screen-image {
-    height: 200px;
+    height: 170px;
   }
   
   .carousel-track {
@@ -126,7 +126,7 @@
 
 @media (max-width: 480px) {
   .screen-image {
-    height: 150px;
+    height: 128px;
   }
   
   .carousel-track {
