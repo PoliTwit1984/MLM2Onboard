@@ -325,6 +325,47 @@ const MetricModal = ({ metric, onClose }: { metric: Metric; onClose: () => void 
             </p>
           </div>
           
+          {/* Tour Averages */}
+          {metric.tourAverages && (
+            <div className="border-2 border-neutral-700 rounded-xl p-6 bg-neutral-950">
+              <h4 className="font-paragraph-18-lg-semibold font-[number:var(--paragraph-18-lg-semibold-font-weight)] text-[length:var(--paragraph-18-lg-semibold-font-size)] tracking-[var(--paragraph-18-lg-semibold-letter-spacing)] leading-[var(--paragraph-18-lg-semibold-line-height)] text-primary600-main uppercase mb-4">
+                Tour Averages (Trackman)
+              </h4>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="border-b border-neutral-700">
+                      <th className="pb-3 pr-4 font-paragraph-16-base-semibold text-neutral-400 uppercase text-sm">Club</th>
+                      <th className="pb-3 pr-4 font-paragraph-16-base-semibold text-neutral-400 uppercase text-sm">PGA Tour</th>
+                      <th className="pb-3 font-paragraph-16-base-semibold text-neutral-400 uppercase text-sm">LPGA Tour</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {metric.tourAverages.driver && (
+                      <tr className="border-b border-neutral-800">
+                        <td className="py-3 pr-4 font-paragraph-16-base-medium text-white">Driver</td>
+                        <td className="py-3 pr-4 font-paragraph-16-base-medium text-neutral-200">{metric.tourAverages.driver.pga}</td>
+                        <td className="py-3 font-paragraph-16-base-medium text-neutral-200">{metric.tourAverages.driver.lpga}</td>
+                      </tr>
+                    )}
+                    {metric.tourAverages.iron7 && (
+                      <tr>
+                        <td className="py-3 pr-4 font-paragraph-16-base-medium text-white">7-Iron</td>
+                        <td className="py-3 pr-4 font-paragraph-16-base-medium text-neutral-200">{metric.tourAverages.iron7.pga}</td>
+                        <td className="py-3 font-paragraph-16-base-medium text-neutral-200">{metric.tourAverages.iron7.lpga}</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              
+              <p className="text-neutral-400 text-xs mt-4 italic">
+                These numbers represent professional tour averages and serve as reference points for understanding optimal performance ranges.
+              </p>
+            </div>
+          )}
+          
           {/* Positive/Negative Value Explanation */}
           {metric.positiveNegative && (
             <div className="border-2 border-neutral-700 rounded-xl p-6 bg-neutral-950">
