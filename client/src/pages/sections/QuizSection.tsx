@@ -15,9 +15,9 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
     question: 'Where will you primarily use your MLM2PRO?',
     type: 'single',
     options: [
-      { value: 'indoor_sim', label: 'Indoor Simulator' },
-      { value: 'outdoor_range', label: 'Outdoor Range' },
-      { value: 'home_garage', label: 'Home Garage' },
+      { value: 'indoor_sim', label: 'Indoors' },
+      { value: 'outdoor_net', label: 'Outdoors (into a net)' },
+      { value: 'home_garage', label: 'Driving Range' },
       { value: 'golf_course', label: 'Golf Course' },
     ]
   },
@@ -30,21 +30,17 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
       { value: 'improve_accuracy', label: 'Improve Accuracy' },
       { value: 'dial_clubs', label: 'Dial in My Clubs' },
       { value: 'understand_swing', label: 'Understand My Swing' },
-      { value: 'have_fun', label: 'Just Have Fun!' },
+      { value: 'have_fun', label: 'Golf More' },
     ]
   },
   {
-    id: 'excited_game_mode',
-    question: 'Which game mode are you most excited for?',
+    id: 'excited_session_category',
+    question: 'What do you plan to experience first',
     type: 'single',
     options: [
       { value: 'practice', label: 'Practice' },
-      { value: 'rapsodo_range', label: 'Rapsodo Range' },
-      { value: 'rapsodo_courses', label: 'Rapsodo Courses' },
-      { value: 'target_range', label: 'Target Range' },
-      { value: 'r_speed', label: 'R-Speed' },
-      { value: 'closest_to_the_pin', label: 'Closest to the Pin' },
-      { value: '3rd_party', label: '3rd Party Software' },
+      { value: 'simulation_golf', label: 'Simulation Golf' },
+      { value: 'speede_training', label: 'Speed Training' },
     ]
   },
   {
