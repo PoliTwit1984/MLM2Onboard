@@ -46,11 +46,11 @@ export const SignupFormSection = (): JSX.Element => {
       <div className="flex flex-col w-full max-w-[1216px] items-center justify-center gap-2 pt-10 md:pt-20 pb-8 md:pb-12 px-4 md:px-12 lg:px-[76px] bg-primary600-main">
         <div className="items-start gap-6 md:gap-10 px-0 md:px-8 lg:px-[104px] py-0 flex flex-col w-full">
           <div className="flex flex-col items-start gap-3 w-full">
-            <h2 className="w-full mt-[-1.00px] font-heading-48-6xl-hero font-[number:var(--heading-48-6xl-hero-font-weight)] [font-style:var(--heading-48-6xl-hero-font-style)] text-genericwhite text-[28px] md:text-[length:var(--heading-48-6xl-hero-font-size)] tracking-[var(--heading-48-6xl-hero-letter-spacing)] leading-tight md:leading-[var(--heading-48-6xl-hero-line-height)]">
+            <h2 className="w-full mt-[-1.00px] font-heading-48-6xl-hero font-[number:var(--heading-48-6xl-hero-font-weight)] text-[length:var(--heading-48-6xl-hero-font-size)] tracking-[var(--heading-48-6xl-hero-letter-spacing)] leading-[var(--heading-48-6xl-hero-line-height)] [font-style:var(--heading-48-6xl-hero-font-style)] text-genericwhite">
               TEE TIME CHECKLIST
             </h2>
 
-            <p className="w-full font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-genericwhite text-[14px] md:text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] [font-style:var(--paragraph-18-lg-medium-font-style)] opacity-90">
+            <p className="w-full font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] [font-style:var(--paragraph-18-lg-medium-font-style)] text-genericwhite opacity-90">
               Your quick-start guide to getting the most out of your MLM2PRO
             </p>
           </div>
@@ -66,11 +66,11 @@ export const SignupFormSection = (): JSX.Element => {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-heading-20-xl-hero font-semibold text-genericwhite text-[16px] md:text-[20px] mb-2">
+                    <h3 className="font-heading-20-xl-hero font-[number:var(--heading-20-xl-hero-font-weight)] text-[length:var(--heading-20-xl-hero-font-size)] tracking-[var(--heading-20-xl-hero-letter-spacing)] leading-[var(--heading-20-xl-hero-line-height)] [font-style:var(--heading-20-xl-hero-font-style)] text-genericwhite mb-2">
                       {item.id}.) {item.title}
                     </h3>
-                    <p className="font-paragraph-14-sm-medium font-[number:var(--paragraph-14-sm-medium-font-weight)] text-genericwhite/80 text-[12px] md:text-[14px] leading-relaxed">
-                      <span className="font-semibold text-genericwhite">Tip:</span> {item.tip}
+                    <p className="font-paragraph-16-base-medium font-[number:var(--paragraph-16-base-medium-font-weight)] text-[length:var(--paragraph-16-base-medium-font-size)] tracking-[var(--paragraph-16-base-medium-letter-spacing)] leading-[var(--paragraph-16-base-medium-line-height)] text-white/90">
+                      <span className="font-semibold text-white">Tip:</span> {item.tip}
                     </p>
                   </div>
                 </div>
