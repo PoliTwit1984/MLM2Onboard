@@ -1,11 +1,23 @@
 import React from "react";
 
+interface TourAverages {
+  driver?: {
+    pga: string;
+    lpga: string;
+  };
+  iron7?: {
+    pga: string;
+    lpga: string;
+  };
+}
+
 interface Metric {
   name: string;
   whatItIs: string;
   howItAffects: string;
   badge?: "measured";
   iconName: string;
+  tourAverages?: TourAverages;
   positiveNegative?: {
     positive: {
       label: string;
@@ -36,7 +48,11 @@ const metrics: Metric[] = [
     name: "Carry Distance",
     whatItIs: "Distance the ball flies before first landing.",
     howItAffects: "Core outcome metric; driven by ball speed, launch, and spin.",
-    iconName: "carry-distance"
+    iconName: "carry-distance",
+    tourAverages: {
+      driver: { pga: "275 yards", lpga: "218 yards" },
+      iron7: { pga: "172 yards", lpga: "141 yards" }
+    }
   },
   {
     name: "Side Carry",
@@ -49,7 +65,11 @@ const metrics: Metric[] = [
     whatItIs: "Speed of the ball right after impact.",
     howItAffects: "Biggest driver of carry; more speed = more potential distance if launch & spin are optimized.",
     badge: "measured",
-    iconName: "ball-speed"
+    iconName: "ball-speed",
+    tourAverages: {
+      driver: { pga: "167 mph", lpga: "140 mph" },
+      iron7: { pga: "120 mph", lpga: "104 mph" }
+    }
   },
   {
     name: "Launch Direction",
@@ -81,20 +101,32 @@ const metrics: Metric[] = [
     whatItIs: "Speed of the clubhead at impact.",
     howItAffects: "Enables ball speed; efficiency depends on strike quality and delivery (see Smash Factor).",
     badge: "measured",
-    iconName: "club-speed"
+    iconName: "club-speed",
+    tourAverages: {
+      driver: { pga: "113 mph", lpga: "94 mph" },
+      iron7: { pga: "90 mph", lpga: "76 mph" }
+    }
   },
   {
     name: "Smash Factor",
     whatItIs: "Ball speed ÷ club speed.",
     howItAffects: "Higher smash = more efficient energy transfer → more distance at the same club speed.",
-    iconName: "smash-factor"
+    iconName: "smash-factor",
+    tourAverages: {
+      driver: { pga: "1.48", lpga: "1.49" },
+      iron7: { pga: "1.33", lpga: "1.37" }
+    }
   },
   {
     name: "Launch Angle",
     whatItIs: "Vertical takeoff angle of the ball.",
     howItAffects: "Too low/high costs carry; optimizing with spin maximizes distance.",
     badge: "measured",
-    iconName: "launch-angle"
+    iconName: "launch-angle",
+    tourAverages: {
+      driver: { pga: "10.9°", lpga: "13.2°" },
+      iron7: { pga: "16.3°", lpga: "19.0°" }
+    }
   },
   {
     name: "Descent Angle",
@@ -121,7 +153,11 @@ const metrics: Metric[] = [
     name: "Spin Rate",
     whatItIs: "Revolutions per minute around the ball's horizontal axis.",
     howItAffects: "With launch angle, governs lift/drag and carry; too much/too little hurts distance/consistency.",
-    iconName: "spin-rate"
+    iconName: "spin-rate",
+    tourAverages: {
+      driver: { pga: "2,686 rpm", lpga: "2,611 rpm" },
+      iron7: { pga: "7,097 rpm", lpga: "6,699 rpm" }
+    }
   },
   {
     name: "Spin Axis",
@@ -172,6 +208,10 @@ const metrics: Metric[] = [
     whatItIs: "Up/down strike angle at impact.",
     howItAffects: "Affects spin and launch: upward AoA with driver can add carry; downward AoA increases spin/trajectory control with irons.",
     iconName: "angle-of-attack",
+    tourAverages: {
+      driver: { pga: "-1.3°", lpga: "+3.0°" },
+      iron7: { pga: "-4.3°", lpga: "-2.3°" }
+    },
     positiveNegative: {
       positive: {
         label: "Upward Strike",
