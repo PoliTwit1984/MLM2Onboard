@@ -5,8 +5,8 @@ const checklistItems = [
   {
     id: 1,
     icon: Wifi,
-    title: "Plug in charger and power on. Establish a connection and update your firmware.",
-    tip: "Establish preferred network connection, visit device info page to update firmware"
+    title: "Power Up & Update",
+    tip: "Plug in the charger, power on, and connect to your preferred network. Visit the Device Info page to update firmware before your first session."
   },
   {
     id: 2,
