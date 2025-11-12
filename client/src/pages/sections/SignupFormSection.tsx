@@ -47,11 +47,11 @@ export const SignupFormSection = (): JSX.Element => {
         <div className="items-start gap-6 md:gap-10 px-0 md:px-8 lg:px-[104px] py-0 flex flex-col w-full">
           <div className="flex flex-col items-start gap-3 w-full">
             <h2 className="w-full mt-[-1.00px] font-heading-48-6xl-hero font-[number:var(--heading-48-6xl-hero-font-weight)] text-[length:var(--heading-48-6xl-hero-font-size)] tracking-[var(--heading-48-6xl-hero-letter-spacing)] leading-[var(--heading-48-6xl-hero-line-height)] [font-style:var(--heading-48-6xl-hero-font-style)] text-genericwhite">
-              TEE TIME CHECKLIST
+              TEE TIME CHECKLIST: YOUR PATH TO A PERFECT SETUP
             </h2>
 
             <p className="w-full font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] [font-style:var(--paragraph-18-lg-medium-font-style)] text-genericwhite opacity-90">
-              Your quick-start guide to getting the most out of your MLM2PRO
+              Your 5 step guide to getting the most out of your MLM2PRO — built for every skill level.
             </p>
           </div>
 

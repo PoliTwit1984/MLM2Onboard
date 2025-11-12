@@ -746,13 +746,13 @@ export const TroubleshootingHub = (): JSX.Element => {
     <section className="w-full bg-genericblack py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] [font-style:var(--heading-72-9xl-hero-font-style)] text-genericwhite text-[length:var(--heading-72-9xl-hero-font-size)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] leading-[var(--heading-72-9xl-hero-line-height)] mb-4">Starter Kit</h2>
+          <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] [font-style:var(--heading-72-9xl-hero-font-style)] text-genericwhite text-[length:var(--heading-72-9xl-hero-font-size)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] leading-[var(--heading-72-9xl-hero-line-height)] mb-4">Get Started Fast with the MLM2PRO Starter Guide</h2>
           <p className="font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-genericwhite text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] opacity-80 mb-8">Get Off The Tee Quick! Click or search topics, available videos are provided. </p>
 
           <div className="max-w-2xl mx-auto mb-8">
             <Input
               type="text"
-              placeholder="Search for help..."
+              placeholder="Search topics or select from the categories below"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full h-14 px-6 text-lg bg-white border-2 border-white focus:border-primary600-main"
