@@ -227,7 +227,7 @@ export const HeroSection = (): JSX.Element => {
               <h1 
                 className="font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericwhite tracking-[var(--heading-96-12xl-hero-letter-spacing)] text-center transition-opacity duration-500 opacity-100 text-[67px]"
               >Your Quest To More Golf Starts Here</h1>
-              <p className="font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] [font-style:var(--paragraph-18-lg-medium-font-style)] text-genericwhite/80 text-center max-w-3xl">
+              <p className="font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] [font-style:var(--paragraph-18-lg-medium-font-style)] text-center max-w-3xl text-[#ffffff]">
                 Unlock the full potential of your MLM2PRO. Learn how to set up, practice smarter, and turn your swing data into real improvement.
               </p>
             </>
