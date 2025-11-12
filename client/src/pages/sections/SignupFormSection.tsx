@@ -11,26 +11,26 @@ const checklistItems = [
   {
     id: 2,
     icon: Target,
-    title: "Dial in your Alignment",
-    tip: "Mark where the MLM2PRO and ball placements are for consistent performance. MLM2PRO will not deliver metrics if it doesn't see the ball!"
+    title: "Dial In Your Alignment",
+    tip: "Mark the ball and MLM2PRO placement for consistency. Remember — the device can't measure what it can't see!"
   },
   {
     id: 3,
     icon: Activity,
-    title: "Get Comfy in your Setup! Hop in a session",
-    tip: "Swinging into a net or screen inside/outside off a mat can take some getting used to. Indoor Swing Syndrome is real!"
+    title: "Get Comfortable in Your Setup",
+    tip: "Indoor or net practice takes time to adjust. Swing naturally — \"Indoor Swing Syndrome\" is common but fixable with repetition."
   },
   {
     id: 4,
     icon: Eye,
-    title: "Review Session, Impact Vision!",
-    tip: "Accessing impact vision during or after your session can help dial in your setup even further. Making sure the ball is properly aligned shot after shot, more importantly how the club and ball are coming into contact with each other."
+    title: "Review with Impact Vision",
+    tip: "Use Impact Vision during or after your session to fine-tune setup and contact consistency."
   },
   {
     id: 5,
     icon: Wrench,
-    title: "Make those Adjustments!",
-    tip: "Sim setups often require tinkering before you get to that optimal setup. If you are experiencing any issues not covered here, or you can't find any answers online. Please reach out to us in app!"
+    title: "Make Adjustments and Improve",
+    tip: "Every setup is unique. Experiment with distance, lighting, or mat height. If you need help, reach out to our support team right in the app."
   }
 ];
 
