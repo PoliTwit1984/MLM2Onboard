@@ -184,26 +184,7 @@ export const HeroSection = (): JSX.Element => {
       groups.push({ title: "Subscription", items: subscriptionItems, side: 'left' });
     }
 
-    // Group 4: Activity
-    const activityItems: GroupedCardItem[] = [];
-    if (userProfile.sessionCount) {
-      activityItems.push({ label: "Total Sessions", value: userProfile.sessionCount.toLocaleString() });
-    }
-    if (userProfile.capturedShots) {
-      activityItems.push({ label: "Captured Shots", value: userProfile.capturedShots.toLocaleString() });
-    }
-    if (userProfile.lastPlayed) {
-      const date = new Date(userProfile.lastPlayed);
-      activityItems.push({ 
-        label: "Last Session", 
-        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-      });
-    }
-    if (activityItems.length > 0) {
-      groups.push({ title: "Activity", items: activityItems, side: 'right' });
-    }
-
-    // Group 5: E6 Connect (if exists)
+    // Group 4: E6 Connect (if exists)
     if (userProfile.e6ConnectKey) {
       groups.push({ 
         title: "E6 Connect", 
