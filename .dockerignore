@@ -1,0 +1,45 @@
+# Dependencies
+node_modules
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+docs
+
+# Environment files
+.env
+.env.*
+
+# OS files
+.DS_Store
+
+# Development files
+*.ts
+*.tsx
+!dist/**/*.js
+tsconfig*.json
+vite.config.ts
+drizzle.config.ts
+tailwind.config.ts
+postcss.config.js
+components.json
+
+# Source directories (built output is in dist)
+client/src
+server
+shared
+
+# Assets not needed in production
+attached_assets
+
+# IDE
+.vscode
+.idea
+
+# Testing
+coverage
+*.test.ts
+*.spec.ts

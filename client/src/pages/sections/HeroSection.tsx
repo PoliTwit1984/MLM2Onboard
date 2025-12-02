@@ -1,299 +1,151 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-interface UserProfile {
-  firstName: string;
-  lastName: string;
-  email: string;
-  deviceSerial?: string;
-  registrationDate?: string;
-  subscriptionType?: string;
-  firstConnectDate?: string;
-  lastConnectDate?: string;
-  sessionCount?: number;
-  capturedShots?: number;
-  phoneType?: string;
-  appVersion?: string;
-  firmwareVersion?: string;
-  lastPlayed?: string;
-  subscriptionStartDate?: string;
-  subscriptionEndDate?: string;
-  age?: number;
-  handedness?: string;
-  e6ConnectKey?: string;
-}
-
-interface GroupedCardItem {
-  label: string;
-  value: string;
-}
-
-interface GroupedProfileCardProps {
-  title: string;
-  items: GroupedCardItem[];
-  delay: number;
-  side: 'left' | 'right';
-}
-
-const GroupedProfileCard = ({ title, items, delay, side }: GroupedProfileCardProps) => {
-  const slideClass = side === 'left' ? 'animate-slide-in-left' : 'animate-slide-in-right';
-  const testId = `grouped-card-${title.toLowerCase().replace(/\s+/g, '-')}`;
-  
-  return (
-    <div 
-      className={`${slideClass} bg-white border-2 border-primary600-main rounded-xl p-8 shadow-2xl`}
-      style={{ 
-        animationDelay: `${delay}ms`,
-        opacity: 0,
-        animationFillMode: 'forwards'
-      }}
-      data-testid={testId}
-    >
-      <h3 className="font-heading-48-6xl-hero font-[number:var(--heading-48-6xl-hero-font-weight)] text-[length:var(--heading-48-6xl-hero-font-size)] tracking-[var(--heading-48-6xl-hero-letter-spacing)] leading-[var(--heading-48-6xl-hero-line-height)] [font-style:var(--heading-48-6xl-hero-font-style)] text-primary600-main uppercase mb-6 pb-4 border-b-2 border-primary600-main">
-        {title}
-      </h3>
-      <div className="space-y-4">
-        {items.map((item, index) => (
-          <div key={index} className="flex flex-col" data-testid={`${testId}-${item.label.toLowerCase().replace(/\s+/g, '-')}`}>
-            <span className="font-paragraph-14-sm-semibold font-[number:var(--paragraph-14-sm-semibold-font-weight)] text-[length:var(--paragraph-14-sm-semibold-font-size)] tracking-[var(--paragraph-14-sm-semibold-letter-spacing)] leading-[var(--paragraph-14-sm-semibold-line-height)] text-primary600-main uppercase mb-1">
-              {item.label}
-            </span>
-            <span className="font-paragraph-20-xl-medium font-[number:var(--paragraph-20-xl-medium-font-weight)] text-[length:var(--paragraph-20-xl-medium-font-size)] tracking-[var(--paragraph-20-xl-medium-letter-spacing)] leading-[var(--paragraph-20-xl-medium-line-height)] text-genericblack">
-              {item.value}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { CheckCircle } from "lucide-react";
+import { identifyUser, trackEvent } from "@/lib/mixpanel";
 
 export const HeroSection = (): JSX.Element => {
   const [email, setEmail] = React.useState("");
-  const [loading, setLoading] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
-  const [userProfile, setUserProfile] = React.useState<UserProfile | null>(null);
-  const [showPersonalized, setShowPersonalized] = React.useState(false);
+  const thanksCardRef = useRef<HTMLDivElement>(null);
+
+  // Focus management - move focus to Thanks card after submission
+  useEffect(() => {
+    if (submitted && thanksCardRef.current) {
+      thanksCardRef.current.focus();
+    }
+  }, [submitted]);
+
+  // Email validation (optional field)
+  const validateEmail = (email: string): boolean => {
+    if (!email) return true; // Optional field - empty is valid
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email) && email.length <= 254;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
 
-    try {
-      const response = await fetch('/api/mixpanel/profile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to fetch profile');
-      }
-
-      if (data.success && data.profile) {
-        setUserProfile(data.profile);
-        // Trigger the personalized view after a short delay
-        setTimeout(() => {
-          setShowPersonalized(true);
-        }, 100);
-      }
-    } catch (err: any) {
-      console.error('Error fetching profile:', err);
-      setError(err.message || 'An error occurred. Please try again.');
-      // Reset state on error to allow retry
-      setUserProfile(null);
-      setShowPersonalized(false);
-    } finally {
-      setLoading(false);
+    // Validate email if provided
+    if (email && !validateEmail(email)) {
+      setError("Please enter a valid email address");
+      return;
     }
+
+    // Identify user in Mixpanel if email provided
+    if (email) {
+      identifyUser(email);
+      trackEvent("email_submitted", { email });
+    } else {
+      trackEvent("onboarding_started_anonymous");
+    }
+
+    setSubmitted(true);
   };
-
-  const handleReset = () => {
-    setEmail("");
-    setUserProfile(null);
-    setShowPersonalized(false);
-    setError(null);
-  };
-
-  // Prepare grouped profile cards data
-  const getGroupedProfileCards = (): Array<{ title: string; items: GroupedCardItem[]; side: 'left' | 'right' }> => {
-    if (!userProfile) return [];
-
-    const groups: Array<{ title: string; items: GroupedCardItem[]; side: 'left' | 'right' }> = [];
-
-    // Group 1: Account Info
-    const accountItems: GroupedCardItem[] = [];
-    if (userProfile.email) {
-      accountItems.push({ label: "Email", value: userProfile.email });
-    }
-    if (userProfile.registrationDate) {
-      const date = new Date(userProfile.registrationDate);
-      accountItems.push({ 
-        label: "Start Date", 
-        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-      });
-    }
-    if (userProfile.handedness) {
-      accountItems.push({ label: "Handedness", value: userProfile.handedness });
-    }
-    if (accountItems.length > 0) {
-      groups.push({ title: "Account Info", items: accountItems, side: 'left' });
-    }
-
-    // Group 2: Device Info
-    const deviceItems: GroupedCardItem[] = [];
-    if (userProfile.deviceSerial) {
-      deviceItems.push({ label: "Serial Number", value: userProfile.deviceSerial });
-    }
-    if (userProfile.appVersion) {
-      deviceItems.push({ label: "App Version", value: userProfile.appVersion });
-    }
-    if (userProfile.firmwareVersion) {
-      deviceItems.push({ label: "Firmware Version", value: userProfile.firmwareVersion });
-    }
-    if (deviceItems.length > 0) {
-      groups.push({ title: "Device Info", items: deviceItems, side: 'right' });
-    }
-
-    // Group 3: Subscription
-    const subscriptionItems: GroupedCardItem[] = [];
-    if (userProfile.subscriptionType) {
-      subscriptionItems.push({ label: "Current Subscription", value: userProfile.subscriptionType });
-    }
-    if (userProfile.subscriptionStartDate) {
-      const date = new Date(userProfile.subscriptionStartDate);
-      subscriptionItems.push({ 
-        label: "Subscription Start Date", 
-        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-      });
-    }
-    if (userProfile.subscriptionEndDate) {
-      const date = new Date(userProfile.subscriptionEndDate);
-      subscriptionItems.push({ 
-        label: "Subscription End Date", 
-        value: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-      });
-    }
-    if (subscriptionItems.length > 0) {
-      groups.push({ title: "Subscription", items: subscriptionItems, side: 'left' });
-    }
-
-    // Group 4: E6 Connect (if exists)
-    if (userProfile.e6ConnectKey) {
-      groups.push({ 
-        title: "E6 Connect", 
-        items: [{ label: "E6 Connect Key", value: userProfile.e6ConnectKey }], 
-        side: groups.length % 2 === 0 ? 'left' : 'right'
-      });
-    }
-
-    return groups;
-  };
-
-  const groupedProfileCards = getGroupedProfileCards();
 
   return (
-    <section className="relative w-full min-h-screen bg-genericblack flex flex-col items-center justify-center py-20 px-8 pt-[50px] pb-[50px] pl-[41px] pr-[41px]">
-      <div className="flex flex-col items-center gap-12 max-w-7xl w-full z-10">
-        {/* Headline - Crossfades between initial and personalized */}
-        <div className="flex flex-col w-full max-w-[700px] items-center gap-8 relative">
-          {!showPersonalized ? (
+    <section className="relative w-full min-h-screen bg-genericblack flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12">
+      <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12 max-w-7xl w-full z-10">
+        {/* Content area */}
+        <div className="flex flex-col w-full max-w-2xl items-center gap-6 sm:gap-8 relative">
+          {!submitted ? (
             <>
-              <h1 
-                className="font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericwhite tracking-[var(--heading-96-12xl-hero-letter-spacing)] text-center transition-opacity duration-500 opacity-100 text-[67px]"
-              >Your Quest To More Golf Starts Here</h1>
-              <p className="font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] [font-style:var(--paragraph-18-lg-medium-font-style)] text-center max-w-3xl text-[#ffffff]">
+              {/* Headline - Responsive font sizes */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-genericwhite text-center leading-tight italic font-heading-96-12xl-hero">
+                Your Quest To More Golf Starts Here
+              </h1>
+
+              {/* Subheadline */}
+              <p className="text-sm sm:text-base md:text-lg text-center max-w-xl text-white/90">
                 Unlock the full potential of your MLM2PRO. Learn how to set up, practice smarter, and turn your swing data into real improvement.
               </p>
+
+              {/* Email Input Form */}
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col sm:flex-row items-stretch gap-3 sm:gap-4 w-full max-w-xs sm:max-w-md"
+              >
+                <Input
+                  type="email"
+                  placeholder="Email address (optional)"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  aria-label="Email address for MLM2PRO onboarding"
+                  aria-describedby="email-help"
+                  data-testid="email-input"
+                  className="flex-1 h-12 px-4 bg-white text-genericblack placeholder:text-gray-500 border-0 focus-visible:ring-2 focus-visible:ring-primary600-main rounded-md"
+                />
+                <Button
+                  type="submit"
+                  aria-label="Start onboarding"
+                  data-testid="submit-button"
+                  className="h-12 px-6 sm:px-8 bg-primary600-main hover:bg-primary-500 text-white font-semibold text-sm uppercase tracking-wide whitespace-nowrap rounded-md"
+                >
+                  GET STARTED
+                </Button>
+              </form>
+              <span id="email-help" className="sr-only">
+                Optional. Enter your email to personalize your experience and track your progress.
+              </span>
+
+              {/* Error Message */}
+              {error && (
+                <div
+                  role="alert"
+                  className="text-red-400 text-center text-sm animate-fade-in"
+                  data-testid="error-message"
+                >
+                  {error}
+                </div>
+              )}
             </>
           ) : (
-            <h1 
-              className="font-heading-96-12xl-hero font-[number:var(--heading-96-12xl-hero-font-weight)] [font-style:var(--heading-96-12xl-hero-font-style)] text-genericwhite text-[length:var(--heading-96-12xl-hero-font-size)] tracking-[var(--heading-96-12xl-hero-letter-spacing)] leading-[var(--heading-96-12xl-hero-line-height)] text-center animate-fade-in"
-            >
-              Welcome, {userProfile?.firstName}!
-            </h1>
-          )}
-
-          {/* Email Input Form - Fades out when profile loaded */}
-          {!showPersonalized && (
-            <form 
-              onSubmit={handleSubmit} 
-              className={`flex flex-col sm:flex-row items-stretch gap-4 w-full max-w-[500px] transition-opacity duration-200 ${
-                userProfile ? 'opacity-0' : 'opacity-100'
-              }`}
-            >
-              <Input
-                type="email"
-                placeholder="Enter your MLM2PRO email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                disabled={loading}
-                data-testid="email-input"
-                className="flex-1 h-12 px-4 bg-white text-genericblack placeholder:text-gray-500 border-0 focus-visible:ring-2 focus-visible:ring-primary600-main disabled:opacity-50 pt-[10px] pb-[10px] pl-[20px] pr-[20px]"
-              />
-              <Button 
-                type="submit"
-                disabled={loading}
-                data-testid="submit-button"
-                className="h-12 px-8 bg-primary600-main hover:bg-primary-500 text-white font-label-14-sm-semibold font-[number:var(--label-14-sm-semibold-font-weight)] text-[length:var(--label-14-sm-semibold-font-size)] tracking-[var(--label-14-sm-semibold-letter-spacing)] leading-[var(--label-14-sm-semibold-line-height)] [font-style:var(--label-14-sm-semibold-font-style)] whitespace-nowrap disabled:opacity-50"
+            /* Thanks Card - Shown after submission */
+            <div aria-live="polite" aria-atomic="true">
+              <Card
+                ref={thanksCardRef}
+                tabIndex={-1}
+                className="w-full max-w-sm sm:max-w-md mx-auto bg-white border-2 border-primary600-main shadow-2xl animate-fade-in"
+                data-testid="thanks-card"
               >
-                {loading ? 'LOADING...' : 'GET STARTED'}
-              </Button>
-            </form>
-          )}
-
-          {/* Error Message */}
-          {error && (
-            <div 
-              className="text-red-500 text-center font-paragraph-16-base-medium animate-fade-in"
-              data-testid="error-message"
-            >
-              {error}
+                <CardHeader className="text-center p-4 sm:p-6">
+                  <div className="flex justify-center mb-2 sm:mb-4">
+                    <CheckCircle className="h-10 w-10 sm:h-12 sm:w-12 text-green-500" aria-hidden="true" />
+                  </div>
+                  <CardTitle className="text-xl sm:text-2xl text-genericblack">
+                    You're All Set!
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center px-4 sm:px-6 pb-6">
+                  <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
+                    Thanks for joining. You're ready to start your MLM2PRO journey.
+                  </p>
+                  <p className="text-xs sm:text-sm text-gray-500">
+                    Scroll down to explore setup guides, swing metrics, and troubleshooting tips.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           )}
         </div>
 
-        {/* Grouped Profile Cards - Slide in from left and right */}
-        {showPersonalized && groupedProfileCards.length > 0 && (
-          <>
-            <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 mb-4">
-              {groupedProfileCards.map((group, index) => (
-                <GroupedProfileCard
-                  key={index}
-                  title={group.title}
-                  items={group.items}
-                  delay={index * 150}
-                  side={group.side}
-                />
-              ))}
-            </div>
-            
-            {/* Reset Button */}
-            <Button
-              onClick={handleReset}
-              variant="outline"
-              data-testid="reset-button"
-              className="mt-4 px-6 py-3 border-2 border-primary600-main bg-transparent hover:bg-primary600-main text-white font-label-14-sm-semibold transition-all duration-200"
-            >
-              Try Different Email
-            </Button>
-          </>
-        )}
-
-        {/* Device Image */}
-        <div className="w-full max-w-3xl flex items-center justify-center">
-          <img
-            src="/figmaAssets/mlm2pro-device.png"
-            alt="MLM2PRO Launch Monitor"
-            className="w-full h-auto object-contain"
-          />
+        {/* Device Image - Lazy loaded with WebP optimization */}
+        <div className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl flex items-center justify-center">
+          <picture>
+            <source
+              srcSet="/figmaAssets/mlm2pro-device.webp"
+              type="image/webp"
+            />
+            <img
+              src="/figmaAssets/mlm2pro-device.png"
+              alt="MLM2PRO Launch Monitor device"
+              loading="lazy"
+              className="w-full h-auto object-contain"
+            />
+          </picture>
         </div>
       </div>
     </section>

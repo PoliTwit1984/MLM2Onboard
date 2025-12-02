@@ -2,6 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import DOMPurify from "dompurify";
 import {
   Accordion,
   AccordionContent,
@@ -718,6 +719,17 @@ const CARD_ICONS = {
   AlertCircle,
 };
 
+// Configure DOMPurify to only allow safe HTML elements for YouTube embeds
+const sanitizeConfig: DOMPurify.Config = {
+  ALLOWED_TAGS: ["div", "iframe", "p", "a", "strong", "em", "ul", "ol", "li", "br", "h1", "h2", "h3", "h4", "h5", "h6"],
+  ALLOWED_ATTR: ["href", "src", "style", "class", "title", "frameborder", "allow", "allowfullscreen", "referrerpolicy"],
+  ALLOWED_URI_REGEXP: /^(?:(?:https?:)?\/\/(?:www\.)?youtube\.com|#|mailto:|tel:)/i,
+};
+
+const sanitizeContent = (content: string): string => {
+  return DOMPurify.sanitize(content, sanitizeConfig);
+};
+
 export const TroubleshootingHub = (): JSX.Element => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedTopic, setSelectedTopic] = React.useState<string | null>(null);
@@ -837,7 +849,7 @@ export const TroubleshootingHub = (): JSX.Element => {
                                     remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[rehypeRaw]}
                                   >
-                                    {topic.content}
+                                    {sanitizeContent(topic.content)}
                                   </ReactMarkdown>
                                 </div>
                               </div>
