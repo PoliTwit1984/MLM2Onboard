@@ -3,6 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useClickTracking, useScrollTracking } from "@/lib/mixpanel";
 import NotFound from "@/pages/not-found";
 
 import { ProductLandingPage } from "@/pages/ProductLandingPage";
@@ -18,12 +19,21 @@ function Router() {
   );
 }
 
+// Global analytics tracking component
+function AnalyticsProvider({ children }: { children: React.ReactNode }) {
+  useClickTracking();  // Track all clicks for heatmap
+  useScrollTracking(); // Track scroll depth milestones
+  return <>{children}</>;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <AnalyticsProvider>
+          <Toaster />
+          <Router />
+        </AnalyticsProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

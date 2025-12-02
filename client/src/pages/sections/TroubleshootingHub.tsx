@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -11,6 +11,13 @@ import {
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
 import { Battery, Wifi, Settings, Target, Play, Zap, Cloud, AlertCircle } from "lucide-react";
+import {
+  trackSectionView,
+  trackSectionExpanded,
+  trackTopicExpanded,
+  trackExternalLink,
+  useSearchTracking,
+} from "@/lib/mixpanel";
 
 interface SubTopic {
   id: string;
@@ -733,6 +740,30 @@ const sanitizeContent = (content: string): string => {
 export const TroubleshootingHub = (): JSX.Element => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedTopic, setSelectedTopic] = React.useState<string | null>(null);
+  const [expandedSection, setExpandedSection] = React.useState<string | undefined>(undefined);
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTrackedView = useRef(false);
+
+  // Track section view with Intersection Observer
+  useEffect(() => {
+    const element = sectionRef.current;
+    if (!element || hasTrackedView.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.3 && !hasTrackedView.current) {
+            hasTrackedView.current = true;
+            trackSectionView('troubleshooting-hub', 'Troubleshooting Hub');
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
 
   const filteredSections = React.useMemo(() => {
     if (!searchQuery) return SECTIONS;
@@ -748,14 +779,46 @@ export const TroubleshootingHub = (): JSX.Element => {
     })).filter(section => section.topics.length > 0);
   }, [searchQuery]);
 
-  const handleTopicClick = (topicId: string, e: React.MouseEvent) => {
+  // Track search queries with debouncing
+  const totalResults = filteredSections.reduce((acc, section) => acc + section.topics.length, 0);
+  useSearchTracking(searchQuery, totalResults);
+
+  // Track accordion section expansion
+  const handleAccordionChange = (value: string | undefined) => {
+    setExpandedSection(value);
+    if (value) {
+      const section = SECTIONS.find(s => s.id === value);
+      if (section) {
+        trackSectionExpanded(section.id, section.title);
+      }
+    }
+  };
+
+  // Track topic expansion
+  const handleTopicClick = (topicId: string, topicTitle: string, sectionId: string, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setSelectedTopic(selectedTopic === topicId ? null : topicId);
+    const isExpanding = selectedTopic !== topicId;
+    setSelectedTopic(isExpanding ? topicId : null);
+    if (isExpanding) {
+      trackTopicExpanded(topicId, topicTitle, sectionId);
+    }
+  };
+
+  // Track external link clicks in markdown content
+  const handleContentClick = (e: React.MouseEvent, sectionId: string) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'A') {
+      const link = target as HTMLAnchorElement;
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('http')) {
+        trackExternalLink(href, link.textContent || '', sectionId);
+      }
+    }
   };
 
   return (
-    <section className="w-full bg-genericblack py-20 px-4 md:px-8">
+    <section ref={sectionRef} className="w-full bg-genericblack py-20 px-4 md:px-8" id="troubleshooting">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] [font-style:var(--heading-72-9xl-hero-font-style)] text-genericwhite text-[length:var(--heading-72-9xl-hero-font-size)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] leading-[var(--heading-72-9xl-hero-line-height)] mb-4">Get Started Fast with the MLM2PRO Starter Guide</h2>
@@ -773,10 +836,10 @@ export const TroubleshootingHub = (): JSX.Element => {
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-4" value={expandedSection} onValueChange={handleAccordionChange}>
             {filteredSections.map((section) => (
-              <AccordionItem 
-                key={section.id} 
+              <AccordionItem
+                key={section.id}
                 value={section.id}
                 className="bg-white rounded-xl border-2 border-white overflow-hidden data-[state=open]:border-primary600-main transition-colors scroll-mt-24"
               >
@@ -801,10 +864,10 @@ export const TroubleshootingHub = (): JSX.Element => {
                           ${isExpanded ? 'md:col-span-2' : ''}
                           transition-all duration-200
                         `}>
-                          <div 
-                            onClick={(e) => handleTopicClick(topic.id, e)}
+                          <div
+                            onClick={(e) => handleTopicClick(topic.id, topic.title, section.id, e)}
                             className={`
-                              bg-gray-50 rounded-lg p-5 cursor-pointer 
+                              bg-gray-50 rounded-lg p-5 cursor-pointer
                               border-2 transition-all hover:shadow-md
                               ${isExpanded ? 'border-primary600-main bg-white' : 'border-transparent hover:border-gray-200'}
                             `}
@@ -836,7 +899,7 @@ export const TroubleshootingHub = (): JSX.Element => {
                             </div>
 
                             {isExpanded && (
-                              <div className="mt-6 pt-6 border-t border-gray-200">
+                              <div className="mt-6 pt-6 border-t border-gray-200" onClick={(e) => handleContentClick(e, section.id)}>
                                 <div className="prose prose-sm max-w-none
                                   prose-headings:font-heading-20-xl-hero prose-headings:text-genericblack prose-headings:mb-3
                                   prose-p:font-paragraph-16-base-medium prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4

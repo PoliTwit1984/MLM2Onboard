@@ -3,13 +3,36 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
-import { identifyUser, trackEvent } from "@/lib/mixpanel";
+import { identifyUser, trackEvent, trackSectionView } from "@/lib/mixpanel";
 
 export const HeroSection = (): JSX.Element => {
   const [email, setEmail] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const thanksCardRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTrackedView = useRef(false);
+
+  // Track section view
+  useEffect(() => {
+    const element = sectionRef.current;
+    if (!element || hasTrackedView.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5 && !hasTrackedView.current) {
+            hasTrackedView.current = true;
+            trackSectionView('hero', 'Hero Section');
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
 
   // Focus management - move focus to Thanks card after submission
   useEffect(() => {
@@ -47,7 +70,7 @@ export const HeroSection = (): JSX.Element => {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-genericblack flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12">
+    <section ref={sectionRef} id="hero" className="relative w-full min-h-screen bg-genericblack flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12 max-w-7xl w-full z-10">
         {/* Content area */}
         <div className="flex flex-col w-full max-w-2xl items-center gap-6 sm:gap-8 relative">
