@@ -40,7 +40,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
     options: [
       { value: 'practice', label: 'Practice' },
       { value: 'simulation_golf', label: 'Simulation Golf' },
-      { value: 'speede_training', label: 'Speed Training' },
+      { value: 'speed_training', label: 'Speed Training' },
     ]
   },
   {
