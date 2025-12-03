@@ -1,7 +1,6 @@
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
-import { type Server } from "http";
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -12,12 +11,6 @@ export function log(message: string, source = "express") {
   });
 
   console.log(`${formattedTime} [${source}] ${message}`);
-}
-
-export async function setupVite(app: Express, server: Server) {
-  // Only import vite-dev module in development - this file won't exist in production build
-  const { setupViteDev } = await import("./vite-dev.js");
-  await setupViteDev(app, server);
 }
 
 export function serveStatic(app: Express) {

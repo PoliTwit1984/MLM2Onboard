@@ -4,7 +4,7 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 import * as Sentry from "@sentry/node";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { serveStatic, log } from "./static";
 
 // Initialize Sentry in production
 if (process.env.NODE_ENV === "production" && process.env.SENTRY_DSN) {
@@ -26,11 +26,12 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.mxpnl.com"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.mxpnl.com", "https://www.youtube.com", "https://s.ytimg.com"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
         imgSrc: ["'self'", "data:", "https:"],
-        frameSrc: ["https://www.youtube.com"],
+        frameSrc: ["https://www.youtube.com", "https://www.youtube-nocookie.com"],
+        childSrc: ["https://www.youtube.com", "https://www.youtube-nocookie.com"],
         connectSrc: [
           "'self'",
           "https://api.mixpanel.com",
@@ -50,15 +51,17 @@ app.use(
   })
 );
 
-// Rate limiting - 100 requests per 15 minutes per IP
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: { error: "Too many requests, please try again later" },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-app.use(limiter);
+// Rate limiting - only in production (100 requests per 15 minutes per IP)
+if (process.env.NODE_ENV === "production") {
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: { error: "Too many requests, please try again later" },
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+  app.use(limiter);
+}
 
 // Request size limits
 app.use(express.json({ limit: "10kb" }));
@@ -122,23 +125,20 @@ app.use((req, res, next) => {
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
   if (app.get("env") === "development") {
+    // Dynamic import to avoid loading vite in production
+    const { setupVite } = await import("./vite.js");
     await setupVite(app, server);
   } else {
     serveStatic(app);
   }
 
-  // Cloud Run sets PORT env var, default to 8080
-  const port = parseInt(process.env.PORT || "8080", 10);
-  server.listen(
-    {
-      port,
-      host: "0.0.0.0",
-      reusePort: true,
-    },
-    () => {
-      log(`serving on port ${port}`);
-    }
-  );
+  // Cloud Run sets PORT env var, default to 5000 for dev, 8080 for prod
+  const port = parseInt(process.env.PORT || "5000", 10);
+  const host = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
+
+  server.listen(port, host, () => {
+    log(`serving on http://${host}:${port}`);
+  });
 
   // Graceful shutdown for Cloud Run
   const shutdown = () => {

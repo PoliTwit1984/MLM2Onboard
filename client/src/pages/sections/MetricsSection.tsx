@@ -1,4 +1,5 @@
 import React from "react";
+import { trackMetricClicked } from "@/lib/mixpanel";
 
 interface TourAverages {
   driver?: {
@@ -231,17 +232,22 @@ const metrics: Metric[] = [
   }
 ];
 
-const MetricCard = ({ metric, isSelected, onSelect }: { 
-  metric: Metric; 
+const MetricCard = ({ metric, isSelected, onSelect }: {
+  metric: Metric;
   isSelected: boolean;
   onSelect: () => void;
 }) => {
+  const handleClick = () => {
+    trackMetricClicked(metric.name, metric.iconName);
+    onSelect();
+  };
+
   return (
-    <div 
+    <div
       className={`flex flex-col items-center cursor-pointer group transition-all duration-300 ${
         isSelected ? 'scale-110 brightness-125' : 'hover:scale-105 hover:brightness-110'
       }`}
-      onClick={onSelect}
+      onClick={handleClick}
       data-testid={`metric-card-${metric.name.toLowerCase().replace(/\s+/g, '-')}`}
     >
       {/* Icon Container - Tight spacing with clean icons */}

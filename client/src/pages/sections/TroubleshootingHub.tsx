@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import DOMPurify from "dompurify";
 import {
   Accordion,
   AccordionContent,
@@ -75,13 +74,13 @@ const SECTIONS: TroubleshootingSection[] = [
 **Watch the Device Info tutorial:**
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
-  <iframe 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://www.youtube.com/embed/qMtR1Nx96NY?si=LwfAQz-phvVLc4Qo" 
-    title="Device Info Page Tutorial" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/qMtR1Nx96NY?si=LwfAQz-phvVLc4Qo"
+    title="Device Info Page Tutorial"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -89,13 +88,13 @@ const SECTIONS: TroubleshootingSection[] = [
 **Watch: Establishing a Local WiFi Network Connection**
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
-  <iframe 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://www.youtube.com/embed/i1l3XgoamWE?si=ggL19t0NjDW4M5Hj" 
-    title="Establishing a Local WiFi Network Connection" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/i1l3XgoamWE?si=ggL19t0NjDW4M5Hj"
+    title="Establishing a Local WiFi Network Connection"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -130,13 +129,13 @@ const SECTIONS: TroubleshootingSection[] = [
 **Watch the firmware update tutorial:**
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
-  <iframe 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://www.youtube.com/embed/sr6BEY5HmHc?si=4wcu1ylEWcrrbBuK" 
-    title="Firmware Update Tutorial" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/sr6BEY5HmHc?si=4wcu1ylEWcrrbBuK"
+    title="Firmware Update Tutorial"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -204,13 +203,13 @@ const SECTIONS: TroubleshootingSection[] = [
 **Watch: MLM2PRO Alignment Set-Up**
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
-  <iframe 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://www.youtube.com/embed/ErWu4kvDYkM?si=Jrrmv2RdP7Axet3-" 
-    title="MLM2PRO Alignment Set-Up" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/ErWu4kvDYkM?si=Jrrmv2RdP7Axet3-"
+    title="MLM2PRO Alignment Set-Up"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -332,13 +331,13 @@ Speed and confidence improve with consistent indoor practice. Focus on swing mec
 **Watch: Target Range Practice Mode**
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
-  <iframe 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://www.youtube.com/embed/06evjEOfF6c?si=L6zNqf-WMLPALIyJ" 
-    title="Target Range Practice Mode" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/06evjEOfF6c?si=L6zNqf-WMLPALIyJ"
+    title="Target Range Practice Mode"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -381,13 +380,13 @@ Speed and confidence improve with consistent indoor practice. Focus on swing mec
 **Watch the Rapsodo Range tutorial:**
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
-  <iframe 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://www.youtube.com/embed/eZrs2dG--is?si=76sUQBp3Lf2F0QJy" 
-    title="Rapsodo Range Tutorial" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/eZrs2dG--is?si=76sUQBp3Lf2F0QJy"
+    title="Rapsodo Range Tutorial"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -460,13 +459,13 @@ Run LOD assessment in app settings to re-test and adjust graphics level for opti
 **Watch: Connecting Awesome Golf**
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
-  <iframe 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://www.youtube.com/embed/FiJ3Wc4x5So?si=RO7pSBu2IwwXhthC" 
-    title="Connecting Awesome Golf" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/FiJ3Wc4x5So?si=RO7pSBu2IwwXhthC"
+    title="Connecting Awesome Golf"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -726,17 +725,6 @@ const CARD_ICONS = {
   AlertCircle,
 };
 
-// Configure DOMPurify to only allow safe HTML elements for YouTube embeds
-const sanitizeConfig: DOMPurify.Config = {
-  ALLOWED_TAGS: ["div", "iframe", "p", "a", "strong", "em", "ul", "ol", "li", "br", "h1", "h2", "h3", "h4", "h5", "h6"],
-  ALLOWED_ATTR: ["href", "src", "style", "class", "title", "frameborder", "allow", "allowfullscreen", "referrerpolicy"],
-  ALLOWED_URI_REGEXP: /^(?:(?:https?:)?\/\/(?:www\.)?youtube\.com|#|mailto:|tel:)/i,
-};
-
-const sanitizeContent = (content: string): string => {
-  return DOMPurify.sanitize(content, sanitizeConfig);
-};
-
 export const TroubleshootingHub = (): JSX.Element => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedTopic, setSelectedTopic] = React.useState<string | null>(null);
@@ -912,7 +900,7 @@ export const TroubleshootingHub = (): JSX.Element => {
                                     remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[rehypeRaw]}
                                   >
-                                    {sanitizeContent(topic.content)}
+                                    {topic.content}
                                   </ReactMarkdown>
                                 </div>
                               </div>

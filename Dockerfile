@@ -3,14 +3,20 @@ FROM node:20-slim AS builder
 
 WORKDIR /app
 
-# Copy package files
+# Copy package files first for better caching
 COPY package*.json ./
 
 # Install all dependencies (including dev) for building
-RUN npm ci
+RUN npm install
 
 # Copy source code
 COPY . .
+
+# Set Vite environment variables for build (baked into client bundle)
+ARG VITE_MIXPANEL_PROJECT_TOKEN
+ARG VITE_SENTRY_DSN
+ENV VITE_MIXPANEL_PROJECT_TOKEN=$VITE_MIXPANEL_PROJECT_TOKEN
+ENV VITE_SENTRY_DSN=$VITE_SENTRY_DSN
 
 # Build the application
 RUN npm run build
@@ -24,7 +30,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies only
-RUN npm ci --only=production
+RUN npm install --omit=dev
 
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist

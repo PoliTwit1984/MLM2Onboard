@@ -91,6 +91,17 @@ export const trackVideoClick = (videoId: string, videoTitle: string) => {
 };
 
 // ============================================
+// Metrics Section Tracking
+// ============================================
+
+export const trackMetricClicked = (metricName: string, metricId: string) => {
+  trackEvent('metric_clicked', {
+    metric_name: metricName,
+    metric_id: metricId,
+  });
+};
+
+// ============================================
 // Heatmap / Click Tracking
 // ============================================
 

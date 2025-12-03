@@ -37,6 +37,12 @@
 | `troubleshooting_topic_expanded` | User clicks "Learn more" on a topic | `topic_id`, `topic_title`, `section_id` |
 | `troubleshooting_search` | User types in search box (debounced 500ms) | `query`, `results_count` |
 
+### Metrics Section
+
+| Event | Trigger | Properties |
+|-------|---------|------------|
+| `metric_clicked` | User clicks a metric icon (Total Distance, Ball Speed, etc.) | `metric_name`, `metric_id` |
+
 ### Link Tracking
 
 | Event | Trigger | Properties |

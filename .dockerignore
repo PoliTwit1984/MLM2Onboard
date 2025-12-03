@@ -1,4 +1,4 @@
-# Dependencies
+# Dependencies (will be installed fresh)
 node_modules
 
 # Git
@@ -9,31 +9,12 @@ node_modules
 *.md
 docs
 
-# Environment files
+# Environment files (will be set via Cloud Run)
 .env
 .env.*
 
 # OS files
 .DS_Store
-
-# Development files
-*.ts
-*.tsx
-!dist/**/*.js
-tsconfig*.json
-vite.config.ts
-drizzle.config.ts
-tailwind.config.ts
-postcss.config.js
-components.json
-
-# Source directories (built output is in dist)
-client/src
-server
-shared
-
-# Assets not needed in production
-attached_assets
 
 # IDE
 .vscode
@@ -43,3 +24,9 @@ attached_assets
 coverage
 *.test.ts
 *.spec.ts
+
+# Build output (will be regenerated)
+dist
+
+# Misc
+attached_assets
