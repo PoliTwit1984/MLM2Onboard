@@ -57,6 +57,9 @@ VITE_MIXPANEL_PROJECT_TOKEN=your_mixpanel_token
 VITE_SENTRY_DSN=your_sentry_dsn
 SENTRY_DSN=your_sentry_dsn
 
+# Fonts (optional Adobe Fonts kit for Acumin)
+VITE_ADOBE_FONTS_KIT_ID=your_typekit_kit_id
+
 # Environment
 NODE_ENV=development
 ```
@@ -106,7 +109,7 @@ gcloud run deploy mlm2-onboard \
   --source . \
   --region us-central1 \
   --allow-unauthenticated \
-  --set-build-env-vars "VITE_MIXPANEL_PROJECT_TOKEN=xxx,VITE_SENTRY_DSN=yyy" \
+  --set-build-env-vars "VITE_MIXPANEL_PROJECT_TOKEN=xxx,VITE_SENTRY_DSN=yyy,VITE_ADOBE_FONTS_KIT_ID=kit123" \
   --set-env-vars "NODE_ENV=production,SENTRY_DSN=yyy"
 ```
 

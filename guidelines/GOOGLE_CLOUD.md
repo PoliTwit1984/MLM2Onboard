@@ -86,8 +86,10 @@ COPY . .
 # Set Vite environment variables for build (baked into client bundle)
 ARG VITE_MIXPANEL_PROJECT_TOKEN
 ARG VITE_SENTRY_DSN
+ARG VITE_ADOBE_FONTS_KIT_ID
 ENV VITE_MIXPANEL_PROJECT_TOKEN=$VITE_MIXPANEL_PROJECT_TOKEN
 ENV VITE_SENTRY_DSN=$VITE_SENTRY_DSN
+ENV VITE_ADOBE_FONTS_KIT_ID=$VITE_ADOBE_FONTS_KIT_ID
 
 # Build the application
 RUN npm run build
@@ -286,8 +288,10 @@ export default defineConfig({
 ```dockerfile
 ARG VITE_MIXPANEL_PROJECT_TOKEN
 ARG VITE_SENTRY_DSN
+ARG VITE_ADOBE_FONTS_KIT_ID
 ENV VITE_MIXPANEL_PROJECT_TOKEN=$VITE_MIXPANEL_PROJECT_TOKEN
 ENV VITE_SENTRY_DSN=$VITE_SENTRY_DSN
+ENV VITE_ADOBE_FONTS_KIT_ID=$VITE_ADOBE_FONTS_KIT_ID
 
 RUN npm run build
 ```
@@ -295,7 +299,7 @@ RUN npm run build
 **Deploy command:**
 ```bash
 gcloud run deploy SERVICE_NAME \
-  --set-build-env-vars "VITE_MIXPANEL_PROJECT_TOKEN=xxx,VITE_SENTRY_DSN=yyy" \
+  --set-build-env-vars "VITE_MIXPANEL_PROJECT_TOKEN=xxx,VITE_SENTRY_DSN=yyy,VITE_ADOBE_FONTS_KIT_ID=kit123" \
   --set-env-vars "NODE_ENV=production,SENTRY_DSN=yyy"
 ```
 
@@ -305,6 +309,7 @@ gcloud run deploy SERVICE_NAME \
 # Client-side (baked into bundle)
 VITE_MIXPANEL_PROJECT_TOKEN=your_token_here
 VITE_SENTRY_DSN=https://xxx@sentry.io/yyy
+VITE_ADOBE_FONTS_KIT_ID=kit123
 
 # Server-side
 SENTRY_DSN=https://xxx@sentry.io/yyy
@@ -568,7 +573,7 @@ gcloud run deploy mlm2-onboard \
   --platform managed \
   --allow-unauthenticated \
   --set-env-vars "NODE_ENV=production,SENTRY_DSN=https://xxx@sentry.io/yyy" \
-  --set-build-env-vars "VITE_MIXPANEL_PROJECT_TOKEN=xxx,VITE_SENTRY_DSN=https://xxx@sentry.io/yyy" \
+  --set-build-env-vars "VITE_MIXPANEL_PROJECT_TOKEN=xxx,VITE_SENTRY_DSN=https://xxx@sentry.io/yyy,VITE_ADOBE_FONTS_KIT_ID=kit123" \
   --memory 512Mi \
   --timeout 300
 ```
@@ -688,6 +693,8 @@ steps:
       - 'VITE_MIXPANEL_PROJECT_TOKEN=${_VITE_MIXPANEL_TOKEN}'
       - '--build-arg'
       - 'VITE_SENTRY_DSN=${_VITE_SENTRY_DSN}'
+      - '--build-arg'
+      - 'VITE_ADOBE_FONTS_KIT_ID=${_VITE_ADOBE_FONTS_KIT_ID}'
       - '.'
 
   # Push to Artifact Registry
@@ -724,6 +731,7 @@ substitutions:
   _SERVICE: mlm2-onboard
   _VITE_MIXPANEL_TOKEN: ''
   _VITE_SENTRY_DSN: ''
+  _VITE_ADOBE_FONTS_KIT_ID: ''
   _SENTRY_DSN: ''
 
 options:
@@ -747,6 +755,7 @@ steps:
       - '--cache-ttl=168h'  # 7 days
       - '--build-arg=VITE_MIXPANEL_PROJECT_TOKEN=${_VITE_MIXPANEL_TOKEN}'
       - '--build-arg=VITE_SENTRY_DSN=${_VITE_SENTRY_DSN}'
+      - '--build-arg=VITE_ADOBE_FONTS_KIT_ID=${_VITE_ADOBE_FONTS_KIT_ID}'
 
   # Deploy to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -769,6 +778,7 @@ substitutions:
   _SERVICE: mlm2-onboard
   _VITE_MIXPANEL_TOKEN: ''
   _VITE_SENTRY_DSN: ''
+  _VITE_ADOBE_FONTS_KIT_ID: ''
 ```
 
 ### Dockerfile Best Practices for Caching
@@ -809,7 +819,7 @@ RUN npm run build
 # Submit build with substitutions
 gcloud builds submit \
   --config=cloudbuild.yaml \
-  --substitutions=_VITE_MIXPANEL_TOKEN="xxx",_VITE_SENTRY_DSN="yyy",_SENTRY_DSN="yyy"
+  --substitutions=_VITE_MIXPANEL_TOKEN="xxx",_VITE_SENTRY_DSN="yyy",_VITE_ADOBE_FONTS_KIT_ID="kit123",_SENTRY_DSN="yyy"
 
 # Or enable Kaniko globally for simple builds
 gcloud config set builds/use_kaniko True

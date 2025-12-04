@@ -11,31 +11,31 @@
   --genericblack: rgba(0, 0, 0, 1);
   --genericwhite: rgba(255, 255, 255, 1);
   --heading-28-3xl-hero-font-family: "Acumin Pro ExtraCondensed", Helvetica;
-  --heading-28-3xl-hero-font-size: 28px;
+  --heading-28-3xl-hero-font-size: clamp(1.375rem, 4vw, 1.75rem);
   --heading-28-3xl-hero-font-style: italic;
   --heading-28-3xl-hero-font-weight: 700;
   --heading-28-3xl-hero-letter-spacing: 0px;
   --heading-28-3xl-hero-line-height: 90%;
   --heading-32-4xl-standard-font-family: "Barlow", Helvetica;
-  --heading-32-4xl-standard-font-size: 32px;
+  --heading-32-4xl-standard-font-size: clamp(1.5rem, 4.5vw, 2rem);
   --heading-32-4xl-standard-font-style: normal;
   --heading-32-4xl-standard-font-weight: 500;
   --heading-32-4xl-standard-letter-spacing: -0.64px;
   --heading-32-4xl-standard-line-height: 115%;
   --heading-48-6xl-hero-font-family: "Acumin Pro ExtraCondensed", Helvetica;
-  --heading-48-6xl-hero-font-size: 48px;
+  --heading-48-6xl-hero-font-size: clamp(2rem, 6vw, 3rem);
   --heading-48-6xl-hero-font-style: italic;
   --heading-48-6xl-hero-font-weight: 700;
   --heading-48-6xl-hero-letter-spacing: 0px;
   --heading-48-6xl-hero-line-height: 90%;
   --heading-72-9xl-hero-font-family: "Acumin Pro ExtraCondensed", Helvetica;
-  --heading-72-9xl-hero-font-size: 72px;
+  --heading-72-9xl-hero-font-size: clamp(2.5rem, 9vw, 4.5rem);
   --heading-72-9xl-hero-font-style: italic;
   --heading-72-9xl-hero-font-weight: 700;
   --heading-72-9xl-hero-letter-spacing: 0px;
   --heading-72-9xl-hero-line-height: 90%;
   --heading-96-12xl-hero-font-family: "Acumin Pro ExtraCondensed", Helvetica;
-  --heading-96-12xl-hero-font-size: 96px;
+  --heading-96-12xl-hero-font-size: clamp(3rem, 12vw, 6rem);
   --heading-96-12xl-hero-font-style: italic;
   --heading-96-12xl-hero-font-weight: 700;
   --heading-96-12xl-hero-letter-spacing: 0px;
@@ -96,25 +96,25 @@
   --paragraph-16-base-semibold-letter-spacing: -0.16px;
   --paragraph-16-base-semibold-line-height: 155%;
   --paragraph-18-lg-medium-font-family: "Barlow", Helvetica;
-  --paragraph-18-lg-medium-font-size: 18px;
+  --paragraph-18-lg-medium-font-size: clamp(1.0625rem, 2.75vw, 1.125rem);
   --paragraph-18-lg-medium-font-style: normal;
   --paragraph-18-lg-medium-font-weight: 500;
   --paragraph-18-lg-medium-letter-spacing: -0.18px;
   --paragraph-18-lg-medium-line-height: 155%;
   --paragraph-18-lg-semibold-font-family: "Barlow", Helvetica;
-  --paragraph-18-lg-semibold-font-size: 18px;
+  --paragraph-18-lg-semibold-font-size: clamp(1.0625rem, 2.75vw, 1.125rem);
   --paragraph-18-lg-semibold-font-style: normal;
   --paragraph-18-lg-semibold-font-weight: 600;
   --paragraph-18-lg-semibold-letter-spacing: -0.18px;
   --paragraph-18-lg-semibold-line-height: 155%;
   --paragraph-20-xl-medium-font-family: "Barlow", Helvetica;
-  --paragraph-20-xl-medium-font-size: 20px;
+  --paragraph-20-xl-medium-font-size: clamp(1.125rem, 3vw, 1.25rem);
   --paragraph-20-xl-medium-font-style: normal;
   --paragraph-20-xl-medium-font-weight: 500;
   --paragraph-20-xl-medium-letter-spacing: -0.2px;
   --paragraph-20-xl-medium-line-height: 155%;
   --paragraph-24-2xl-semibold-font-family: "Barlow", Helvetica;
-  --paragraph-24-2xl-semibold-font-size: 24px;
+  --paragraph-24-2xl-semibold-font-size: clamp(1.25rem, 3.5vw, 1.5rem);
   --paragraph-24-2xl-semibold-font-style: normal;
   --paragraph-24-2xl-semibold-font-weight: 600;
   --paragraph-24-2xl-semibold-letter-spacing: -0.24px;
@@ -311,6 +311,7 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Barlow", Helvetica, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }

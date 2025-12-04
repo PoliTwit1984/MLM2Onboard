@@ -76,11 +76,10 @@ const SECTIONS: TroubleshootingSection[] = [
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/qMtR1Nx96NY?si=LwfAQz-phvVLc4Qo"
+    src="https://www.youtube-nocookie.com/embed/qMtR1Nx96NY?rel=0&modestbranding=1&playsinline=1"
     title="Device Info Page Tutorial"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -90,11 +89,10 @@ const SECTIONS: TroubleshootingSection[] = [
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/i1l3XgoamWE?si=ggL19t0NjDW4M5Hj"
+    src="https://www.youtube-nocookie.com/embed/i1l3XgoamWE?rel=0&modestbranding=1&playsinline=1"
     title="Establishing a Local WiFi Network Connection"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -131,11 +129,10 @@ const SECTIONS: TroubleshootingSection[] = [
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/sr6BEY5HmHc?si=4wcu1ylEWcrrbBuK"
+    src="https://www.youtube-nocookie.com/embed/sr6BEY5HmHc?rel=0&modestbranding=1&playsinline=1"
     title="Firmware Update Tutorial"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -205,11 +202,10 @@ const SECTIONS: TroubleshootingSection[] = [
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/ErWu4kvDYkM?si=Jrrmv2RdP7Axet3-"
+    src="https://www.youtube-nocookie.com/embed/ErWu4kvDYkM?rel=0&modestbranding=1&playsinline=1"
     title="MLM2PRO Alignment Set-Up"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -333,11 +329,10 @@ Speed and confidence improve with consistent indoor practice. Focus on swing mec
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/06evjEOfF6c?si=L6zNqf-WMLPALIyJ"
+    src="https://www.youtube-nocookie.com/embed/06evjEOfF6c?rel=0&modestbranding=1&playsinline=1"
     title="Target Range Practice Mode"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -382,11 +377,10 @@ Speed and confidence improve with consistent indoor practice. Focus on swing mec
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/eZrs2dG--is?si=76sUQBp3Lf2F0QJy"
+    src="https://www.youtube-nocookie.com/embed/eZrs2dG--is?rel=0&modestbranding=1&playsinline=1"
     title="Rapsodo Range Tutorial"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
@@ -461,11 +455,10 @@ Run LOD assessment in app settings to re-test and adjust graphics level for opti
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1.5rem 0;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/FiJ3Wc4x5So?si=RO7pSBu2IwwXhthC"
+    src="https://www.youtube-nocookie.com/embed/FiJ3Wc4x5So?rel=0&modestbranding=1&playsinline=1"
     title="Connecting Awesome Golf"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>

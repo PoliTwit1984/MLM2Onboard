@@ -39,6 +39,9 @@ app.use(
         ],
       },
     },
+    referrerPolicy: {
+      policy: "strict-origin-when-cross-origin",
+    },
     crossOriginEmbedderPolicy: false, // Allow YouTube embeds
   })
 );

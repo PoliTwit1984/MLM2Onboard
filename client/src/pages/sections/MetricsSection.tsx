@@ -255,11 +255,11 @@ const MetricCard = ({ metric, isSelected, onSelect }: {
         <img 
           src={`/figmaAssets/icons-clean/${metric.iconName}.png`}
           alt={metric.name}
-          className="w-28 h-28 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain transition-all duration-300 mb-0"
+          className="w-24 h-24 sm:w-36 sm:h-36 lg:w-48 lg:h-48 object-contain transition-all duration-300 mb-0"
         />
       </div>
       {/* Metric Name */}
-      <p className="font-label-16-base-semibold tracking-[var(--label-16-base-semibold-letter-spacing)] text-center text-white uppercase text-[18px] font-bold">
+      <p className="font-label-16-base-semibold tracking-[var(--label-16-base-semibold-letter-spacing)] text-center text-white uppercase text-base sm:text-lg font-semibold">
         {metric.name}
       </p>
     </div>

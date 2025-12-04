@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import * as Sentry from "@sentry/react";
 import App from "./App";
 import "./index.css";
+import { ensureBrandFontsLoaded } from "./lib/fonts";
 
 // Initialize Sentry in production
 if (import.meta.env.PROD && import.meta.env.VITE_SENTRY_DSN) {
@@ -13,5 +14,7 @@ if (import.meta.env.PROD && import.meta.env.VITE_SENTRY_DSN) {
     replaysOnErrorSampleRate: 1.0,
   });
 }
+
+ensureBrandFontsLoaded();
 
 createRoot(document.getElementById("root")!).render(<App />);

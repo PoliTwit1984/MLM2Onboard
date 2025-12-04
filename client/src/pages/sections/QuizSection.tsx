@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { trackEvent } from "@/lib/mixpanel";
 
 interface QuizQuestion {
@@ -153,11 +154,11 @@ export const QuizSection = (): JSX.Element => {
   }
 
   return (
-    <section className="w-full bg-genericblack py-20 px-4 md:px-8">
+    <section id="quiz" className="w-full bg-genericblack py-20 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="font-heading-72-9xl-hero font-[number:var(--heading-72-9xl-hero-font-weight)] [font-style:var(--heading-72-9xl-hero-font-style)] text-genericwhite text-[length:var(--heading-72-9xl-hero-font-size)] tracking-[var(--heading-72-9xl-hero-letter-spacing)] leading-[var(--heading-72-9xl-hero-line-height)] mb-4">
-            LET'S GET TO KNOW YOU
+            HELP US GET TO KNOW YOU
           </h2>
           <p className="font-paragraph-18-lg-medium font-[number:var(--paragraph-18-lg-medium-font-weight)] text-genericwhite text-[length:var(--paragraph-18-lg-medium-font-size)] tracking-[var(--paragraph-18-lg-medium-letter-spacing)] leading-[var(--paragraph-18-lg-medium-line-height)] opacity-80">
             Help us personalize your MLM2PRO experience
@@ -226,22 +227,26 @@ export const QuizSection = (): JSX.Element => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center">
-          <Button
-            onClick={handleBack}
-            disabled={currentStep === 0}
-            variant="outline"
-            className="border-2 border-white text-white hover:bg-white hover:text-genericblack disabled:opacity-30 disabled:cursor-not-allowed px-8 py-6 text-lg"
-          >
-            Back
-          </Button>
+        <div className="flex justify-between items-center gap-6">
+          {currentStep > 0 ? (
+            <Button
+              onClick={handleBack}
+              className="w-14 h-14 rounded-full bg-primary600-main hover:bg-primary600-main/90 text-genericblack"
+              aria-label="Previous question"
+            >
+              <ArrowLeft className="w-6 h-6" />
+            </Button>
+          ) : (
+            <div className="w-14 h-14" />
+          )}
           
           <Button
             onClick={handleNext}
             disabled={!canProceed()}
-            className="bg-primary600-main hover:bg-primary600-main/90 text-white disabled:opacity-30 disabled:cursor-not-allowed px-8 py-6 text-lg"
+            className="w-14 h-14 rounded-full bg-primary600-main hover:bg-primary600-main/90 text-genericblack disabled:opacity-40 disabled:pointer-events-none"
+            aria-label={currentStep === QUIZ_QUESTIONS.length - 1 ? 'Complete quiz' : 'Next question'}
           >
-            {currentStep === QUIZ_QUESTIONS.length - 1 ? 'Complete' : 'Next'}
+            <ArrowRight className="w-6 h-6" />
           </Button>
         </div>
       </div>
