@@ -54,11 +54,11 @@ app.use(
   })
 );
 
-// Rate limiting - only in production (100 requests per 15 minutes per IP)
+// Rate limiting - only in production (500 requests per 15 minutes per IP)
 if (process.env.NODE_ENV === "production") {
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100,
+    max: 500,
     message: { error: "Too many requests, please try again later" },
     standardHeaders: true,
     legacyHeaders: false,
