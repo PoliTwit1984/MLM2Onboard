@@ -26,7 +26,7 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.mxpnl.com", "https://www.youtube.com", "https://s.ytimg.com"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.mxpnl.com", "https://www.youtube.com", "https://s.ytimg.com", "https://use.typekit.net"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://use.typekit.net", "https://p.typekit.net"],
         fontSrc: ["'self'", "https://fonts.gstatic.com", "https://use.typekit.net", "https://p.typekit.net"],
         imgSrc: ["'self'", "data:", "https:"],
@@ -36,6 +36,7 @@ app.use(
           "'self'",
           "https://api.mixpanel.com",
           "https://api-js.mixpanel.com",
+          "https://performance.typekit.net",
         ],
       },
     },
