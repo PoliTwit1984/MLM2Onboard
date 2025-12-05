@@ -10,26 +10,45 @@ The site uses **Acumin Pro ExtraCondensed Bold Italic** for all hero-style headi
 
 ---
 
+## Prerequisites
+
+- **Adobe Creative Cloud subscription** - Adobe Fonts is included with any Adobe CC plan
+- Access to [fonts.adobe.com](https://fonts.adobe.com)
+
+---
+
 ## Adobe Fonts Setup
 
 ### 1. Create a Web Project
 
 1. Go to [fonts.adobe.com](https://fonts.adobe.com)
 2. Sign in with your Adobe CC account
-3. Navigate to **Web Projects**
-4. Create a new project (e.g., "MLM2PRO Onboard")
-5. Add the required font: **Acumin Pro ExtraCondensed Bold Italic**
-   - font-weight: 700
-   - font-style: italic
+3. Click your profile icon (top right) → **Web Projects**
+4. Click **Create New Project**
+5. Name your project (e.g., "MLM2PRO Onboard")
 
-### 2. Get Your Kit ID
+### 2. Add the Font
 
-After adding fonts, Adobe provides an embed code:
+1. Search for "Acumin Pro ExtraCondensed"
+2. Click on the font family
+3. Click **Add to Web Project**
+4. Select your project from the dropdown
+5. **Important:** Only select the variant you need:
+   - **Acumin Pro ExtraCondensed Bold Italic** (700, italic)
+   - Fewer variants = faster page load
+6. Click **Save**
+
+### 3. Get Your Kit ID
+
+After saving, Adobe shows an embed code:
 ```html
 <link rel="stylesheet" href="https://use.typekit.net/odn7cin.css">
 ```
 
-The Kit ID is `odn7cin` (the part before `.css`).
+The **Kit ID** is the string before `.css` → `odn7cin`
+
+You can also find this anytime by going to:
+**Web Projects** → Click your project → **Edit Project** → Look at the embed code
 
 ---
 
