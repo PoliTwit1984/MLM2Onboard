@@ -10,7 +10,7 @@
 :root {
   --genericblack: rgba(0, 0, 0, 1);
   --genericwhite: rgba(255, 255, 255, 1);
-  --heading-28-3xl-hero-font-family: "Acumin Pro ExtraCondensed", Helvetica;
+  --heading-28-3xl-hero-font-family: "acumin-pro-extra-condensed", "Acumin Pro ExtraCondensed", Helvetica;
   --heading-28-3xl-hero-font-size: clamp(1.375rem, 4vw, 1.75rem);
   --heading-28-3xl-hero-font-style: italic;
   --heading-28-3xl-hero-font-weight: 700;
@@ -22,19 +22,19 @@
   --heading-32-4xl-standard-font-weight: 500;
   --heading-32-4xl-standard-letter-spacing: -0.64px;
   --heading-32-4xl-standard-line-height: 115%;
-  --heading-48-6xl-hero-font-family: "Acumin Pro ExtraCondensed", Helvetica;
+  --heading-48-6xl-hero-font-family: "acumin-pro-extra-condensed", "Acumin Pro ExtraCondensed", Helvetica;
   --heading-48-6xl-hero-font-size: clamp(2rem, 6vw, 3rem);
   --heading-48-6xl-hero-font-style: italic;
   --heading-48-6xl-hero-font-weight: 700;
   --heading-48-6xl-hero-letter-spacing: 0px;
   --heading-48-6xl-hero-line-height: 90%;
-  --heading-72-9xl-hero-font-family: "Acumin Pro ExtraCondensed", Helvetica;
+  --heading-72-9xl-hero-font-family: "acumin-pro-extra-condensed", "Acumin Pro ExtraCondensed", Helvetica;
   --heading-72-9xl-hero-font-size: clamp(2.5rem, 9vw, 4.5rem);
   --heading-72-9xl-hero-font-style: italic;
   --heading-72-9xl-hero-font-weight: 700;
   --heading-72-9xl-hero-letter-spacing: 0px;
   --heading-72-9xl-hero-line-height: 90%;
-  --heading-96-12xl-hero-font-family: "Acumin Pro ExtraCondensed", Helvetica;
+  --heading-96-12xl-hero-font-family: "acumin-pro-extra-condensed", "Acumin Pro ExtraCondensed", Helvetica;
   --heading-96-12xl-hero-font-size: clamp(3rem, 12vw, 6rem);
   --heading-96-12xl-hero-font-style: italic;
   --heading-96-12xl-hero-font-weight: 700;

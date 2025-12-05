@@ -27,12 +27,12 @@ export const FooterSection = (): JSX.Element => {
   return (
     <footer className="flex flex-col w-full items-center gap-8 md:gap-[54px] p-4 md:p-8 lg:p-12 bg-genericwhite border-t border-[#dfdfdf]">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 md:gap-12 w-full">
-        <div className="flex-1 text-center md:text-left [font-family:'Acumin_Pro_ExtraCondensed-Bold',Helvetica] font-bold text-genericblack text-[24px] md:text-[32px] lg:text-[40px] tracking-[0] leading-tight md:leading-9">
-          <span className="[font-family:'Acumin_Pro_ExtraCondensed-BoldItalic',Helvetica] italic">
+        <div className="flex-1 text-center md:text-left [font-family:'acumin-pro-extra-condensed','Acumin_Pro_ExtraCondensed-Bold',Helvetica] font-bold text-genericblack text-[24px] md:text-[32px] lg:text-[40px] tracking-[0] leading-tight md:leading-9">
+          <span className="[font-family:'acumin-pro-extra-condensed','Acumin_Pro_ExtraCondensed-BoldItalic',Helvetica] italic">
             OUR MISSION IS GIVE ATHLETES EVERYWHERE THE TOOLS THEY NEED TO PLAY
             LIKE NEVER BEFORE. SEE MORE. DO MORE. PLAY MORE.{" "}
           </span>
-          <span className="[font-family:'Acumin_Pro_ExtraCondensed-BoldItalic',Helvetica] italic underline">
+          <span className="[font-family:'acumin-pro-extra-condensed','Acumin_Pro_ExtraCondensed-BoldItalic',Helvetica] italic underline">
             PLAY WITHOUT LIMITS™.
           </span>
         </div>
