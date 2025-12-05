@@ -27,8 +27,8 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.mxpnl.com", "https://www.youtube.com", "https://s.ytimg.com"],
-        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://use.typekit.net", "https://p.typekit.net"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://use.typekit.net", "https://p.typekit.net"],
         imgSrc: ["'self'", "data:", "https:"],
         frameSrc: ["https://www.youtube.com", "https://www.youtube-nocookie.com"],
         childSrc: ["https://www.youtube.com", "https://www.youtube-nocookie.com"],
